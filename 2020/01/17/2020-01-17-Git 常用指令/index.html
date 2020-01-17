@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Cheeto 的學習部落格"><meta name="keywords" content="Cheeto's blog"><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/cheeto.github.io/css/style-dark.css?v=2.0.4"><link rel="stylesheet" type="text/css" href="/cheeto.github.io/css/highlight-dark.css?v=2.0.4"><link rel="Shortcut Icon" href="/cheeto.github.io/favicon.ico"><link rel="bookmark" href="/cheeto.github.io/favicon.ico"><link rel="apple-touch-icon" href="/cheeto.github.io/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/cheeto.github.io/apple-touch-icon.png"><title>Git 常用指令 | Cheeto</title><meta name="generator" content="Hexo 4.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Git 常用指令</h1><a id="logo" href="/cheeto.github.io/.">Cheeto</a><p class="description">welcome to Cheeto's blog</p></div><div id="nav-menu"><a href="/cheeto.github.io/." class="current"><i class="fa fa-home"> 首頁</i></a><a href="/cheeto.github.io/archives/"><i class="fa fa-archive"> 所有文章</i></a></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Git 常用指令</h1><div class="post-meta"><a href="/cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/#comments" class="comment-count"></a><p><span class="date">Jan 17, 2020</span><span><a href="/cheeto.github.io/categories/%E7%AD%86%E8%A8%98/" class="category">筆記</a></span></p></div><div class="post-content"><h1 id="Git-常用指令"><a href="#Git-常用指令" class="headerlink" title="Git 常用指令"></a>Git 常用指令</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/git.png?alt=media&token=5ca8ca68-343f-48a2-9ba4-2b637ad9527b" alt="Git原理流程"><br>來源：六角</p>
+<p><strong>工作目錄</strong>：是處理你現在處理檔案下的目錄，而 GIT 的相關操作都會在你路徑的目錄下完成。</p>
+<p><strong>索引</strong>：處於工作目錄、本地數據庫的中間 ( 如上圖 )，是提交到數據庫前的暫存區。</p>
+<p><strong>數據庫</strong>：是紀錄檔案、目錄狀態的地方，也會儲存內容的修改、歷史紀錄。<br>而數據庫又有分為 本地數據庫 、遠端數據庫。</p>
+<ul>
+<li>本地數據庫：自己方便使用，在個人電腦上配置的數據庫。</li>
+<li>遠端數據庫：配置專門的伺服器，為了能讓多人共享而建立的數據庫。</li>
+</ul>
+<h2 id="設定識別資料"><a href="#設定識別資料" class="headerlink" title="設定識別資料"></a>設定識別資料</h2><p>輸入自己的資訊，目的是確認是誰上傳該版本的資料庫，這樣也比較方便做維護。指令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;使用者email&quot;</span><br><span class="line">git config --global user.name &quot;&#96;使用者名字&quot;</span><br></pre></td></tr></table></figure>
+<p>輸入完可以用 <code>git config --list</code> 確認，會出現結果如下。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/list.png?alt=media&token=fef16f9c-22f3-4151-9533-c16184fa3041" alt="config--list圖片"><br>有出現user.name 、email 代表有輸入進去了！ (紅色圈起來的)</p>
+<h2 id="基礎指令"><a href="#基礎指令" class="headerlink" title="基礎指令"></a>基礎指令</h2><br/>
+
+
+<p><strong>移動路徑</strong>： <font color=#ff0000><strong>cd (路徑)</strong></font></p>
+<p>例：</p>
+<p>  前往C槽的指令  <strong>cd c:</strong><br>  回上一層的指令 <strong>cd ..</strong><br>  如果說C槽有一個 test 資料夾，裡面有一個 next 資料夾，想要前往的指令： <strong>cd test/next</strong><br>  甚至說也能夠直接把資料夾拉近 git bush 裡面，他也會自動幫你產生路徑！</p>
+<br/>
+
+
+<p>展開列表：<font color=#ff0000><strong>ls</strong></font></p>
+<ul>
+<li>這個功能可以拿來檢查資料夾內的檔案，看看 ‘資料夾’、’檔案’ 是否新增成功。</li>
+</ul>
+<br/>
+
+<p>新增檔案：<font color=#ff0000><strong>touch</strong></font></p>
+<ul>
+<li>如果說你想要在當前資料夾新增一個 index.html ，指令： <strong>touch index.html</strong>。</li>
+</ul>
+<br/>
+
+<p>新增資料夾：<font color=#ff0000><strong>mkdir</strong></font></p>
+<ul>
+<li>如果說你想要在當前資料夾新增一個 css 資料夾 ，指令： <strong>mkdir css</strong></li>
+</ul>
+<br/>
+
+<p><font color=#ff0000><strong>git init</strong></font>：是用來追蹤當前路徑的目錄，同時也建立一個本地數據庫。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git add .</strong></font>：把所有檔案加入索引。</p>
+<blockquote>
+<p>如果想要只新增在當前目錄下的檔案，指令如下<br>例如 index.html，可以輸入 <strong>git add index.html</strong><br>或者是 當前目錄下子資料夾裡的檔案 <strong>git add css/all.css</strong> 類似這樣。</p>
+</blockquote>
+<br/>
+
+<p><font color=#ff0000><strong>git status</strong></font>：加入索引後用來檢查狀態的指令。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git commit -m ‘備註’</strong></font>：把索引裡面的東西提交到本地數據庫的指令。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git log</strong></font>：是查詢提交到本地數據庫的紀錄，用來檢查 commit 有沒有正確把指令傳送。</p>
+<br/>
+
+<p><font color=#ff0000><strong>gitignore</strong></font>：在目錄下新增一個 .gitignore 的檔案，裡面輸入指令可以忽略檔案。</p>
+<ul>
+<li>例如：index.html 可以忽略 index.html檔案，*.html 可以忽略所有 html 檔案，<br>css/ 可以忽略 css 資料夾裡所有檔案。</li>
+</ul>
+<br/>
+
+<p><font color=#ff0000><strong>git reset –hard HEAD^</strong></font>：這個指令可以刪除最近一次的 commit。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git reset –hard ORIG_HEAD</strong></font>：如果 git reset –hard HEAD^ 刪除錯了，那這個語法可以還原它。</p>
+<ul>
+<li>在這邊也可以用 <strong>git reset [commit 的 sha-1]</strong> 來還原 ！</li>
+</ul>
+<br/>
+
+<p><font color=#ff0000><strong>git reset HEAD</strong></font>：把所有正在索引內的檔案取消索引。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git reset HEAD 檔案名稱</strong></font>：如果你指定的檔案在索引當中，指定的檔案取消索引。</p>
+<ul>
+<li>例如：git reset HEAD index.html 假設 index.html 現在索引內，那他會取消索引。</li>
+</ul>
+<br/>
+
+<p><font color=#ff0000><strong>git reset –hard</strong></font>：可以把路徑目錄還原成最新一次 commit 的狀態，切記要先把所有檔案加入索引<br><strong>git add .</strong>，否則檔案依然會留存。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git clone 網址</strong></font>：把你的遠端數據庫連接到你的本地數據庫。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git push</strong></font>：把你的本地數據庫裡的資料 傳送/更新 到你連接的遠端數據庫。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git pull</strong></font>：從遠端數據庫拉其他工程師更新的資料。</p>
+<br/>
+<br/>
+
+<h2 id="branch-分支"><a href="#branch-分支" class="headerlink" title="branch 分支"></a>branch 分支</h2><br/>
+
+<p>HEAD 是一個指標，指向某一個分支，也可以把 HEAD 當作目前所在分支看待。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git branch</strong></font>：查詢目前有哪些分支。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git branch -a</strong></font>：當你在新的工作環境要 pull 專案開發時，可以使用這個查分支，<br>因為pull下來用 git branch 查不到。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git branch 分支名稱</strong></font>：建構分支的指令。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git checkout 前四碼</strong></font>： 回到你想要觀看commit的版本，輸入版本編號前四碼，就可以回到那個版本觀看當時的CODE。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git checkout 分支名稱</strong></font>：可以回到你要看的分支。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git checkout 標籤名稱</strong></font>：可以回到你要看的標籤。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git checkout master</strong></font>：回到 master 分支。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git merge 分支名稱</strong></font>：可以把目前所在分支跟你輸入的分支合併。</p>
+<br/>
+<br/>
+
+<h2 id="tag-標籤"><a href="#tag-標籤" class="headerlink" title="tag 標籤"></a>tag 標籤</h2><br>
+
+<p><font color=#ff0000><strong>git tag</strong></font>：查詢目前有哪些標籤。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git tag 標籤名抽</strong></font>：這個指令可以新增一個標籤。例：git tag v1 ，等於新增一個 v1標籤。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git tag -am “備註” 標籤名稱</strong></font>：這個指令可以為標籤增加備註，可以用 git tag -n 來查，如果沒有標籤備註會顯示 commit 的備註。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git tag -n</strong></font>：可以查標籤的備註，或者是如果標籤沒有備註也會顯示 commit 的備註。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git tag -d</strong></font>：刪除指定的標籤。例如 ：git tag -d v1 就會刪除 v1 標籤。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git checkout 標籤名稱</strong></font>：可以回到你要看的標籤。</p>
+<br/>
+<br/>
+
+<h2 id="stash-暫存"><a href="#stash-暫存" class="headerlink" title="stash 暫存"></a>stash 暫存</h2><br>
+
+<p><font color=#ff0000><strong>git stash</strong></font>：暫存當前的目錄。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git stash list</strong></font>：瀏覽所有 stash 的列表。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git stash pop</strong></font>：還原暫存。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git stash apply</strong></font>：還原最新的暫存。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git stash apply stash@{n}</strong></font>：指定還原的暫存版本。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git stash drop</strong></font>：刪除最新的暫存。例：有 {0}{1}{2} 的 stash，那輸入指令會把 {2} 刪掉。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git stash clear</strong></font>：刪除所有暫存。</p>
+<br/>
+<br/>
+
+<h2 id="remote-遠端數據庫"><a href="#remote-遠端數據庫" class="headerlink" title="remote 遠端數據庫"></a>remote 遠端數據庫</h2><br>
+
+<p><font color=#ff0000><strong>git remote</strong></font>：查詢遠端數據庫。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git remote rename 原名稱 新名稱</strong></font>：遠端數據庫預設名稱會是origin，這個指令可以修改遠端數據庫名稱。 例：git remote origin newName 就會把原本 origin 的遠端數據庫改名為 newName</p>
+<br/>
+
+<p><font color=#ff0000><strong>git push</strong></font>：把你的本地數據庫裡的資料 傳送/更新 到你連接的遠端數據庫。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git push 遠端數據庫名稱 分支名稱</strong></font>：push 分支到遠端數據庫上。例：git push origin develop 就是把 develop push 到 origin 的遠端數據庫上。</p>
+<br/>
+
+<p><font color=#ff0000><strong>git fetch</strong></font>：會移到一個名為 FETCH_HEAD 的分支，可以拿來合併。 pull 就是 fetch + merge 的組合技。</p>
+<br/>
+
+</div><div class="post-copyright"><blockquote><p>原文作者: Cheeto</p><p>原文鏈接: <a href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/17/2020-01-17-Git 常用指令/">https://github.com/hoongyuu/cheeto.github.io.git/2020/01/17/2020-01-17-Git 常用指令/</a></p><p>版權聲明: 轉載請註明出處(必須保留作者署名及鏈接)</p></blockquote></div><div class="tags"><a href="/cheeto.github.io/tags/%E7%AD%86%E8%A8%98/">筆記</a><a href="/cheeto.github.io/tags/git/">git</a></div><div class="post-share"><div class="social-share"><span>分享至:</span></div></div><div class="post-nav"><a href="/cheeto.github.io/2020/01/16/2020-01-16-markdown/" class="next">Markdown</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">Git 常用指令</a></li><li class="post-list-item"><a class="post-list-link" href="/cheeto.github.io/2020/01/16/2020-01-16-markdown/">Markdown</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分類</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/cheeto.github.io/categories/%E7%AD%86%E8%A8%98/">筆記</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/cheeto.github.io/categories/%E7%AD%86%E8%A8%98/markdown/">markdown</a><span class="category-list-count">1</span></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 標籤</i></div><div class="tagcloud"><a href="/cheeto.github.io/tags/markdown/" style="font-size: 15px;">markdown</a> <a href="/cheeto.github.io/tags/%E7%AD%86%E8%A8%98/" style="font-size: 15px;">筆記</a> <a href="/cheeto.github.io/tags/git/" style="font-size: 15px;">git</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 所有文章</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/cheeto.github.io/archives/2020/">2020</a><span class="archive-list-count">2</span></li></ul></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/cheeto.github.io/baidusitemap.xml"></a><a href="/cheeto.github.io/atom.xml"></a><a href="/cheeto.github.io/about/"></a><p><p></p></p><span> Copyright &copy;<a href="/cheeto.github.io/." rel="nofollow">Cheeto.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/cheeto.github.io/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/cheeto.github.io//css/share.css"><script type="text/javascript" src="/cheeto.github.io//js/qrcode.js" charset="utf-8"></script></body></html>
