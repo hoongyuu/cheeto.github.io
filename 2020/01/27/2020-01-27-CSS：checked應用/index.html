@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
+    root: '/cheeto.github.io/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="CSS：checked 互動技巧CSS的:checked 表單狀態選取器，這個選取器是能夠選取 checkbox 被勾選的狀態，而這個技巧能夠幫助我們在不需要用到程式的情況之下，也能夠在網頁上做到互動的效果唷！ 下面就讓我們試試看吧！！ 範例連結 首先我們可以先做出像這樣的圖片  在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。  我們能夠加入一個 checkbox ， 利用 l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS：checked 互動技巧">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="CSS：checked 互動技巧CSS的:checked 表單狀態選取器，這個選取器是能夠選取 checkbox 被勾選的狀態，而這個技巧能夠幫助我們在不需要用到程式的情況之下，也能夠在網頁上做到互動的效果唷！ 下面就讓我們試試看吧！！ 範例連結 首先我們可以先做出像這樣的圖片  在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。  我們能夠加入一個 checkbox ， 利用 l">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Funchecked.jpg?alt=media&token=5448e757-9c4c-483e-bf7d-c939c70ece0d">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fchecked.jpg?alt=media&token=9ed59946-5837-41f2-bb24-e423cc58585c">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2F%E9%9A%B1%E8%97%8Fcheck%E5%AE%8C%E7%95%A2.jpg?alt=media&token=d7e80bf9-f875-46e7-8fa8-7e5213c042d3">
+<meta property="article:published_time" content="2020-01-27T09:35:15.000Z">
+<meta property="article:modified_time" content="2020-03-01T08:31:17.785Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0">
+
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>CSS：checked 互動技巧 | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/cheeto.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS：checked 互動技巧
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-27 17:35:15" itemprop="dateCreated datePublished" datetime="2020-01-27T17:35:15+08:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-01 16:31:17" itemprop="dateModified" datetime="2020-03-01T16:31:17+08:00">2020-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="CSS：checked-互動技巧"><a href="#CSS：checked-互動技巧" class="headerlink" title="CSS：checked 互動技巧"></a>CSS：checked 互動技巧</h1><p>CSS的:checked 表單狀態選取器，這個選取器是能夠選取 checkbox 被勾選的狀態，而這個技巧能夠幫助我們在不需要用到程式的情況之下，也能夠在網頁上做到互動的效果唷！</p>
+<p>下面就讓我們試試看吧！！</p>
+<p><a href="https://codepen.io/Chee7o/pen/zYGwrQG" target="_blank" rel="noopener">範例連結</a></p>
+<p>首先我們可以先做出像這樣的圖片</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0" alt="初始照片"></p>
+<p>在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Funchecked.jpg?alt=media&token=5448e757-9c4c-483e-bf7d-c939c70ece0d" alt="unchecked"></p>
+<p>我們能夠加入一個 checkbox ， 利用 label 把 icon 裝進去，再利用 label 去指向上面的 checkbox 來達到我們的互動效果！ 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch:checked ~ .agent-callMe &#123;</span><br><span class="line">    margin-bottom: -111px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上方程式碼的意思是：當 <code>#agent-callMe-switch</code> 被選取時，<code>.agent-callMe</code> 應該有什麼樣的樣式。</p>
+<p>選取完之後就會像下方這樣</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fchecked.jpg?alt=media&token=9ed59946-5837-41f2-bb24-e423cc58585c" alt="checked"></p>
+<p>它選取時就能夠利用 <code>margin-bottom: -111px;</code> 把下方收起來，這裡就利用到了 checked 來做到了平常要利用程式才能做到的互動效果，太方便囉！</p>
+<p>但是這樣還沒有做完呢！因為上面的 checkbox 還在，這樣根本不算一個能看的畫面！接下來我們就是要把 checked 隱藏起來。 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    opacity: 0;</span><br><span class="line">    z-index: -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先利用絕對定位讓 checkbox 不占空間，然後利用 <code>opacity</code> 讓它完全透明化，接著我們能夠利用 <code>z-index</code> 的效果確保我們不會點到它，因為 <code>opacity</code> 的效果只能夠讓它完全的透明，但其實還能夠點的到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也能夠利用 <code>visibility: hidden;</code> 來做到這個效果，這個效果跟 <code>opacity</code> 的差別就是能不能被點到，利用 <code>visibility</code> 就不用再另為加上 <code>z-index</code>。</p>
+<p>結果就會像這樣 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2F%E9%9A%B1%E8%97%8Fcheck%E5%AE%8C%E7%95%A2.jpg?alt=media&token=d7e80bf9-f875-46e7-8fa8-7e5213c042d3" alt="finish"></p>
+<p>文章就到這邊完畢啦！感謝</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/cheeto.github.io/tags/css/" rel="tag"># css</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/01/22/2020-01-22-CSS%EF%BC%9A%E9%81%B8%E5%8F%96%E5%99%A8/" rel="prev" title="CSS：親代選取器">
+      <i class="fa fa-chevron-left"></i> CSS：親代選取器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/" rel="next" title="SCSS：變數">
+      SCSS：變數 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS：checked-互動技巧"><span class="nav-number">1.</span> <span class="nav-text">CSS：checked 互動技巧</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/cheeto.github.io/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/cheeto.github.io/lib/anime.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/cheeto.github.io/js/utils.js"></script>
+
+<script src="/cheeto.github.io/js/motion.js"></script>
+
+
+<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/cheeto.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
