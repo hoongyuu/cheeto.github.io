@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
+    root: '/cheeto.github.io/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="提升(hoisting)在 JavaScript 當中 var 會有提升的效果出現，也可以說它是在創造階段就先把所有變數先宣告出來，接著再一一的賦予值進去。 舉例如下 123456789var name &#x3D; &#39;Cheeto&#39;;&#x2F;&#x2F;可以拆解成 ↓&#x2F;&#x2F; 創造階段var name;&#x2F;&#x2F; 執行階段name &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript核心篇：提升(hoisting)">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="提升(hoisting)在 JavaScript 當中 var 會有提升的效果出現，也可以說它是在創造階段就先把所有變數先宣告出來，接著再一一的賦予值進去。 舉例如下 123456789var name &#x3D; &#39;Cheeto&#39;;&#x2F;&#x2F;可以拆解成 ↓&#x2F;&#x2F; 創造階段var name;&#x2F;&#x2F; 執行階段name &#x3D;">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-02-23T11:16:58.000Z">
+<meta property="article:modified_time" content="2020-03-04T06:10:31.103Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="JS核心">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript核心篇：提升(hoisting) | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/cheeto.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript核心篇：提升(hoisting)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-23 19:16:58" itemprop="dateCreated datePublished" datetime="2020-02-23T19:16:58+08:00">2020-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-04 14:10:31" itemprop="dateModified" datetime="2020-03-04T14:10:31+08:00">2020-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="提升-hoisting"><a href="#提升-hoisting" class="headerlink" title="提升(hoisting)"></a>提升(hoisting)</h1><p>在 JavaScript 當中 var 會有提升的效果出現，也可以說它是在創造階段就先把所有變數先宣告出來，接著再一一的賦予值進去。 舉例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &#39;Cheeto&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;可以拆解成 ↓</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 創造階段</span><br><span class="line">var name;</span><br><span class="line">&#x2F;&#x2F; 執行階段</span><br><span class="line">name &#x3D; &#39;Cheeto&#39;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函式陳述式-hoisting"><a href="#函式陳述式-hoisting" class="headerlink" title="函式陳述式(hoisting)"></a>函式陳述式(hoisting)</h3><p>函式陳述式會完整的提升，再最開始創造階段的時候就會先把函式完整創造出來了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function callName()&#123;</span><br><span class="line">    console.log(&#39;call Cheeto&#39;)</span><br><span class="line">&#125;</span><br><span class="line">callName(); &#x2F;&#x2F; 會正常顯示 call Cheeto</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 如果我們把 callName() 往上放呢？ 如下 ↓</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">callName(); &#x2F;&#x2F; 一樣會正常顯示 call Cheeto</span><br><span class="line">function callName()&#123;</span><br><span class="line">    console.log(&#39;call Cheeto&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因是因為 callName 在最一開始讀取檔案的時候就在創造階段完整的讀取了，所以就算在函式的上方呼叫也會執行。</p>
+<h3 id="提升順序"><a href="#提升順序" class="headerlink" title="提升順序"></a>提升順序</h3><p>在創造階段時，函式是最優先被創造的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function callName()&#123;</span><br><span class="line">    console.log(&#39;呼叫小明1&#39;)</span><br><span class="line">&#125;</span><br><span class="line">var callName &#x3D; function ()&#123;</span><br><span class="line">    console.log(&#39;呼叫小明2&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callName(); &#x2F;&#x2F; 呼叫小明2</span><br><span class="line"></span><br><span class="line">或是</span><br><span class="line"></span><br><span class="line">var callName &#x3D; function ()&#123;</span><br><span class="line">    console.log(&#39;呼叫小明2&#39;)</span><br><span class="line">&#125;</span><br><span class="line">function callName()&#123;</span><br><span class="line">    console.log(&#39;呼叫小明1&#39;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callName(); &#x2F;&#x2F;  一樣都會顯示 呼叫小明2</span><br></pre></td></tr></table></figure>
+
+<p>原因就是因為函式是會被最優先創造的，不管輸入順序如何執行順序都會如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造環境</span><br><span class="line">function callName()&#123;</span><br><span class="line">    console.log(&#39;呼叫小明1&#39;)</span><br><span class="line">&#125;</span><br><span class="line">var callName;</span><br><span class="line">callName &#x3D; function ()&#123;</span><br><span class="line">    console.log(&#39;呼叫小明2&#39;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 執行環境</span><br><span class="line">callName(); &#x2F;&#x2F; &#39;呼叫小明2&#39;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="prev" title="JavaScript核心篇：作用域">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：作用域
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/02/24/2020-02-24-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E8%88%87%E5%90%8C%E6%AD%A5%E3%80%81%E9%9D%9E%E5%90%8C%E6%AD%A5/" rel="next" title="JavaScript核心篇：執行緒 與 同步、非同步">
+      JavaScript核心篇：執行緒 與 同步、非同步 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#提升-hoisting"><span class="nav-number">1.</span> <span class="nav-text">提升(hoisting)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函式陳述式-hoisting"><span class="nav-number">1.0.1.</span> <span class="nav-text">函式陳述式(hoisting)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提升順序"><span class="nav-number">1.0.2.</span> <span class="nav-text">提升順序</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/cheeto.github.io/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/cheeto.github.io/lib/anime.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/cheeto.github.io/js/utils.js"></script>
+
+<script src="/cheeto.github.io/js/motion.js"></script>
+
+
+<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/cheeto.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

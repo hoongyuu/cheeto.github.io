@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
+    root: '/cheeto.github.io/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="優先性及相依性優先性優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。 相依性相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。而當優先性相同時依據相依性的運算方向執行。 加減乘除優先性以 var a &#x3D; 2 * 2 + 2 * 3; 為例子  因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript核心篇：優先性、相依性">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="優先性及相依性優先性優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。 相依性相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。而當優先性相同時依據相依性的運算方向執行。 加減乘除優先性以 var a &#x3D; 2 * 2 + 2 * 3; 為例子  因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=f9bfa0e0-02a3-45fd-96dd-98691b64506a">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AD%89%E8%99%9F%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=9143852e-2b02-4be5-b1f0-bbf4c2fdebf0">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%84%AA%E5%85%88%E6%80%A7%E7%AF%84%E4%BE%8B.jpg?alt=media&token=d1d55e77-42b9-4080-a8a1-ffa006cbdfee">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%A4%A7%E6%96%BC%E5%B0%8F%E6%96%BC%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=ea744514-c2bb-470d-a8c6-9e58b88efb9b">
+<meta property="article:published_time" content="2020-03-02T13:02:58.000Z">
+<meta property="article:modified_time" content="2020-03-04T06:44:56.564Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="JS核心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=f9bfa0e0-02a3-45fd-96dd-98691b64506a">
+
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript核心篇：優先性、相依性 | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/cheeto.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript核心篇：優先性、相依性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-02 21:02:58" itemprop="dateCreated datePublished" datetime="2020-03-02T21:02:58+08:00">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-04 14:44:56" itemprop="dateModified" datetime="2020-03-04T14:44:56+08:00">2020-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="優先性及相依性"><a href="#優先性及相依性" class="headerlink" title="優先性及相依性"></a>優先性及相依性</h1><h2 id="優先性"><a href="#優先性" class="headerlink" title="優先性"></a>優先性</h2><p>優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。</p>
+<h2 id="相依性"><a href="#相依性" class="headerlink" title="相依性"></a>相依性</h2><p>相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。<br><strong>而當優先性相同時依據相依性的運算方向執行。</strong></p>
+<h2 id="加減乘除優先性"><a href="#加減乘除優先性" class="headerlink" title="加減乘除優先性"></a>加減乘除優先性</h2><p>以 <code>var a = 2 * 2 + 2 * 3;</code> 為例子</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=f9bfa0e0-02a3-45fd-96dd-98691b64506a" alt="加減乘除優先性"></p>
+<p>因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +(加號)的運算元，這也符合描述的優先性。</p>
+<h2 id="等號優先性"><a href="#等號優先性" class="headerlink" title="等號優先性"></a>等號優先性</h2><p>等號的相依性是由右至左，而且優先性其實不高。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AD%89%E8%99%9F%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=9143852e-2b02-4be5-b1f0-bbf4c2fdebf0" alt="等號優先性"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">var b &#x3D; 2;</span><br><span class="line">a &#x3D; b &#x3D; 3;</span><br><span class="line">console.log(a, b); &#x2F;&#x2F; 3 , 3</span><br></pre></td></tr></table></figure>
+
+<p>因為等號是由右至左，所以拆解出來會像下面這樣</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b &#x3D; 3; &#x2F;&#x2F; 3</span><br><span class="line">a &#x3D; b; &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<p>但是這邊要注意的一點是，a 雖然是 3 沒有錯，但是它是取到 b 的<strong>值</strong>，所以 a 取到的是 b 的回傳結果。</p>
+<br>
+
+<p>接下來看到另外一個範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var b &#x3D; &#123;&#125;;</span><br><span class="line">Object.defineProperty(b, &#39;a&#39;, &#123;</span><br><span class="line">    value: 2,  &#x2F;&#x2F; 值 &#x3D; 2</span><br><span class="line">    writable: false &#x2F;&#x2F; 不可寫入</span><br><span class="line">&#125;);</span><br><span class="line">var a &#x3D; 1;</span><br><span class="line">a &#x3D; b.a &#x3D; 1;</span><br><span class="line"></span><br><span class="line">console.log(a, b.a) &#x2F;&#x2F;  1 , 2</span><br></pre></td></tr></table></figure>
+
+<p>a 會回傳 1 的原因是因為<strong>所有表達式都會回傳值</strong>，如果沒有去接收它的話，它會立即釋放不會儲存，變成只是一個過程。(如下圖)<br>而 <code>=</code> 也是表達式，它的功能是將右側的值賦予至左側，居然它是表達式它就必須要回傳 <strong>值</strong>，而它回傳的值都是以右側來做表示的。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%84%AA%E5%85%88%E6%80%A7%E7%AF%84%E4%BE%8B.jpg?alt=media&token=d1d55e77-42b9-4080-a8a1-ffa006cbdfee" alt="範例"></p>
+<h2 id="大於小於的優先性"><a href="#大於小於的優先性" class="headerlink" title="大於小於的優先性"></a>大於小於的優先性</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%A4%A7%E6%96%BC%E5%B0%8F%E6%96%BC%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=ea744514-c2bb-470d-a8c6-9e58b88efb9b" alt="大於小於優先性"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">console.log(1 &lt; 2 &lt; 3); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 可以拆解成</span><br><span class="line">console.log(1 &lt; 2); &#x2F;&#x2F; true</span><br><span class="line">console.log(true &lt; 3); &#x2F;&#x2F; true</span><br><span class="line">console.log(1 &lt; 3); &#x2F;&#x2F;true 會因為型別的轉換會轉換成 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(3 &gt; 2 &gt; 1); &#x2F;&#x2F; false</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; false 的原因，會被拆解成下列這樣</span><br><span class="line">console.log(3 &gt; 2); &#x2F;&#x2F; true</span><br><span class="line">console.log(true &gt; 1); &#x2F;&#x2F; false</span><br><span class="line">console.log(1 &gt; 1); &#x2F;&#x2F; false 會因為型別的轉換會轉換成 1</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/03/01/2020-03-01-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%81%8B%E7%AE%97%E5%AD%90/" rel="prev" title="JavaScript核心篇：運算子">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：運算子
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/" rel="next" title="JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型">
+      JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#優先性及相依性"><span class="nav-number">1.</span> <span class="nav-text">優先性及相依性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#優先性"><span class="nav-number">1.1.</span> <span class="nav-text">優先性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相依性"><span class="nav-number">1.2.</span> <span class="nav-text">相依性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加減乘除優先性"><span class="nav-number">1.3.</span> <span class="nav-text">加減乘除優先性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#等號優先性"><span class="nav-number">1.4.</span> <span class="nav-text">等號優先性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大於小於的優先性"><span class="nav-number">1.5.</span> <span class="nav-text">大於小於的優先性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/cheeto.github.io/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/cheeto.github.io/lib/anime.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/cheeto.github.io/js/utils.js"></script>
+
+<script src="/cheeto.github.io/js/motion.js"></script>
+
+
+<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/cheeto.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
