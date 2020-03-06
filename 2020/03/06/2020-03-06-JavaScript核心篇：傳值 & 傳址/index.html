@@ -46,23 +46,25 @@
   };
 </script>
 
-  <meta name="description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。 123456789let value &#x3D; 1function num1()&amp;#123;    console.log(val">
+  <meta name="description" content="傳值 &amp; 傳址 本章參考  傳值所有的基本型別都是「傳值」。 12345var a &#x3D; 10;var b &#x3D; a;a &#x3D; 100;console.log(a, b); &#x2F;&#x2F; 100, 10  這邊可以看到 b &#x3D; a 但是a的值改變了之後b卻維持在原位，這是因為基本型別的傳遞是利用複製的，所以 b &#x3D; a 的值是複製a的值而已。 可以看作a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript核心篇：作用域">
-<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/index.html">
+<meta property="og:title" content="JavaScript核心篇：傳值 &amp; 傳址">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/index.html">
 <meta property="og:site_name" content="Cheeto">
-<meta property="og:description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。 123456789let value &#x3D; 1function num1()&amp;#123;    console.log(val">
+<meta property="og:description" content="傳值 &amp; 傳址 本章參考  傳值所有的基本型別都是「傳值」。 12345var a &#x3D; 10;var b &#x3D; a;a &#x3D; 100;console.log(a, b); &#x2F;&#x2F; 100, 10  這邊可以看到 b &#x3D; a 但是a的值改變了之後b卻維持在原位，這是因為基本型別的傳遞是利用複製的，所以 b &#x3D; a 的值是複製a的值而已。 可以看作a">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd">
-<meta property="article:published_time" content="2020-02-22T11:10:58.000Z">
-<meta property="article:modified_time" content="2020-03-04T06:04:01.911Z">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=9d153fa4-67ae-4e91-bc8b-63fb2695b450">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80.jpg?alt=media&token=d445d522-5b54-4013-8435-9dce192efb59">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%802.jpg?alt=media&token=4dc7d4d6-4b0e-46fd-90b5-0ae0cf8c40c5">
+<meta property="article:published_time" content="2020-03-06T05:47:58.000Z">
+<meta property="article:modified_time" content="2020-03-06T05:48:11.642Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="JS核心">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=9d153fa4-67ae-4e91-bc8b-63fb2695b450">
 
-<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/">
 
 
 <script id="page-configurations">
@@ -74,7 +76,7 @@
   };
 </script>
 
-  <title>JavaScript核心篇：作用域 | Cheeto</title>
+  <title>JavaScript核心篇：傳值 & 傳址 | Cheeto</title>
   
 
 
@@ -174,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
@@ -187,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JavaScript核心篇：作用域
+          JavaScript核心篇：傳值 & 傳址
         </h1>
 
         <div class="post-meta">
@@ -196,16 +198,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2020-02-22 19:10:58" itemprop="dateCreated datePublished" datetime="2020-02-22T19:10:58+08:00">2020-02-22</time>
+              <time title="創建時間：2020-03-06 13:47:58 / 修改時間：13:48:11" itemprop="dateCreated datePublished" datetime="2020-03-06T13:47:58+08:00">2020-03-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-04 14:04:01" itemprop="dateModified" datetime="2020-03-04T14:04:01+08:00">2020-03-04</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -229,18 +225,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="JavaScript-作用域"><a href="#JavaScript-作用域" class="headerlink" title="JavaScript 作用域"></a>JavaScript 作用域</h1><p>JavaScript是採用<strong>語法作用域</strong>，屬於<strong>靜態作用域</strong>的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd" alt="作用域"></p>
-<p>如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let value &#x3D; 1</span><br><span class="line">function num1()&#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F; 1</span><br><span class="line">&#125;</span><br><span class="line">function num2()&#123;</span><br><span class="line">    let value &#x3D; 2;</span><br><span class="line">    num1();</span><br><span class="line">&#125;</span><br><span class="line">num2();  &#x2F;&#x2F; console.log 顯示 1</span><br></pre></td></tr></table></figure>
+        <h1 id="傳值-amp-傳址"><a href="#傳值-amp-傳址" class="headerlink" title="傳值 &amp; 傳址"></a>傳值 &amp; 傳址</h1><blockquote>
+<p><a href="https://ithelp.ithome.com.tw/articles/10191057" target="_blank" rel="noopener">本章參考</a></p>
+</blockquote>
+<h2 id="傳值"><a href="#傳值" class="headerlink" title="傳值"></a>傳值</h2><p>所有的基本型別都是「傳值」。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 10;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line"></span><br><span class="line">a &#x3D; 100;</span><br><span class="line">console.log(a, b); &#x2F;&#x2F; 100, 10</span><br></pre></td></tr></table></figure>
 
-<p>以上方為例，num1 找 value 時會往外層全域尋找，但是有一點非常的重要，就是它尋找的時候不會跟執行環境有任何的關聯性，因為JavaScript是語法作用域，在程式碼撰寫的時候就已經確定了它的作用域。num2 裡面的 value 作用域就只有在 num2 的函式裡面，所以不會影響到外面全域變數的 value 。</p>
-<br/>
+<p>這邊可以看到 <code>b = a</code> 但是<code>a</code>的值改變了之後<code>b</code>卻維持在原位，這是因為<strong>基本型別</strong>的傳遞是利用複製的，所以 <code>b = a</code> 的值是複製<code>a</code>的值而已。</p>
+<p>可以看作<code>a</code>、<code>b</code>兩個都是不同的個體。</p>
+<p>所以之後<code>a</code>不管做了什麼樣的更新，都跟<code>b</code>不會有任何的關係。這種方式稱為「<strong>傳值</strong>」。</p>
+<h2 id="傳址"><a href="#傳址" class="headerlink" title="傳址"></a>傳址</h2><p>所有的物件型別都是「傳址」。接下來就讓我們來看看什麼是傳址吧！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;,</span><br><span class="line">    money: 1000</span><br><span class="line">&#125;;</span><br><span class="line">var person2 &#x3D; person;</span><br><span class="line">person2.name &#x3D; &#39;杰倫&#39;;</span><br></pre></td></tr></table></figure>
 
-<p>但是如果把 num2 變成下面這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let value &#x3D; 1</span><br><span class="line">function num1()&#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F; 1</span><br><span class="line">&#125;</span><br><span class="line">function num2()&#123;</span><br><span class="line">    value &#x3D; 2;</span><br><span class="line">    num1();</span><br><span class="line">&#125;</span><br><span class="line">num2();  &#x2F;&#x2F; console.log 顯示 2</span><br></pre></td></tr></table></figure>
+<p>會變成下面這樣 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=9d153fa4-67ae-4e91-bc8b-63fb2695b450" alt="傳址測試"></p>
+<p>為什麼會有這樣的變動呢？我們用下面這個圖片來解釋：</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80.jpg?alt=media&token=d445d522-5b54-4013-8435-9dce192efb59" alt="傳址"></p>
+<p><code>var person2 = person</code> 的時候，<code>person</code> 其實是把記憶體參考位址傳給了 <code>person2</code>，因為它們都是同一個位址，所以就算 <code>person2</code> 把記憶體參考位址的東西變動了，在同一個位址的 <code>person</code> 也當然會跟著變動了。</p>
+<p>而這種方式就稱為「<strong>傳址</strong>」。</p>
+<br>
 
-<p>那 num2 的 value 就會影響到外面的變數，所以顯示就會變成 2。</p>
+<p>接下來我們看下一個範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;;</span><br><span class="line">var person2 &#x3D; person;</span><br><span class="line">person2 &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;</span><br><span class="line">console.log(person &#x3D;&#x3D; person2); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<p>讓我們用下圖解釋為什麼會這樣</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%802.jpg?alt=media&token=4dc7d4d6-4b0e-46fd-90b5-0ae0cf8c40c5" alt="傳址2"></p>
+<p>這邊可以看到如果 <code>person2</code> 指向一個新的物件的話，它其實會傳入一個新的位址上。</p>
+<p>這時候 <code>person</code> 跟 <code>person2</code> 就不會有任何關聯了。</p>
 
     </div>
 
@@ -260,12 +271,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/" rel="prev" title="JavaScript： var、( let , const ) 差異">
-      <i class="fa fa-chevron-left"></i> JavaScript： var、( let , const ) 差異
+    <a href="/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/" rel="prev" title="JavaScript核心篇：未定義的物件屬性預設值">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：未定義的物件屬性預設值
     </a></div>
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/" rel="next" title="JavaScript核心篇：提升(hoisting)">
-      JavaScript核心篇：提升(hoisting) <i class="fa fa-chevron-right"></i>
+    <a href="/cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/" rel="next" title="JavaScript核心篇：物件傳址觀念的實際運作模式">
+      JavaScript核心篇：物件傳址觀念的實際運作模式 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -326,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-作用域"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 作用域</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#傳值-amp-傳址"><span class="nav-number">1.</span> <span class="nav-text">傳值 &amp; 傳址</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#傳值"><span class="nav-number">1.1.</span> <span class="nav-text">傳值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#傳址"><span class="nav-number">1.2.</span> <span class="nav-text">傳址</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

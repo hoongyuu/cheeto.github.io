@@ -46,23 +46,24 @@
   };
 </script>
 
-  <meta name="description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。 123456789let value &#x3D; 1function num1()&amp;#123;    console.log(val">
+  <meta name="description" content="未定義的物件屬性預設值在 JavaScript 的物件下，如果去查找該物件不存在的屬性，它不會回傳 not defined，而是會回傳 undefined。 1234var family &#x3D; &amp;#123;    name: &#39;小明家&#39;&amp;#125;;console.log(family.ming); &#x2F;&#x2F; undefined  這邊如果這樣做 12345">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript核心篇：作用域">
-<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/index.html">
+<meta property="og:title" content="JavaScript核心篇：未定義的物件屬性預設值">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/index.html">
 <meta property="og:site_name" content="Cheeto">
-<meta property="og:description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。 123456789let value &#x3D; 1function num1()&amp;#123;    console.log(val">
+<meta property="og:description" content="未定義的物件屬性預設值在 JavaScript 的物件下，如果去查找該物件不存在的屬性，它不會回傳 not defined，而是會回傳 undefined。 1234var family &#x3D; &amp;#123;    name: &#39;小明家&#39;&amp;#125;;console.log(family.ming); &#x2F;&#x2F; undefined  這邊如果這樣做 12345">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd">
-<meta property="article:published_time" content="2020-02-22T11:10:58.000Z">
-<meta property="article:modified_time" content="2020-03-04T06:04:01.911Z">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7.jpg?alt=media&token=83f55d92-3526-4f69-94fb-82505d0717ee">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95.jpg?alt=media&token=f719539f-fac1-4ce2-8936-20665d88f229">
+<meta property="article:published_time" content="2020-03-05T12:03:40.000Z">
+<meta property="article:modified_time" content="2020-03-05T12:04:19.680Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="JS核心">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7.jpg?alt=media&token=83f55d92-3526-4f69-94fb-82505d0717ee">
 
-<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/">
 
 
 <script id="page-configurations">
@@ -74,7 +75,7 @@
   };
 </script>
 
-  <title>JavaScript核心篇：作用域 | Cheeto</title>
+  <title>JavaScript核心篇：未定義的物件屬性預設值 | Cheeto</title>
   
 
 
@@ -174,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
@@ -187,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JavaScript核心篇：作用域
+          JavaScript核心篇：未定義的物件屬性預設值
         </h1>
 
         <div class="post-meta">
@@ -196,16 +197,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2020-02-22 19:10:58" itemprop="dateCreated datePublished" datetime="2020-02-22T19:10:58+08:00">2020-02-22</time>
+              <time title="創建時間：2020-03-05 20:03:40 / 修改時間：20:04:19" itemprop="dateCreated datePublished" datetime="2020-03-05T20:03:40+08:00">2020-03-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-04 14:04:01" itemprop="dateModified" datetime="2020-03-04T14:04:01+08:00">2020-03-04</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -229,18 +224,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="JavaScript-作用域"><a href="#JavaScript-作用域" class="headerlink" title="JavaScript 作用域"></a>JavaScript 作用域</h1><p>JavaScript是採用<strong>語法作用域</strong>，屬於<strong>靜態作用域</strong>的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd" alt="作用域"></p>
-<p>如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let value &#x3D; 1</span><br><span class="line">function num1()&#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F; 1</span><br><span class="line">&#125;</span><br><span class="line">function num2()&#123;</span><br><span class="line">    let value &#x3D; 2;</span><br><span class="line">    num1();</span><br><span class="line">&#125;</span><br><span class="line">num2();  &#x2F;&#x2F; console.log 顯示 1</span><br></pre></td></tr></table></figure>
+        <h1 id="未定義的物件屬性預設值"><a href="#未定義的物件屬性預設值" class="headerlink" title="未定義的物件屬性預設值"></a>未定義的物件屬性預設值</h1><p>在 JavaScript 的物件下，如果去查找該物件不存在的屬性，它不會回傳 not defined，而是會回傳 undefined。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family.ming); &#x2F;&#x2F; undefined</span><br></pre></td></tr></table></figure>
 
-<p>以上方為例，num1 找 value 時會往外層全域尋找，但是有一點非常的重要，就是它尋找的時候不會跟執行環境有任何的關聯性，因為JavaScript是語法作用域，在程式碼撰寫的時候就已經確定了它的作用域。num2 裡面的 value 作用域就只有在 num2 的函式裡面，所以不會影響到外面全域變數的 value 。</p>
-<br/>
+<p>這邊如果這樣做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family.ming); &#x2F;&#x2F; undefined</span><br><span class="line">family.ming.name &#x3D; &#39;小明&#39;;</span><br></pre></td></tr></table></figure>
 
-<p>但是如果把 num2 變成下面這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let value &#x3D; 1</span><br><span class="line">function num1()&#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F; 1</span><br><span class="line">&#125;</span><br><span class="line">function num2()&#123;</span><br><span class="line">    value &#x3D; 2;</span><br><span class="line">    num1();</span><br><span class="line">&#125;</span><br><span class="line">num2();  &#x2F;&#x2F; console.log 顯示 2</span><br></pre></td></tr></table></figure>
+<p>這邊會回傳這樣 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7.jpg?alt=media&token=83f55d92-3526-4f69-94fb-82505d0717ee" alt="未定義物件屬性"></p>
+<p>它會跳錯是因為你不能對一個未定義的屬性再增加一個屬性進去。</p>
+<p>如果我們想要解決這個問題可以這樣</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    ming: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">family.ming.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(family);</span><br></pre></td></tr></table></figure>
 
-<p>那 num2 的 value 就會影響到外面的變數，所以顯示就會變成 2。</p>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.ming &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family);</span><br></pre></td></tr></table></figure>
+
+<p>結果都會如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95.jpg?alt=media&token=f719539f-fac1-4ce2-8936-20665d88f229" alt="未定義物件解決"></p>
+<br>
+
+<p>如果我們對 name 進行設定的話呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.name.my &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(family.name); &#x2F;&#x2F; 小明家</span><br></pre></td></tr></table></figure>
+
+<p>這邊為什麼不能加呢？因為純值無法新增屬性！！！詳情請點<a href="https://hoongyuu.github.io/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC" target="_blank" rel="noopener">這裡</a></p>
 
     </div>
 
@@ -260,12 +266,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/" rel="prev" title="JavaScript： var、( let , const ) 差異">
-      <i class="fa fa-chevron-left"></i> JavaScript： var、( let , const ) 差異
+    <a href="/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E8%AE%8A%E6%95%B8%E5%8F%8A%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E7%9A%84%E5%B7%AE%E7%95%B0/" rel="prev" title="JavaScript核心篇：變數及物件屬性的差異">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：變數及物件屬性的差異
     </a></div>
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/" rel="next" title="JavaScript核心篇：提升(hoisting)">
-      JavaScript核心篇：提升(hoisting) <i class="fa fa-chevron-right"></i>
+    <a href="/cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/" rel="next" title="JavaScript核心篇：傳值 & 傳址">
+      JavaScript核心篇：傳值 & 傳址 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -326,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-作用域"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 作用域</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#未定義的物件屬性預設值"><span class="nav-number">1.</span> <span class="nav-text">未定義的物件屬性預設值</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
