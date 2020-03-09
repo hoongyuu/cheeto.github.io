@@ -169,6 +169,195 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/" class="post-title-link" itemprop="url">JavaScript核心篇：Truthy&Falsy</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-04 13:57:58 / 修改時間：13:58:25" itemprop="dateCreated datePublished" datetime="2020-03-04T13:57:58+08:00">2020-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Truthy-Falsy"><a href="#Truthy-Falsy" class="headerlink" title="Truthy Falsy"></a>Truthy Falsy</h1><p>在 JavaScript 中，truthy(真值) 指的是在布林值判斷中，轉換後的值為真的值。我們也可以另外一個方向來理解「除了 falsy 以外的值都是 truthy」，那我們就可以來看看 falsy 的值有哪些了。如下</p>
+<ul>
+<li>0</li>
+<li>NaN</li>
+<li>‘’ (空字串)</li>
+<li>false</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy.jpg?alt=media&token=a1723750-2d5b-49f3-8ef7-8c007eb3c73f" alt="Truthy Falsy"></p>
+<p>以下列程式碼為例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if ()&#123;</span><br><span class="line">    console.log(&#39;執行程式&#39;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    console.log(&#39;執行 falsy&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 if 的 () 當中輸入 falsy 的六種值，都會出現 ‘執行 falsy’ 的訊息。</p>
+<h2 id="包裹物件轉化"><a href="#包裹物件轉化" class="headerlink" title="包裹物件轉化"></a>包裹物件轉化</h2><p>如果我們使用了物件包裹，那就是另外一回事了！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (new Number(0))&#123;</span><br><span class="line">    console.log(&#39;執行程式&#39;); &#x2F;&#x2F; 會顯示這邊</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    console.log(&#39;執行 falsy&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這裡可以看到我們利用包裹物件來把 0 轉化，它會變成 truthy。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (new Boolean(false))&#123;</span><br><span class="line">    console.log(&#39;執行程式&#39;); &#x2F;&#x2F; 一樣會顯示這邊</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    console.log(&#39;執行 falsy&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案是因為利用包裹物件轉化的值都會變成物件，物件裡不管是什麼值都會回傳 true。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%BD%89%E5%8C%96.jpg?alt=media&token=bc21934c-c7da-4557-bcb3-e4bef5952881" alt="包裹物件轉化"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-03 13:07:58" itemprop="dateCreated datePublished" datetime="2020-03-03T13:07:58+08:00">2020-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-04 13:58:47" itemprop="dateModified" datetime="2020-03-04T13:58:47+08:00">2020-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="寬鬆相等、嚴格相等以及隱含轉型"><a href="#寬鬆相等、嚴格相等以及隱含轉型" class="headerlink" title="寬鬆相等、嚴格相等以及隱含轉型"></a>寬鬆相等、嚴格相等以及隱含轉型</h1><blockquote>
+<p>「== 允許在比較中強制轉型，=== 不允許。」</p>
+</blockquote>
+<h2 id="嚴格相等"><a href="#嚴格相等" class="headerlink" title="嚴格相等"></a>嚴格相等</h2><p>嚴格相等必須<strong>值</strong>、<strong>型別</strong>都要相同才會回傳 true。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy%E5%9A%B4%E6%A0%BC%E6%AF%94%E8%BC%83.jpg?alt=media&token=eba46e48-5fd1-425e-aeab-cdc081700256" alt="嚴格比較"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1 &#x3D;&#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; false  &#x2F;&#x2F; &#39;1&#39;是字串</span><br><span class="line">console.log(1 &#x3D;&#x3D;&#x3D; 1); &#x2F;&#x2F; true</span><br><span class="line">console.log(1 !&#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 不過嚴格相等有兩個例外</span><br><span class="line"></span><br><span class="line">console.log(NaN &#x3D;&#x3D;&#x3D; NaN); &#x2F;&#x2F; false</span><br><span class="line">console.log(+0 &#x3D;&#x3D;&#x3D; -0); &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+<h2 id="寬鬆相等"><a href="#寬鬆相等" class="headerlink" title="寬鬆相等"></a>寬鬆相等</h2><p>寬鬆等於只要值相等就會回傳 true，這裡說的值包含<strong>字串</strong>、<strong>布林</strong>轉化過來的值。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy%E5%AF%AC%E9%AC%86%E6%AF%94%E8%BC%83.jpg?alt=media&token=cdc6fb06-3ea3-4897-bf58-6fbc83676b8e" alt="寬鬆比較"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(1 &#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; true</span><br><span class="line">console.log(true &#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; true</span><br><span class="line">console.log(false &#x3D;&#x3D; &#39;0&#39;); &#x2F;&#x2F; true</span><br><span class="line">console.log(1 !&#x3D; &#39;1&#39;); &#x2F;&#x2F;false</span><br><span class="line"></span><br><span class="line">console.log(Number(!0)); &#x2F;&#x2F; 1</span><br><span class="line">console.log(1 &#x3D;&#x3D; !0); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p>Null 跟 undefined 不能被轉化為數字型別。</p>
+<h2 id="物件與非物件比對"><a href="#物件與非物件比對" class="headerlink" title="物件與非物件比對"></a>物件與非物件比對</h2><p>在物件與非物件比對的時候，是使用<strong>包裹物件</strong>來進行轉換。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(Number([10])); &#x2F;&#x2F; 10</span><br><span class="line">console.log(10 &#x3D;&#x3D; [10]); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">console.log(String([&#39;A&#39;])); &#x2F;&#x2F; &#39;A&#39;</span><br><span class="line">console.log(&#39;A&#39; &#x3D;&#x3D; [&#39;A&#39;]);  &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="物件比對"><a href="#物件比對" class="headerlink" title="物件比對"></a>物件比對</h2><p>物件經過隱含轉型後，會變成 [object Object]。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;c: 5&#125;;</span><br><span class="line">var b &#x3D; &#123;c: 5&#125;;</span><br><span class="line"></span><br><span class="line">a &lt; b; &#x2F;&#x2F; false</span><br><span class="line">a &gt; b; &#x2F;&#x2F; false</span><br><span class="line">a &#x3D;&#x3D; b; &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<p>object 指向的是記憶體位置，所以 a == b 時不會相等。</p>
+<blockquote>
+<p><a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">圖片取自</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -925,204 +1114,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/" class="post-title-link" itemprop="url">JavaScript： var、( let , const ) 差異</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-02-20 16:44:11" itemprop="dateCreated datePublished" datetime="2020-02-20T16:44:11+08:00">2020-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-03 19:46:44" itemprop="dateModified" datetime="2020-03-03T19:46:44+08:00">2020-03-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JavaScript：-var、-let-const-差異"><a href="#JavaScript：-var、-let-const-差異" class="headerlink" title="JavaScript： var、( let , const ) 差異"></a>JavaScript： var、( let , const ) 差異</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在ES6之前，JavaScript要宣告變數的時候，會使用到 var 宣告變數，<br>但是到了ES6之後，建議盡量都用 ( let , const ) 來做宣告，不要再用 var 了。</p>
-<p>因為 var 有一個缺點，那就是它很容易汙染到全域變數。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 15;</span><br><span class="line"></span><br><span class="line">console.log(a);  &#x2F;&#x2F; 15</span><br><span class="line">&#x2F;&#x2F;用 var 的話會讓 a 直接跑到 window 下面變成全域變數</span><br><span class="line">console.log(window.a);  &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="var、-let-const-差異在哪？"><a href="#var、-let-const-差異在哪？" class="headerlink" title="var、( let , const ) 差異在哪？"></a>var、( let , const ) 差異在哪？</h2><p>我們開發時應該盡量避免汙染到全域變數，所以ES6因為這個原因發明了 「let」、「const」，來改善這個問題，那它們之間的差異在哪裡呢？ 讓我們繼續看下去。</p>
-<h3 id="let-const-是以-來做區隔的，而-var-是以-function-來做區隔。"><a href="#let-const-是以-來做區隔的，而-var-是以-function-來做區隔。" class="headerlink" title="let / const 是以 {} 來做區隔的，而 var 是以 function 來做區隔。"></a>let / const 是以 <strong><code>{}</code></strong> 來做區隔的，而 var 是以 function 來做區隔。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2 三個值沒有問題，但是重點來了！</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
-
-<p>發現問題點了嗎？ 在for迴圈裏面用 var 宣告的 i (變數) 已經污染到全域變數了！</p>
-<p>遇到這樣的問題的話，let 其實就很好解決了，因為 let 是用 <strong><code>{}</code></strong> 來做區隔的，所以它並不會汙染到全域變數。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; Uncaught ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
-
-<p>如果用 let 宣告的話會出現 i is not defined 這樣的結果。</p>
-<br>
-
-
-<h3 id="let-const-沒有變數提升的這個特性，var-有變數提升的特性。"><a href="#let-const-沒有變數提升的這個特性，var-有變數提升的特性。" class="headerlink" title="let / const 沒有變數提升的這個特性，var 有變數提升的特性。"></a>let / const 沒有變數提升的這個特性，var 有變數提升的特性。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); &#x2F;&#x2F; Cannot access &#39;c&#39; before initialization</span><br><span class="line">let a &#x3D; 15;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 15 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-<p>使用 let 宣告的話並不會有變數提升的特性，所以在宣告之前它並不能讀取出來。</p>
-<p>相反的是 var 可以，因為 var 有變數提升的特性所以它其實是變成這樣。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-<p>變數提升的特性會讓 b 宣告出現在最上方，但是它的「值」會在原地立正站好，並沒有那麼的聽話呀！！</p>
-<br>
-
-<h3 id="let-const-不能再同一個區塊重複命名！！！"><a href="#let-const-不能再同一個區塊重複命名！！！" class="headerlink" title="let / const 不能再同一個區塊重複命名！！！"></a>let / const 不能再同一個區塊重複命名！！！</h3><p>var 在同一個區塊上重複宣告也沒有關係，但是 let / const 是沒有辦法的。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 5;</span><br><span class="line">var a &#x3D; 10;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 10</span><br><span class="line"></span><br><span class="line">let b &#x3D; 5;</span><br><span class="line">let b &#x3D; 10; &#x2F;&#x2F; Identifier &#39;c&#39; has already been declared</span><br></pre></td></tr></table></figure>
-
-<p>在用 let 再一次宣告的時候，會先跳出 ‘c’ has already been declared 這樣的錯誤，理所當然就沒辦法 console 了。</p>
-<hr>
-<p>最後要建議所有人：不管是 var 或者 let / const，在使用變數前都要先宣告，養成良好的 coding 習慣才是第一關鍵！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/" class="post-title-link" itemprop="url">CSS：base、新增子模組</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-02-15 16:38:31" itemprop="dateCreated datePublished" datetime="2020-02-15T16:38:31+08:00">2020-02-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:45:16" itemprop="dateModified" datetime="2020-03-01T16:45:16+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CSS：base、新增子模組"><a href="#CSS：base、新增子模組" class="headerlink" title="CSS：base、新增子模組"></a>CSS：base、新增子模組</h1><h2 id="CSS：base-基底"><a href="#CSS：base-基底" class="headerlink" title="CSS：base(基底)"></a>CSS：base(基底)</h2><p>在做一個專案之前，可以觀察設計稿當中究竟有哪些共通的元素，那就可以在開發之前就建立一個基本的樣式，例如說文字的顏色，文字的間距等等…<br>那在做一個專案之前是不是能夠把這些共通的元素先設定起來？</p>
-<p><font color=#ffc000><strong>base</strong></font> 就是這樣的一個概念，base就是建立一個網站的基本樣式，如果今天你的網站標題都是 <code>#555</code> 的顏色，那就可以先把<strong>h1~h5</strong>都設定<code>#555</code>的字體顏色。</p>
-<p>雖然說base這樣的基本樣式沒辦法所有的元素都共用，但只要能滿足80%以上就能夠讓程式碼更加的簡潔了！</p>
-<h2 id="模組化概念-新增子模組"><a href="#模組化概念-新增子模組" class="headerlink" title="模組化概念 - 新增子模組"></a>模組化概念 - 新增子模組</h2><p>這個概念跟base有異曲同工之妙，在做專案的時候可能會有兩個按鈕大小都相同，可能只有顏色或是文字不同 (如下)</p>
-<p><a href="https://codepen.io/Chee7o/pen/MWYMEjQ" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn-submit&quot;&gt;</span><br><span class="line">  送出</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button class&#x3D;&quot;btn-reset&quot;&gt;</span><br><span class="line">  重置</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #666;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其實<code>.btn-submit .btn-reset</code>的程式碼當中有許多重複的屬性，就是因為如此所以有開發者想出了模組化的概念。<br>先建立一個<code>.btn</code>的基礎樣式，再利用新增子模組來改變他們不同的屬性。(如下)</p>
-<p><a href="https://codepen.io/Chee7o/pen/dyPBVWb" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn btn-submit&quot;&gt;</span><br><span class="line">    送出</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;btn btn-reset&quot;&gt;</span><br><span class="line">    重置</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 30px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  background-color: #666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如上方CSS所示，藉由<code>.btn</code>來建立一個基礎樣式，那<code>.btn-submit .btn-reset</code>只要輸入他們兩個屬性上的差別就可以了，方便管理也能達到code的簡潔。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/cheeto.github.io/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/cheeto.github.io/page/3/">3</a><a class="extend next" rel="next" href="/cheeto.github.io/page/3/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/cheeto.github.io/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/cheeto.github.io/page/3/">3</a><a class="page-number" href="/cheeto.github.io/page/4/">4</a><a class="extend next" rel="next" href="/cheeto.github.io/page/3/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1188,7 +1184,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/cheeto.github.io/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
