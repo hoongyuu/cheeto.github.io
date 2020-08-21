@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
+    root: '/cheeto.github.io/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="屬性特徵是什麼？12345678910111213141516171819202122232425&#x2F;&#x2F; Object.defineProperty&#x2F;&#x2F; 屬性，調整屬性特徵&#x2F;&#x2F; 1. 值、 2. 可否寫入、 3. 可否被刪除、 4. 可否被列舉&#x2F;&#x2F; Object.defineProperty(物件, &#39;屬性&amp;#3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript核心篇：屬性特徵是什麼？">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="屬性特徵是什麼？12345678910111213141516171819202122232425&#x2F;&#x2F; Object.defineProperty&#x2F;&#x2F; 屬性，調整屬性特徵&#x2F;&#x2F; 1. 值、 2. 可否寫入、 3. 可否被刪除、 4. 可否被列舉&#x2F;&#x2F; Object.defineProperty(物件, &#39;屬性&amp;#3">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-1.jpg?alt=media&token=f2741b9f-4cf6-4995-8537-de2f62b4e540">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-2.jpg?alt=media&token=e1ff53dc-1416-4dc2-9181-7a5c2cb54867">
+<meta property="article:published_time" content="2020-03-14T07:40:22.000Z">
+<meta property="article:modified_time" content="2020-03-16T06:51:32.320Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="JS核心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-1.jpg?alt=media&token=f2741b9f-4cf6-4995-8537-de2f62b4e540">
+
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript核心篇：屬性特徵是什麼？ | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/cheeto.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript核心篇：屬性特徵是什麼？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-14 15:40:22" itemprop="dateCreated datePublished" datetime="2020-03-14T15:40:22+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-16 14:51:32" itemprop="dateModified" datetime="2020-03-16T14:51:32+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="屬性特徵是什麼？"><a href="#屬性特徵是什麼？" class="headerlink" title="屬性特徵是什麼？"></a>屬性特徵是什麼？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Object.defineProperty</span><br><span class="line">&#x2F;&#x2F; 屬性，調整屬性特徵</span><br><span class="line">&#x2F;&#x2F; 1. 值、 2. 可否寫入、 3. 可否被刪除、 4. 可否被列舉</span><br><span class="line">&#x2F;&#x2F; Object.defineProperty(物件, &#39;屬性&#39;, &#39;參數&#39;);</span><br><span class="line"></span><br><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到 <code>person[&#39;a&#39;]</code> 的值已經被改寫了。</p>
+<p>如果我們把 <code>writable</code> 改成 false 呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: false, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">person[&#39;a&#39;] &#x3D; 10;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以發現如果我們把 <code>writable</code> 改成 <code>false</code> 就能夠讓屬性不能夠被寫入。</p>
+<p>再來我們測試 <code>configurable</code> 吧 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;b&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 可否被刪除</span><br><span class="line">    configurable: false, &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">delete person[&#39;a&#39;];</span><br><span class="line">delete person[&#39;b&#39;];</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以發現我們把 <code>configurable</code> 改成 <code>false</code> 之後就能夠讓屬性無法被刪除了。</p>
+<p>那<strong>可否被列舉</strong>是什麼意思呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &quot;c&quot;, &#123;</span><br><span class="line">	enumerable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">for (var key in person) &#123;</span><br><span class="line">	console.log(&quot;列舉&quot;, key);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-1.jpg?alt=media&token=f2741b9f-4cf6-4995-8537-de2f62b4e540" alt="屬性特徵是什麼-1"></p>
+<p>這邊可以看到我把 <code>c</code> 設定為 <code>enumerable: false</code> 之後它就無法被列舉了！</p>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 淺層保護</span><br><span class="line">Object.defineProperty(person, &#39;d&#39;, &#123;</span><br><span class="line">	value: &#123;&#125;,</span><br><span class="line">	writable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);</span><br><span class="line">person[&#39;d&#39;][&#39;name&#39;] &#x3D; &#39;cheeto&#39;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-2.jpg?alt=media&token=e1ff53dc-1416-4dc2-9181-7a5c2cb54867" alt="屬性特徵是什麼-2"></p>
+<p>這邊如果輸入 <code>person[&#39;d&#39;] = 6</code> 的話的確它是沒有辦法被寫入的，但是因為<strong>物件是傳址的特性</strong>，所以它裡面的屬性是可以被新增和修改的。</p>
+<p>所以 <code>Object.defineProperty</code> 只能做到淺層保護的作用。切記切記</p>
+<h3 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties"></a>Object.defineProperties</h3><p>這個語法可以大量定義我們要定義的屬性特徵，我們來看看吧 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person); &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperties(person, &#123;</span><br><span class="line">    a: &#123;</span><br><span class="line">        value: 5,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;,</span><br><span class="line">    b: &#123;</span><br><span class="line">        value: 6,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;,</span><br><span class="line">    c: &#123;</span><br><span class="line">        value: 10,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">person[&#39;a&#39;] &#x3D; 15; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line">person[&#39;b&#39;] &#x3D; 20; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line">person[&#39;c&#39;] &#x3D; 30; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 5, b: 6, c: 10&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個語法跟 <code>Object.defineProperty</code> 其實差不多，但是它可以一次輸入大量的屬性去定義。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5/" rel="prev" title="JavaScript核心篇：原型鍊、建構函式整體結構概念">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：原型鍊、建構函式整體結構概念
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/" rel="next" title="JavaScript核心篇：物件擴充的修改與調整">
+      JavaScript核心篇：物件擴充的修改與調整 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#屬性特徵是什麼？"><span class="nav-number">1.</span> <span class="nav-text">屬性特徵是什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-defineProperties"><span class="nav-number">1.0.1.</span> <span class="nav-text">Object.defineProperties</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/cheeto.github.io/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/cheeto.github.io/lib/anime.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/cheeto.github.io/js/utils.js"></script>
+
+<script src="/cheeto.github.io/js/motion.js"></script>
+
+
+<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/cheeto.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

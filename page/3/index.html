@@ -169,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
@@ -183,611 +183,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/cheeto.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/" class="post-title-link" itemprop="url">JavaScript： var、( let , const ) 差異</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-02-20 16:44:11" itemprop="dateCreated datePublished" datetime="2020-02-20T16:44:11+08:00">2020-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-03 19:46:44" itemprop="dateModified" datetime="2020-03-03T19:46:44+08:00">2020-03-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JavaScript：-var、-let-const-差異"><a href="#JavaScript：-var、-let-const-差異" class="headerlink" title="JavaScript： var、( let , const ) 差異"></a>JavaScript： var、( let , const ) 差異</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在ES6之前，JavaScript要宣告變數的時候，會使用到 var 宣告變數，<br>但是到了ES6之後，建議盡量都用 ( let , const ) 來做宣告，不要再用 var 了。</p>
-<p>因為 var 有一個缺點，那就是它很容易汙染到全域變數。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 15;</span><br><span class="line"></span><br><span class="line">console.log(a);  &#x2F;&#x2F; 15</span><br><span class="line">&#x2F;&#x2F;用 var 的話會讓 a 直接跑到 window 下面變成全域變數</span><br><span class="line">console.log(window.a);  &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="var、-let-const-差異在哪？"><a href="#var、-let-const-差異在哪？" class="headerlink" title="var、( let , const ) 差異在哪？"></a>var、( let , const ) 差異在哪？</h2><p>我們開發時應該盡量避免汙染到全域變數，所以ES6因為這個原因發明了 「let」、「const」，來改善這個問題，那它們之間的差異在哪裡呢？ 讓我們繼續看下去。</p>
-<h3 id="let-const-是以-來做區隔的，而-var-是以-function-來做區隔。"><a href="#let-const-是以-來做區隔的，而-var-是以-function-來做區隔。" class="headerlink" title="let / const 是以 {} 來做區隔的，而 var 是以 function 來做區隔。"></a>let / const 是以 <strong><code>{}</code></strong> 來做區隔的，而 var 是以 function 來做區隔。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2 三個值沒有問題，但是重點來了！</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
-
-<p>發現問題點了嗎？ 在for迴圈裏面用 var 宣告的 i (變數) 已經污染到全域變數了！</p>
-<p>遇到這樣的問題的話，let 其實就很好解決了，因為 let 是用 <strong><code>{}</code></strong> 來做區隔的，所以它並不會汙染到全域變數。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; Uncaught ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
-
-<p>如果用 let 宣告的話會出現 i is not defined 這樣的結果。</p>
-<br>
-
-
-<h3 id="let-const-沒有變數提升的這個特性，var-有變數提升的特性。"><a href="#let-const-沒有變數提升的這個特性，var-有變數提升的特性。" class="headerlink" title="let / const 沒有變數提升的這個特性，var 有變數提升的特性。"></a>let / const 沒有變數提升的這個特性，var 有變數提升的特性。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); &#x2F;&#x2F; Cannot access &#39;c&#39; before initialization</span><br><span class="line">let a &#x3D; 15;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 15 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-<p>使用 let 宣告的話並不會有變數提升的特性，所以在宣告之前它並不能讀取出來。</p>
-<p>相反的是 var 可以，因為 var 有變數提升的特性所以它其實是變成這樣。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-<p>變數提升的特性會讓 b 宣告出現在最上方，但是它的「值」會在原地立正站好，並沒有那麼的聽話呀！！</p>
-<br>
-
-<h3 id="let-const-不能再同一個區塊重複命名！！！"><a href="#let-const-不能再同一個區塊重複命名！！！" class="headerlink" title="let / const 不能再同一個區塊重複命名！！！"></a>let / const 不能再同一個區塊重複命名！！！</h3><p>var 在同一個區塊上重複宣告也沒有關係，但是 let / const 是沒有辦法的。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 5;</span><br><span class="line">var a &#x3D; 10;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 10</span><br><span class="line"></span><br><span class="line">let b &#x3D; 5;</span><br><span class="line">let b &#x3D; 10; &#x2F;&#x2F; Identifier &#39;c&#39; has already been declared</span><br></pre></td></tr></table></figure>
-
-<p>在用 let 再一次宣告的時候，會先跳出 ‘c’ has already been declared 這樣的錯誤，理所當然就沒辦法 console 了。</p>
-<hr>
-<p>最後要建議所有人：不管是 var 或者 let / const，在使用變數前都要先宣告，養成良好的 coding 習慣才是第一關鍵！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/" class="post-title-link" itemprop="url">CSS：base、新增子模組</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-02-15 16:38:31" itemprop="dateCreated datePublished" datetime="2020-02-15T16:38:31+08:00">2020-02-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:45:16" itemprop="dateModified" datetime="2020-03-01T16:45:16+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CSS：base、新增子模組"><a href="#CSS：base、新增子模組" class="headerlink" title="CSS：base、新增子模組"></a>CSS：base、新增子模組</h1><h2 id="CSS：base-基底"><a href="#CSS：base-基底" class="headerlink" title="CSS：base(基底)"></a>CSS：base(基底)</h2><p>在做一個專案之前，可以觀察設計稿當中究竟有哪些共通的元素，那就可以在開發之前就建立一個基本的樣式，例如說文字的顏色，文字的間距等等…<br>那在做一個專案之前是不是能夠把這些共通的元素先設定起來？</p>
-<p><font color=#ffc000><strong>base</strong></font> 就是這樣的一個概念，base就是建立一個網站的基本樣式，如果今天你的網站標題都是 <code>#555</code> 的顏色，那就可以先把<strong>h1~h5</strong>都設定<code>#555</code>的字體顏色。</p>
-<p>雖然說base這樣的基本樣式沒辦法所有的元素都共用，但只要能滿足80%以上就能夠讓程式碼更加的簡潔了！</p>
-<h2 id="模組化概念-新增子模組"><a href="#模組化概念-新增子模組" class="headerlink" title="模組化概念 - 新增子模組"></a>模組化概念 - 新增子模組</h2><p>這個概念跟base有異曲同工之妙，在做專案的時候可能會有兩個按鈕大小都相同，可能只有顏色或是文字不同 (如下)</p>
-<p><a href="https://codepen.io/Chee7o/pen/MWYMEjQ" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn-submit&quot;&gt;</span><br><span class="line">  送出</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button class&#x3D;&quot;btn-reset&quot;&gt;</span><br><span class="line">  重置</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #666;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其實<code>.btn-submit .btn-reset</code>的程式碼當中有許多重複的屬性，就是因為如此所以有開發者想出了模組化的概念。<br>先建立一個<code>.btn</code>的基礎樣式，再利用新增子模組來改變他們不同的屬性。(如下)</p>
-<p><a href="https://codepen.io/Chee7o/pen/dyPBVWb" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn btn-submit&quot;&gt;</span><br><span class="line">    送出</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;btn btn-reset&quot;&gt;</span><br><span class="line">    重置</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 30px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  background-color: #666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如上方CSS所示，藉由<code>.btn</code>來建立一個基礎樣式，那<code>.btn-submit .btn-reset</code>只要輸入他們兩個屬性上的差別就可以了，方便管理也能達到code的簡潔。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/" class="post-title-link" itemprop="url">SCSS：變數</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-31 17:46:46" itemprop="dateCreated datePublished" datetime="2020-01-31T17:46:46+08:00">2020-01-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:30:55" itemprop="dateModified" datetime="2020-03-01T16:30:55+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/scss/" itemprop="url" rel="index">
-                    <span itemprop="name">scss</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="變數-Variable"><a href="#變數-Variable" class="headerlink" title="變數 Variable"></a>變數 Variable</h1><p>在 scss 裡面可以使用到變數，在你時常會撰寫到的程式碼上面，可以使用到變數的功能。</p>
-<p>變數的語法是這樣： $變數名稱: 值;    (如下)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;變數設定語法</span><br><span class="line">$title-color: #666;</span><br><span class="line">$content-color: #888;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;套用變數</span><br><span class="line">.header&#123;</span><br><span class="line">  h2&#123; </span><br><span class="line">    color: $title-color;  </span><br><span class="line">  &#125;</span><br><span class="line">  p&#123;  </span><br><span class="line">    color: $content-color;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;編譯結果</span><br><span class="line">.header h2&#123;  </span><br><span class="line">  color: #666; </span><br><span class="line">&#125;</span><br><span class="line">.header p&#123;  </span><br><span class="line">  color: #888;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="常用變數"><a href="#常用變數" class="headerlink" title="常用變數"></a>常用變數</h2><p>在製作專案拿到設計稿時，可以先觀察這份設計稿有沒有什麼共通的地方，例如：字型、文字顏色等..</p>
-<p>常用的變數設定：</p>
-<p>$title-color: #444;  //預設標題顏色<br>$text-color: pink;  //預設文字顏色<br>$link-color: #000;  //文字連結樣式，多則就再加紹數字<br>$link-color-hover: #fff;  //滑鼠拖曳過後的樣式顏色<br>$font-size: 13px;  //全域字型大小，可以增加尺寸 EX: $font-size-l $font-size-m $font-size-s<br>$line-height: 1.8;  //全域行距<br>$container-width: 960px;  // 網站整體寬度<br>$font-style： Microsoft JhengHei;  //全域字型</p>
-<br>
-
-<h2 id="明亮度"><a href="#明亮度" class="headerlink" title="明亮度"></a>明亮度</h2><p>在 scss 當中可以使用 darken、lighten 來讓顏色加深或變淺。</p>
-<p><a href="https://codepen.io/Chee7o/pen/YzPoxwj" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;lighten語法</span><br><span class="line">------</span><br><span class="line">lighten(色碼,%數)</span><br><span class="line">darken(色碼,%數)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;範例</span><br><span class="line">------</span><br><span class="line">.box1&#123;</span><br><span class="line">  background-color: lighten(色碼,%數);</span><br><span class="line">&#125;</span><br><span class="line">.box3&#123;</span><br><span class="line">  background-color: darken(色碼,%數);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/" class="post-title-link" itemprop="url">CSS：checked 互動技巧</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-27 17:35:15" itemprop="dateCreated datePublished" datetime="2020-01-27T17:35:15+08:00">2020-01-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:31:17" itemprop="dateModified" datetime="2020-03-01T16:31:17+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CSS：checked-互動技巧"><a href="#CSS：checked-互動技巧" class="headerlink" title="CSS：checked 互動技巧"></a>CSS：checked 互動技巧</h1><p>CSS的:checked 表單狀態選取器，這個選取器是能夠選取 checkbox 被勾選的狀態，而這個技巧能夠幫助我們在不需要用到程式的情況之下，也能夠在網頁上做到互動的效果唷！</p>
-<p>下面就讓我們試試看吧！！</p>
-<p><a href="https://codepen.io/Chee7o/pen/zYGwrQG" target="_blank" rel="noopener">範例連結</a></p>
-<p>首先我們可以先做出像這樣的圖片</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0" alt="初始照片"></p>
-<p>在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Funchecked.jpg?alt=media&token=5448e757-9c4c-483e-bf7d-c939c70ece0d" alt="unchecked"></p>
-<p>我們能夠加入一個 checkbox ， 利用 label 把 icon 裝進去，再利用 label 去指向上面的 checkbox 來達到我們的互動效果！ 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch:checked ~ .agent-callMe &#123;</span><br><span class="line">    margin-bottom: -111px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上方程式碼的意思是：當 <code>#agent-callMe-switch</code> 被選取時，<code>.agent-callMe</code> 應該有什麼樣的樣式。</p>
-<p>選取完之後就會像下方這樣</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fchecked.jpg?alt=media&token=9ed59946-5837-41f2-bb24-e423cc58585c" alt="checked"></p>
-<p>它選取時就能夠利用 <code>margin-bottom: -111px;</code> 把下方收起來，這裡就利用到了 checked 來做到了平常要利用程式才能做到的互動效果，太方便囉！</p>
-<p>但是這樣還沒有做完呢！因為上面的 checkbox 還在，這樣根本不算一個能看的畫面！接下來我們就是要把 checked 隱藏起來。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    opacity: 0;</span><br><span class="line">    z-index: -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>首先利用絕對定位讓 checkbox 不占空間，然後利用 <code>opacity</code> 讓它完全透明化，接著我們能夠利用 <code>z-index</code> 的效果確保我們不會點到它，因為 <code>opacity</code> 的效果只能夠讓它完全的透明，但其實還能夠點的到。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>也能夠利用 <code>visibility: hidden;</code> 來做到這個效果，這個效果跟 <code>opacity</code> 的差別就是能不能被點到，利用 <code>visibility</code> 就不用再另為加上 <code>z-index</code>。</p>
-<p>結果就會像這樣 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2F%E9%9A%B1%E8%97%8Fcheck%E5%AE%8C%E7%95%A2.jpg?alt=media&token=d7e80bf9-f875-46e7-8fa8-7e5213c042d3" alt="finish"></p>
-<p>文章就到這邊完畢啦！感謝</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/22/2020-01-22-CSS%EF%BC%9A%E9%81%B8%E5%8F%96%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/22/2020-01-22-CSS%EF%BC%9A%E9%81%B8%E5%8F%96%E5%99%A8/" class="post-title-link" itemprop="url">CSS：親代選取器</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-22 19:55:42" itemprop="dateCreated datePublished" datetime="2020-01-22T19:55:42+08:00">2020-01-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:29:30" itemprop="dateModified" datetime="2020-03-01T16:29:30+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="親代選取器"><a href="#親代選取器" class="headerlink" title="親代選取器"></a>親代選取器</h1><br/>
-
-<h2 id="『-』選取器"><a href="#『-』選取器" class="headerlink" title="『+』選取器"></a>『+』選取器</h2><p>親代選取器會選取你指定的屬性後面那個，</p>
-<p>例如： h1 + a </p>
-<p>那就會選取到 h1 後面的 a ，</p>
-<p>實用技巧如下</p>
-<p>html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;li&gt;選單一&lt;&#x2F;li&gt;</span><br><span class="line">	&lt;li&gt;選單二&lt;&#x2F;li&gt;</span><br><span class="line">	&lt;li&gt;選單三&lt;&#x2F;li&gt;</span><br><span class="line">	&lt;li&gt;選單四&lt;&#x2F;li&gt;	</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;</span><br><span class="line">	margin: 100px;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">li &#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	padding: 10px;</span><br><span class="line">&#125;</span><br><span class="line">li + li&#123;</span><br><span class="line">	border-left: 1px solid #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<p>結果如下</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E5%A6%B9%E5%A6%B9%E9%81%B8%E5%8F%96%E5%99%A8.jpg?alt=media&token=557fcb9c-d911-479d-85e9-1f981d99887e" alt="親代選取器圖片"></p>
-<br/>
-
-<p>這樣就可以解決很多不想要左右邊有框線，或是左右邊有 margin 之類的問題了！</p>
-<br/>
-
-<h2 id="『-』選取器-1"><a href="#『-』選取器-1" class="headerlink" title="『~』選取器"></a>『~』選取器</h2><br/>
-
-
-<p>『~』選取器可以選取對象 A 同層後方的所有 B 選取器，舉例如下</p>
-<p>html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;標題&lt;&#x2F;h1&gt;</span><br><span class="line">&lt;p&gt;段落1&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;段落2&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;段落3&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;段落4&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
-
-<p>css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1 ~ p &#123;</span><br><span class="line">	color: #ff0000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://codepen.io/Chee7o/pen/oNgmZXv" target="_blank" rel="noopener">codePen範例</a></p>
-<p>結果如下</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E3%80%8E~%E3%80%8F%E9%81%B8%E5%8F%96%E5%99%A8.jpg?alt=media&token=1b4a0c45-6b04-44aa-acb6-7f31fab66e4b" alt="~選取器"></p>
-<p>可以選取所有 h1 後面的 p 段落！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">jquery：操控網頁元素</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-22 13:47:19" itemprop="dateCreated datePublished" datetime="2020-01-22T13:47:19+08:00">2020-01-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:27:46" itemprop="dateModified" datetime="2020-03-01T16:27:46+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="this-操控自身元素"><a href="#this-操控自身元素" class="headerlink" title="this 操控自身元素"></a>this 操控自身元素</h2><br/>
-
-<p>this可以選取自己點選、選取的元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  $(&#39;.menu li&#39;).click(function(event) &#123;</span><br><span class="line">    &#x2F;* Act on the event *&#x2F;</span><br><span class="line">    $(this).addClass(&#39;active&#39;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>假設 menu li 裡面有很多個 li，上方程式碼的意思是你點選了 .menu li 的話，<br>你點選的那個li就會增加active這個class。</p>
-<br/>
-
-<h2 id="parent-操控父元素"><a href="#parent-操控父元素" class="headerlink" title="parent() 操控父元素"></a>parent() 操控父元素</h2><br/>
-
-<p>parent() 是能夠在現在指定的元素裡面往它的上面一層找。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul &gt;</span><br><span class="line">  &lt;li&gt;&lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; value&#x3D;&quot;加入購物車&quot;&gt;吹風機&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果指定的是.btn的話，那就可以利用parent()去操控父元素(li)。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.btn&#39;).click(function(e)) &#123;</span><br><span class="line">  $(this).parent().addClass(&#39;active&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>這段程式碼意思是點選.btn的時候，你點選的那個.btn就會往它的父元素(li)去增加一個active的class。</p>
-<br/>
-
-<h2 id="siblings-操控自身之外的同層元素"><a href="#siblings-操控自身之外的同層元素" class="headerlink" title="siblings() 操控自身之外的同層元素"></a>siblings() 操控自身之外的同層元素</h2><br/>
-
-<p>siblings() 可以選取自己之外的所有同層元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class&#x3D;&quot;menu&quot;&gt;</span><br><span class="line">  &lt;li&gt;選單1&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單2&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單3&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單4&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單5&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單6&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例子，我指定 選單3 的話，那用 siblings()就能夠選取除了 選單3 以外的所有li。</p>
-<p>如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.menu li&#39;).click(function(event) &#123;</span><br><span class="line">  $(this).addClass(&#39;active&#39;).siblings().removeClass(&#39;active&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例，我點選 選單3 之後，我加入了一個active的Class，接著我利用siblings()選取 選單3 之外的所有li，移除了它們的active的Class。</p>
-<br/>
-
-<h2 id="find-操控子元素"><a href="#find-操控子元素" class="headerlink" title="find() 操控子元素"></a>find() 操控子元素</h2><br/>
-
-<p>find() 是能夠在現在指定的元素裡面往它的下面一層找。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul &gt;</span><br><span class="line">  &lt;li&gt;&lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; value&#x3D;&quot;加入購物車&quot;&gt;吹風機&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例，我如果點選到li的區塊，利用find()也能夠選取到裡面的.btn。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;li&#39;).click(function(event) &#123;</span><br><span class="line">  $(this).find(&#39;.btn&#39;).addClass(&#39;active&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例，如果指令了li的區塊，他會往下一層尋找.btn的元素，如果有他會增加一個active的class。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/21/2020-01-21-jQuery%EF%BC%9Aon%20%E8%88%87%20click%20%E5%B7%AE%E5%88%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/21/2020-01-21-jQuery%EF%BC%9Aon%20%E8%88%87%20click%20%E5%B7%AE%E5%88%A5/" class="post-title-link" itemprop="url">jQuery：on與click的差別</a>
+            <a href="/cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：物件傳址觀念的實際運作模式</a>
         </h1>
 
         <div class="post-meta">
@@ -798,7 +194,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2020-01-21 15:44:51 / 修改時間：16:13:19" itemprop="dateCreated datePublished" datetime="2020-01-21T15:44:51+08:00">2020-01-21</time>
+              <time title="創建時間：2020-03-06 13:50:58 / 修改時間：13:49:10" itemprop="dateCreated datePublished" datetime="2020-03-06T13:50:58+08:00">2020-03-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -806,8 +202,8 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
                   </a>
                 </span>
             </span>
@@ -823,31 +219,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="on與click的差別"><a href="#on與click的差別" class="headerlink" title="on與click的差別"></a>on與click的差別</h1><br/>
+          <h1 id="物件傳址觀念的實際運作模式"><a href="#物件傳址觀念的實際運作模式" class="headerlink" title="物件傳址觀念的實際運作模式"></a>物件傳址觀念的實際運作模式</h1><p>在這篇章節來實做看看傳址的運作模式，由下面的程式碼為範例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;x: 1&#125;;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">a.y &#x3D; a &#x3D; &#123;x: 2&#125;;</span><br><span class="line">console.log(a.y);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
 
-<p>在jQuery當中，時常會使用到 on、click 這兩種方式來操控你要的DOM，那兩者差別在哪？</p>
-<h2 id="click"><a href="#click" class="headerlink" title="click"></a>click</h2><p>click只會對現在html裡面你指定的元素有效。</p>
-<p>假設html環境如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;wrap&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;box1&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;box2&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>接下來就一步一步的來看看傳址的運作邏輯吧！</p>
+<h2 id="第一步驟"><a href="#第一步驟" class="headerlink" title="第一步驟"></a>第一步驟</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;x: 1&#125;;</span><br><span class="line">var b &#x3D; a;</span><br></pre></td></tr></table></figure>
 
-<p>js環境如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.alertBtn&#39;).click(function (e) &#123; </span><br><span class="line">  e.preventDefault();</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E7%AC%AC%E4%B8%80%E6%AD%A5%E9%A9%9F.jpg?alt=media&token=31b2216e-0374-40f6-9d7c-d9d8a9623a1b" alt="傳址第一步驟"></p>
+<p>因為物件型別是傳址的特性，所以 <code>var b = a;</code> 時是指向同一個位址。</p>
+<h2 id="第二步驟"><a href="#第二步驟" class="headerlink" title="第二步驟"></a>第二步驟</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.y &#x3D; a &#x3D; &#123;x: 2&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>以這個假設的環境來說的話，因為click的事件是在.box1新增button之前所設定，所以如果點擊 <font color=#CCCCFF><strong>jQuery通知</strong></font> 這個按鈕就不會執行alert。<br>但是如果把 <font color=#CCCCFF><strong>jQuery通知</strong></font> 放到click事件之前 (如下)，那 <font color=#CCCCFF><strong>jQuery通知</strong></font> 就能夠執行alert。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br><span class="line"></span><br><span class="line">$(&#39;.alertBtn&#39;).click(function (e) &#123; </span><br><span class="line">  e.preventDefault();</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E7%AC%AC%E4%BA%8C%E6%AD%A5%E9%A9%9F.jpg?alt=media&token=0ae02b66-c688-44ce-bfba-9d15bb6ee04d" alt="傳址第二步驟"></p>
+<p>雖然 =(等號) 的<a href="https://hoongyuu.github.io/cheeto.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/" target="_blank" rel="noopener">相依性</a>是由右至左，但<code>a.y = a = {x: 2};</code>是同時運行的，所以 <code>a.y</code> 和 <code>a</code> 都會指向同一個位址。</p>
+<h2 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a.y);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
 
-<br/>
-
-<h2 id="on"><a href="#on" class="headerlink" title="on"></a>on</h2><br/>
-
-<p>on就像是監聽，他可以隨時監控你的行為，就算是後來才用jQuery、JS新增的標籤它都會隨時保持關注。</p>
-<p>所以你不管是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.wrap&#39;).on(&#39;click&#39;, &#39;.alertBtn&#39;, function () &#123;</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br></pre></td></tr></table></figure>
-
-<p>或者是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br><span class="line"></span><br><span class="line">$(&#39;.wrap&#39;).on(&#39;click&#39;, &#39;.alertBtn&#39;, function () &#123;</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>順序不管是怎麼放它都有辦法監聽到，而且on所佔的記憶體還比click還少唷！</p>
+<p>這邊可以由第二步驟看到，由於 <code>a</code> 已經指向 <code>0x02</code> 的位址，裡面並沒有 <code>y</code> 這個屬性，所以會回傳 undefined。<br>而第二步驟時 <code>a.y = a = {x: 2};</code> 裡面的 <code>a.y = {x: 2};</code> 其實也可以等於 <code>b.y = {x: 2};</code>，因為它們在這時還是同一個參考位址。</p>
+<p>所以就會產生下列這樣的結果 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E9%81%8B%E4%BD%9C%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=d99fcb34-44a3-4352-8291-4bc7d87e5f7c" alt="物件運作測試"></p>
 
       
     </div>
@@ -867,7 +255,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
@@ -881,220 +269,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/" class="post-title-link" itemprop="url">CSS：overflow搭配CSS做出滑動效果</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-20 13:07:21" itemprop="dateCreated datePublished" datetime="2020-01-20T13:07:21+08:00">2020-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:30:25" itemprop="dateModified" datetime="2020-03-01T16:30:25+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="overflow搭配CSS做出滑動效果"><a href="#overflow搭配CSS做出滑動效果" class="headerlink" title="overflow搭配CSS做出滑動效果"></a>overflow搭配CSS做出滑動效果</h1><br/>
-
-<p><a href="https://codepen.io/Chee7o/pen/BayGQVy" target="_blank" rel="noopener">codePen 範例參考</a></p>
-<p>HTML環境設置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;box&quot;&gt;</span><br><span class="line">  &lt;h1 class&#x3D;&quot;title&quot;&gt;商品標題&lt;&#x2F;h1&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<p>這個效果是讓滑鼠hover到box的時候，讓title滑動出來的 transition 特效。</p>
-<p>CSS如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">      position: relative;</span><br><span class="line">      margin: 0 auto;</span><br><span class="line">      width: 350px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      border: 2px solid #ccc;</span><br><span class="line">      overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box:hover .title &#123;</span><br><span class="line">      left: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .title &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: -45px;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: brown;</span><br><span class="line">      color: rgb(233, 233, 233);</span><br><span class="line">      padding: 0 12px;</span><br><span class="line">      -webkit-writing-mode: vertical-lr;</span><br><span class="line">      writing-mode: vertical-lr;</span><br><span class="line">      text-align: center;</span><br><span class="line">      font-weight: bold;</span><br><span class="line">      letter-spacing: 2px;</span><br><span class="line">      transition: all 1.5s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>這段程式碼是利用<strong>絕對定位</strong>把.title轉移到.box之外的位置，再利用<strong>overflow</strong>可以隱藏超出區塊外內容的特性，先把.title區塊隱藏到.box之外，然後利用hover讓滑鼠滑到.box的時候.title會出現。</p>
-<p>接著利用transition讓他產生動畫，這樣就能產生滑動的效果了！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/" class="post-title-link" itemprop="url">jQuery：利用toggleClass搭配CSS做出動畫效果</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-18 15:44:01" itemprop="dateCreated datePublished" datetime="2020-01-18T15:44:01+08:00">2020-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:34:46" itemprop="dateModified" datetime="2020-03-01T16:34:46+08:00">2020-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="利用toggleClass搭配CSS做效果優化網站效能！"><a href="#利用toggleClass搭配CSS做效果優化網站效能！" class="headerlink" title="利用toggleClass搭配CSS做效果優化網站效能！"></a>利用toggleClass搭配CSS做效果優化網站效能！</h1><br/>
-
-<p>jQuery雖然本來就可以直接用fadeToggle、slideToggle等.. 做效果，但是這樣的形式沒辦法讓網頁效能保持得很好，這時候就可以試試看用jQuery的toggleClass搭配CSS做一些效果吧！</p>
-<br/>
-
-<h2 id="toggleClass-開關效果"><a href="#toggleClass-開關效果" class="headerlink" title="toggleClass 開關效果"></a>toggleClass 開關效果</h2><br/>
-
-<p><a href="https://codepen.io/Chee7o/pen/rNaQWbJ" target="_blank" rel="noopener">codePen 範例參考</a></p>
-<br/>
-
-<p>toggleClass是可以在class裡面增加、刪除一個class，如果裡面有這個class就會刪除，反之增加。<br><br/></p>
-<p>Html、CSS 程式碼範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;開關&quot; class&#x3D;&quot;btn&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class&#x3D;&quot;text&quot;&gt;</span><br><span class="line">    內容...</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>CSS如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  width: 60px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  border: 2px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.text&#123;</span><br><span class="line">  display: none;</span><br><span class="line">  width: 500px;</span><br><span class="line">&#125;</span><br><span class="line">.text.active&#123;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上方這段程式碼我有一個開關的按鈕，還有一個.text的區塊，假如一開始我預設.text是 display: none 的狀態下，要如何利用jQuery搭配CSS來開啟他呢？</p>
-<br/>
-
-<p>那就可以利用jQuery的toggleClass功能。</p>
-<p>(如下)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function () &#123;</span><br><span class="line">  $(&#39;.btn&#39;).click(function (e) &#123; </span><br><span class="line">    e.preventDefault();</span><br><span class="line">    $(&#39;.text&#39;).toggleClass(&#39;active&#39;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>這段程式碼意思是按下btn的時候會執行toggleClass的動作，所以利用CSS選擇器的權重在.text裡面再新增一個.active的class就會把本來display:none變成display:block，這樣就能夠達到開關的效果了！</p>
-<blockquote>
-<p><a href="https://ithelp.ithome.com.tw/articles/10196454" target="_blank" rel="noopener">CSS權重觀念參考文章</a> </p>
-</blockquote>
-<BR/>
-
-<h2 id="淡進淡出"><a href="#淡進淡出" class="headerlink" title="淡進淡出"></a>淡進淡出</h2><BR/>
-
-<p><a href="https://codepen.io/Chee7o/pen/Jjoebwa" target="_blank" rel="noopener">codePen 淡進淡出參考</a></p>
-<BR/>
-
-<p>淡進淡出是 toggleClass 開關效果的延伸利用，但是用CSS淡進淡出卻沒辦法讓區塊消失。<br>所以會把display:none/block刪除，因為把display留著沒辦法做出transition的動畫效果，之後新增opacity屬性，再利用transition動畫化！</p>
-<p>只有CSS有差異。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  width: 60px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  border: 2px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.text&#123;</span><br><span class="line">  width: 500px;</span><br><span class="line">  opacity: 0;</span><br><span class="line">  transition: all .5s;</span><br><span class="line">&#125;</span><br><span class="line">.text.active&#123;</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<h2 id="slide效果"><a href="#slide效果" class="headerlink" title="slide效果"></a>slide效果</h2><BR/>
-
-<p><a href="https://codepen.io/Chee7o/pen/XWJypmB" target="_blank" rel="noopener">codePen slide參考</a></p>
-<BR/>
-
-<p>slide效果是把整個區塊的height調整到0，然後利用overflow:hidden把區塊裡面的內容都隱藏起來，接著利用toggleClass把.active加入到.text裡面，讓整個區塊的高度回復，接著利用transition讓整個流程動畫化。</p>
-<p>只有CSS有差異。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  width: 60px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  border: 2px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.text&#123;</span><br><span class="line">  width: 500px;</span><br><span class="line">  height: 0;</span><br><span class="line">  transition: all .5s;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.text.active&#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Git 常用指令</a>
+            <a href="/cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/" class="post-title-link" itemprop="url">JavaScript核心篇：傳值 & 傳址</a>
         </h1>
 
         <div class="post-meta">
@@ -1105,7 +280,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2020-01-17 14:56:19 / 修改時間：16:17:10" itemprop="dateCreated datePublished" datetime="2020-01-17T14:56:19+08:00">2020-01-17</time>
+              <time title="創建時間：2020-03-06 13:47:58 / 修改時間：13:48:11" itemprop="dateCreated datePublished" datetime="2020-03-06T13:47:58+08:00">2020-03-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1113,8 +288,8 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/%E7%AD%86%E8%A8%98/" itemprop="url" rel="index">
-                    <span itemprop="name">筆記</span>
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
                   </a>
                 </span>
             </span>
@@ -1130,193 +305,800 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Git-常用指令"><a href="#Git-常用指令" class="headerlink" title="Git 常用指令"></a>Git 常用指令</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/git.png?alt=media&token=5ca8ca68-343f-48a2-9ba4-2b637ad9527b" alt="Git原理流程"><br>來源：六角</p>
-<p><strong>工作目錄</strong>：是處理你現在處理檔案下的目錄，而 GIT 的相關操作都會在你路徑的目錄下完成。</p>
-<p><strong>索引</strong>：處於工作目錄、本地數據庫的中間 ( 如上圖 )，是提交到數據庫前的暫存區。</p>
-<p><strong>數據庫</strong>：是紀錄檔案、目錄狀態的地方，也會儲存內容的修改、歷史紀錄。<br>而數據庫又有分為 本地數據庫 、遠端數據庫。</p>
-<ul>
-<li>本地數據庫：自己方便使用，在個人電腦上配置的數據庫。</li>
-<li>遠端數據庫：配置專門的伺服器，為了能讓多人共享而建立的數據庫。</li>
-</ul>
-<h2 id="設定識別資料"><a href="#設定識別資料" class="headerlink" title="設定識別資料"></a>設定識別資料</h2><p>輸入自己的資訊，目的是確認是誰上傳該版本的資料庫，這樣也比較方便做維護。指令如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;使用者email&quot;</span><br><span class="line">git config --global user.name &quot;&#96;使用者名字&quot;</span><br></pre></td></tr></table></figure>
-<p>輸入完可以用 <code>git config --list</code> 確認，會出現結果如下。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/list.png?alt=media&token=fef16f9c-22f3-4151-9533-c16184fa3041" alt="config--list圖片"><br>有出現user.name 、email 代表有輸入進去了！ (紅色圈起來的)</p>
-<h2 id="基礎指令"><a href="#基礎指令" class="headerlink" title="基礎指令"></a>基礎指令</h2><br/>
-
-
-<p><strong>移動路徑</strong>： <font color=#ff0000><strong>cd (路徑)</strong></font></p>
-<p>例：</p>
-<p>  前往C槽的指令  <strong>cd c:</strong><br>  回上一層的指令 <strong>cd ..</strong><br>  如果說C槽有一個 test 資料夾，裡面有一個 next 資料夾，想要前往的指令： <strong>cd test/next</strong><br>  甚至說也能夠直接把資料夾拉近 git bush 裡面，他也會自動幫你產生路徑！</p>
-<br/>
-
-
-<p>展開列表：<font color=#ff0000><strong>ls</strong></font></p>
-<ul>
-<li>這個功能可以拿來檢查資料夾內的檔案，看看 ‘資料夾’、’檔案’ 是否新增成功。</li>
-</ul>
-<br/>
-
-<p>新增檔案：<font color=#ff0000><strong>touch</strong></font></p>
-<ul>
-<li>如果說你想要在當前資料夾新增一個 index.html ，指令： <strong>touch index.html</strong>。</li>
-</ul>
-<br/>
-
-<p>新增資料夾：<font color=#ff0000><strong>mkdir</strong></font></p>
-<ul>
-<li>如果說你想要在當前資料夾新增一個 css 資料夾 ，指令： <strong>mkdir css</strong></li>
-</ul>
-<br/>
-
-<p><font color=#ff0000><strong>git init</strong></font>：是用來追蹤當前路徑的目錄，同時也建立一個本地數據庫。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git add .</strong></font>：把所有檔案加入索引。</p>
-<blockquote>
-<p>如果想要只新增在當前目錄下的檔案，指令如下<br>例如 index.html，可以輸入 <strong>git add index.html</strong><br>或者是 當前目錄下子資料夾裡的檔案 <strong>git add css/all.css</strong> 類似這樣。</p>
+          <h1 id="傳值-amp-傳址"><a href="#傳值-amp-傳址" class="headerlink" title="傳值 &amp; 傳址"></a>傳值 &amp; 傳址</h1><blockquote>
+<p><a href="https://ithelp.ithome.com.tw/articles/10191057" target="_blank" rel="noopener">本章參考</a></p>
 </blockquote>
-<br/>
+<h2 id="傳值"><a href="#傳值" class="headerlink" title="傳值"></a>傳值</h2><p>所有的基本型別都是「傳值」。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 10;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line"></span><br><span class="line">a &#x3D; 100;</span><br><span class="line">console.log(a, b); &#x2F;&#x2F; 100, 10</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git status</strong></font>：加入索引後用來檢查狀態的指令。</p>
-<br/>
+<p>這邊可以看到 <code>b = a</code> 但是<code>a</code>的值改變了之後<code>b</code>卻維持在原位，這是因為<strong>基本型別</strong>的傳遞是利用複製的，所以 <code>b = a</code> 的值是複製<code>a</code>的值而已。</p>
+<p>可以看作<code>a</code>、<code>b</code>兩個都是不同的個體。</p>
+<p>所以之後<code>a</code>不管做了什麼樣的更新，都跟<code>b</code>不會有任何的關係。這種方式稱為「<strong>傳值</strong>」。</p>
+<h2 id="傳址"><a href="#傳址" class="headerlink" title="傳址"></a>傳址</h2><p>所有的物件型別都是「傳址」。接下來就讓我們來看看什麼是傳址吧！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;,</span><br><span class="line">    money: 1000</span><br><span class="line">&#125;;</span><br><span class="line">var person2 &#x3D; person;</span><br><span class="line">person2.name &#x3D; &#39;杰倫&#39;;</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git commit -m ‘備註’</strong></font>：把索引裡面的東西提交到本地數據庫的指令。</p>
-<br/>
+<p>會變成下面這樣 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=9d153fa4-67ae-4e91-bc8b-63fb2695b450" alt="傳址測試"></p>
+<p>為什麼會有這樣的變動呢？我們用下面這個圖片來解釋：</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80.jpg?alt=media&token=d445d522-5b54-4013-8435-9dce192efb59" alt="傳址"></p>
+<p><code>var person2 = person</code> 的時候，<code>person</code> 其實是把記憶體參考位址傳給了 <code>person2</code>，因為它們都是同一個位址，所以就算 <code>person2</code> 把記憶體參考位址的東西變動了，在同一個位址的 <code>person</code> 也當然會跟著變動了。</p>
+<p>而這種方式就稱為「<strong>傳址</strong>」。</p>
+<br>
 
-<p><font color=#ff0000><strong>git log</strong></font>：是查詢提交到本地數據庫的紀錄，用來檢查 commit 有沒有正確把指令傳送。</p>
-<br/>
+<p>接下來我們看下一個範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;;</span><br><span class="line">var person2 &#x3D; person;</span><br><span class="line">person2 &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;</span><br><span class="line">console.log(person &#x3D;&#x3D; person2); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>gitignore</strong></font>：在目錄下新增一個 .gitignore 的檔案，裡面輸入指令可以忽略檔案。</p>
-<ul>
-<li>例如：index.html 可以忽略 index.html檔案，*.html 可以忽略所有 html 檔案，<br>css/ 可以忽略 css 資料夾裡所有檔案。</li>
+<p>讓我們用下圖解釋為什麼會這樣</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%802.jpg?alt=media&token=4dc7d4d6-4b0e-46fd-90b5-0ae0cf8c40c5" alt="傳址2"></p>
+<p>這邊可以看到如果 <code>person2</code> 指向一個新的物件的話，它其實會傳入一個新的位址上。</p>
+<p>這時候 <code>person</code> 跟 <code>person2</code> 就不會有任何關聯了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/" class="post-title-link" itemprop="url">JavaScript核心篇：未定義的物件屬性預設值</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-05 20:03:40 / 修改時間：20:04:19" itemprop="dateCreated datePublished" datetime="2020-03-05T20:03:40+08:00">2020-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="未定義的物件屬性預設值"><a href="#未定義的物件屬性預設值" class="headerlink" title="未定義的物件屬性預設值"></a>未定義的物件屬性預設值</h1><p>在 JavaScript 的物件下，如果去查找該物件不存在的屬性，它不會回傳 not defined，而是會回傳 undefined。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family.ming); &#x2F;&#x2F; undefined</span><br></pre></td></tr></table></figure>
+
+<p>這邊如果這樣做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family.ming); &#x2F;&#x2F; undefined</span><br><span class="line">family.ming.name &#x3D; &#39;小明&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>這邊會回傳這樣 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7.jpg?alt=media&token=83f55d92-3526-4f69-94fb-82505d0717ee" alt="未定義物件屬性"></p>
+<p>它會跳錯是因為你不能對一個未定義的屬性再增加一個屬性進去。</p>
+<p>如果我們想要解決這個問題可以這樣</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    ming: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">family.ming.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(family);</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.ming &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family);</span><br></pre></td></tr></table></figure>
+
+<p>結果都會如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95.jpg?alt=media&token=f719539f-fac1-4ce2-8936-20665d88f229" alt="未定義物件解決"></p>
+<br>
+
+<p>如果我們對 name 進行設定的話呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.name.my &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(family.name); &#x2F;&#x2F; 小明家</span><br></pre></td></tr></table></figure>
+
+<p>這邊為什麼不能加呢？因為純值無法新增屬性！！！詳情請點<a href="https://hoongyuu.github.io/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC" target="_blank" rel="noopener">這裡</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E8%AE%8A%E6%95%B8%E5%8F%8A%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E7%9A%84%E5%B7%AE%E7%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E8%AE%8A%E6%95%B8%E5%8F%8A%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E7%9A%84%E5%B7%AE%E7%95%B0/" class="post-title-link" itemprop="url">JavaScript核心篇：變數及物件屬性的差異</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-05 16:44:58 / 修改時間：16:24:31" itemprop="dateCreated datePublished" datetime="2020-03-05T16:44:58+08:00">2020-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="變數及物件屬性的差異"><a href="#變數及物件屬性的差異" class="headerlink" title="變數及物件屬性的差異"></a>變數及物件屬性的差異</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">b &#x3D; 2;</span><br><span class="line">console.log(window);</span><br></pre></td></tr></table></figure>
+
+<p>這邊執行 window 會發現 a、b 都在 window 裡面。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E8%AE%8A%E6%95%B8%E8%88%87%E5%B1%AC%E6%80%A7%E5%B7%AE%E7%95%B0.jpg?alt=media&token=5425e25f-c9b8-4675-8a27-92259b5941bc" alt="變數與屬性差異"></p>
+<p>但是這兩種語法是有差別的，a 在 window 裡面它是變數，但是 b 則是屬性。那這兩者的差別又在於「<strong>變數無法被刪除，屬性可以</strong>」。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">b &#x3D; 2;</span><br><span class="line"></span><br><span class="line">delete a;</span><br><span class="line">delete b;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 看看 a, b 是否還存在</span><br><span class="line">console.log(a);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E8%AE%8A%E6%95%B8%E8%88%87%E5%B1%AC%E6%80%A7%E5%88%AA%E9%99%A4.jpg?alt=media&token=6bcf1f53-2157-4ce0-8946-7bb570336628" alt="變數與屬性刪除"></p>
+<p>在下方也可以看到兩者的差異</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E8%A3%9C%E5%85%85%E8%AE%8A%E6%95%B8%E8%88%87%E5%B1%AC%E6%80%A7.jpg?alt=media&token=2be297aa-b743-4b6a-8c14-138eb1bfa3f3" alt="補充"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC/" class="post-title-link" itemprop="url">JavaScript核心篇：物件與純值</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-05 15:44:58 / 修改時間：15:45:33" itemprop="dateCreated datePublished" datetime="2020-03-05T15:44:58+08:00">2020-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="物件與純值"><a href="#物件與純值" class="headerlink" title="物件與純值"></a>物件與純值</h1><p>在 JavaScript 當中，純值是無法新增屬性的，只有物件型別可以新增屬性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var newString &#x3D; &#39;小明家&#39;;</span><br><span class="line">newString.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(newString) &#x2F;&#x2F; 小明家</span><br></pre></td></tr></table></figure>
+
+<p>因純值無法新增屬性，所以 newString 還是會維持本來的字串，不會做任何的修改。</p>
+<br>
+
+<p>現在我們來看第二個範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newString &#x3D; new String(&#39;小明家&#39;);</span><br><span class="line">newString.name &#x3D; &#39;小明家&#39;;</span><br><span class="line"></span><br><span class="line">console.log(newString)</span><br></pre></td></tr></table></figure>
+
+<p>會顯示如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E7%AF%84%E4%BE%8B.jpg?alt=media&token=c3b2b553-4def-4fb7-83ea-009261022054" alt="包裹物件範例"></p>
+<p>因為包裹物件本來就會讓值轉為物件，所以 newString 自然就變為物件型別了，物件型別當然就能夠新增屬性啦！</p>
+<br>
+
+<p>再來我們看到陣列的範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; [1, 2, 3];</span><br><span class="line">newArray.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(newArray);</span><br><span class="line">console.log(&#39;typeof newArray: &#39; + typeof newArray);</span><br></pre></td></tr></table></figure>
+
+<p>會顯示如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E9%99%A3%E5%88%97%E5%9E%8B%E5%88%A5.jpg?alt=media&token=ba15237d-5400-473c-b0bc-362ecc3ac601" alt="陣列型別"></p>
+<p>這樣應該就很清楚為什麼陣列可以新增屬性了吧！</p>
+<br>
+
+<p>最後讓我們看看 function(函式) 的範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function callName() &#123;</span><br><span class="line">    console.log(&#39;呼叫小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(typeof callName); &#x2F;&#x2F; function</span><br></pre></td></tr></table></figure>
+
+<p>這邊在 typeof 會出現 function 是因為函式其實算是物件型別下的一個子型別，所以 function 算是物件型別。</p>
+<p>接下來我們設定屬性看看 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function callName() &#123;</span><br><span class="line">    console.log(&#39;呼叫小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">callName.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.dir(callName)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>console.dir</code> 是能夠在 console 裡面展開函式的一個作法。</p>
+</blockquote>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5%E7%AF%84%E4%BE%8B1.jpg?alt=media&token=44691349-7261-4226-9c14-d7717acb91d1" alt="函式型別範例1"></p>
+<p>這邊會發現為什麼 <code>callName.name = &#39;小明&#39;;</code> 沒有作用，因為函式本身的 name 是無法被修改的，這邊的 name 其實就是函式本身的名稱。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function callName() &#123;</span><br><span class="line">    console.log(&#39;呼叫小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">callName.ming &#x3D; &#39;小明&#39;;</span><br><span class="line">console.dir(callName)</span><br></pre></td></tr></table></figure>
+
+<p>所以如果不是設定 name 為屬性的話，就可以順利的新增一個屬性了。 如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5%E7%AF%84%E4%BE%8B2.jpg?alt=media&token=4475ebc9-2171-4bf5-bd58-c30cf8476146" alt="函式型別範例2"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E7%B5%90%E6%A7%8B%20&%20%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC%E3%80%81%E5%88%AA%E9%99%A4%E3%80%81%E6%96%B0%E5%A2%9E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E7%B5%90%E6%A7%8B%20&%20%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC%E3%80%81%E5%88%AA%E9%99%A4%E3%80%81%E6%96%B0%E5%A2%9E/" class="post-title-link" itemprop="url">JavaScript核心篇：物件結構 & 物件取值、刪除、新增</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-05 14:56:58 / 修改時間：16:30:15" itemprop="dateCreated datePublished" datetime="2020-03-05T14:56:58+08:00">2020-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="物件結構"><a href="#物件結構" class="headerlink" title="物件結構"></a>物件結構</h1><p>建立物件有兩種方式，一種是物件實字；另一種則是物件建構式。<br>要設定物件的話裡面固定會有屬性跟值，屬性的名稱都會是字串不會是其他型別，值裡面可以是<strong>字串</strong>、<strong>數字</strong>、<strong>物件</strong>、<strong>函式</strong>。</p>
+<h2 id="物件實字"><a href="#物件實字" class="headerlink" title="物件實字"></a>物件實字</h2><p>物件實字語法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    callFamily: function()&#123;</span><br><span class="line">        console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="物件建構式"><a href="#物件建構式" class="headerlink" title="物件建構式"></a>物件建構式</h2><p>物件建構式語法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; new Object();</span><br><span class="line">family.name &#x3D; &#39;小明家&#39;;</span><br><span class="line">family.money &#x3D; 1000;</span><br><span class="line">family.members &#x3D; &#123;</span><br><span class="line">    mom: &#39;老媽&#39;,</span><br><span class="line">    dad: &#39;老爸&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.callFamily &#x3D; function()&#123;</span><br><span class="line">    console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="物件取值"><a href="#物件取值" class="headerlink" title="物件取值"></a>物件取值</h2><p>物件的取值有兩種方法，一種是用 .(點) 的方式，另一種是用 [](中括號) 的方式。</p>
+<p>.(點) 取值語法如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC(%E9%BB%9E).jpg?alt=media&token=ab41c454-e8af-4092-bdef-5159c6687f27" alt="物件取值(點)"></p>
+<br>
+
+<p>[](中括號) 取值語法如下 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC(%E4%B8%AD%E6%8B%AC%E8%99%9F).jpg?alt=media&token=ae18e953-a55f-4032-94f0-c25e43258418" alt="物件取值[]\(中括號)"></p>
+<h3 id="兩種取值的差異"><a href="#兩種取值的差異" class="headerlink" title="兩種取值的差異"></a>兩種取值的差異</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#39;1&#39;: 1,</span><br><span class="line">    callFamily: function()&#123;</span><br><span class="line">        console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在上方程式碼如果要取出 ‘1’ 裡面的值的話，用 .(點) 是沒有辦法取出值的</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8F%96%E5%80%BC%E5%B7%AE%E7%95%B0.jpg?alt=media&token=1664460a-7089-4783-944b-0ca12070cc03" alt="兩種取值的差異"></p>
+<p>另外 [](中括號) 可以設定變數後取值。 如下 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#39;1&#39;: 1,</span><br><span class="line">    callFamily: function()&#123;</span><br><span class="line">        console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var a &#x3D; &#39;name&#39;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E8%AE%8A%E6%95%B8%E5%8F%96%E5%80%BC.jpg?alt=media&token=ebe0d3b1-7ff0-46ac-b067-57eb91d0edc6" alt="物件變數取值"></p>
+<h3 id="物件新增"><a href="#物件新增" class="headerlink" title="物件新增"></a>物件新增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 物件新增語法如下 ↓ </span><br><span class="line"></span><br><span class="line">family.dog &#x3D; &#39;小白&#39;;</span><br><span class="line">family[&#39;cat&#39;] &#x3D; &#39;點點&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>用兩種方法都可以新增物件，這時候執行 family 會出現下面結果 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%96%B0%E5%A2%9E.jpg?alt=media&token=cf9fd679-3682-467a-85e6-a7c4a8aec524" alt="物件新增"></p>
+<p>這時候可以發現在後面依序新增了 dog 跟 cat 的屬性。</p>
+<h3 id="物件刪除"><a href="#物件刪除" class="headerlink" title="物件刪除"></a>物件刪除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 物件刪除語法如下 ↓</span><br><span class="line"></span><br><span class="line">delete family.money;</span><br><span class="line">delete family[&#39;members&#39;];</span><br></pre></td></tr></table></figure>
+
+<p>用兩種方法都可以物件刪除，這時候執行 family 會出現下面結果 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E5%88%AA%E9%99%A4.jpg?alt=media&token=992c9b8a-64fa-4f23-a450-318c30a6eefb" alt="物件刪除"></p>
+<p>這時候可以發現 money 跟 members 的屬性都不見了，只剩下了 name 的屬性。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90%20&%20%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90%20&%20%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC/" class="post-title-link" itemprop="url">JavaScript核心篇：邏輯運算子 & 函式預設值</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-04 16:51:58 / 修改時間：16:53:18" itemprop="dateCreated datePublished" datetime="2020-03-04T16:51:58+08:00">2020-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="邏輯運算子-amp-函式預設值"><a href="#邏輯運算子-amp-函式預設值" class="headerlink" title="邏輯運算子 &amp; 函式預設值"></a>邏輯運算子 &amp; 函式預設值</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fand%20or.jpg?alt=media&token=01509619-ecc9-4273-8abc-376130ac1431" alt="MDN範例"></p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_Operators#%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90" target="_blank" rel="noopener">圖片取自 MDN</a></p>
+</blockquote>
+<h2 id="amp-amp-並且"><a href="#amp-amp-並且" class="headerlink" title="&amp;&amp; (並且)"></a>&amp;&amp; (並且)</h2><ul>
+<li>當第一個值為 falsy(假值)，就會直接回傳並且不會讀取第二個值。</li>
+<li>當第一個值為 truthy(真值)，無論第二個值是 truthy(真值) 或是 falsy(假值)，都會回傳第二個值。</li>
 </ul>
-<br/>
-
-<p><font color=#ff0000><strong>git reset –hard HEAD^</strong></font>：這個指令可以刪除最近一次的 commit。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git reset –hard ORIG_HEAD</strong></font>：如果 git reset –hard HEAD^ 刪除錯了，那這個語法可以還原它。</p>
-<ul>
-<li>在這邊也可以用 <strong>git reset [commit 的 sha-1]</strong> 來還原 ！</li>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%26%26%E5%9B%9E%E5%82%B3%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=4f2195f2-8ec9-4549-a2cd-db6472d41121" alt="&amp;&amp;回傳測試"></p>
+<h2 id="或者"><a href="#或者" class="headerlink" title="|| (或者)"></a>|| (或者)</h2><ul>
+<li>當第一個值為 truthy(真值)，就會直接回傳並且不會讀取第二個值。</li>
+<li>當第一個值為 falsy(假值)，無論第二個值是 truthy(真值) 或是 falsy(假值)，都會回傳第二個值。</li>
 </ul>
-<br/>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FOR%E5%9B%9E%E5%82%B3%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=cf2cbf79-14d2-42cc-9b5e-08600069000f" alt="||回傳測試"></p>
+<h2 id="not"><a href="#not" class="headerlink" title="! (not)"></a>! (not)</h2><p>! 就是否定的意思，只要 truthy(真值) 就會回傳 false，falsy(假值) 則會回傳 true</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fnot%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=8cd0d59f-606f-4bd3-8827-cb7e24fad8c6" alt="!回傳測試"></p>
+<h2 id="函式預設值"><a href="#函式預設值" class="headerlink" title="函式預設值"></a>函式預設值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var originCash &#x3D; 500;</span><br><span class="line">function updateEasyCard(cash)&#123; </span><br><span class="line">    console.log(cash);</span><br><span class="line">    var currentCash &#x3D; originCash + cash;</span><br><span class="line">    console.log(&#39;我有&#39; + currentCash + &#39;元&#39;);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard();</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git reset HEAD</strong></font>：把所有正在索引內的檔案取消索引。</p>
-<br/>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC01.jpg?alt=media&token=853ddb32-dbb3-47bc-8804-1162b1547d9e" alt="函式預設值"></p>
+<p>因為 <code>updateEasyCard();</code> 沒有定義給它一個數字，所以會是 undefined ，而 undefined 如果跟數字相加則會回傳 NaN。</p>
+<br>
 
-<p><font color=#ff0000><strong>git reset HEAD 檔案名稱</strong></font>：如果你指定的檔案在索引當中，指定的檔案取消索引。</p>
+<p>這時候我們就可以用到剛剛學到的邏輯運算子了！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var originCash &#x3D; 500;</span><br><span class="line"></span><br><span class="line">function updateEasyCard(cash) &#123;</span><br><span class="line">    cash &#x3D; cash || 500;</span><br><span class="line">    console.log(cash);</span><br><span class="line">    var currentCash &#x3D; originCash + cash;</span><br><span class="line">    console.log(&#39;我有&#39; + currentCash + &#39;元&#39;);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard();</span><br></pre></td></tr></table></figure>
+
+<p>記得上面的特性嗎？如果第一個為真值它會直接回傳，如果第一個值為假值就一定會回傳第二個值。所以這裡在沒有定義的時候會回傳 500。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC%2002.jpg?alt=media&token=f5fe251d-f700-438d-afd4-01a9db31094a" alt="函式預設值"></p>
+<br>
+
+<p>但是這裡就有一個問題了，我如果輸入 updateEasyCard(0); 的話，因為 0 本來就是假值，所以它還是會回傳 500 ，那這時候就要換一種方式了。 解決方式如下 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var originCash &#x3D; 500;</span><br><span class="line"></span><br><span class="line">function updateEasyCard(cash) &#123;</span><br><span class="line">    cash &#x3D; parseInt(cash);</span><br><span class="line">    cash &#x3D; (cash || cash &#x3D;&#x3D;&#x3D; 0) ? cash : 500;</span><br><span class="line">    var currentCash &#x3D; originCash + cash;</span><br><span class="line">    console.log(&#39;我有&#39; + currentCash + &#39;元&#39;);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard(0);</span><br></pre></td></tr></table></figure>
+
+<p>這時候如果 (cash || cash === 0) 其中有一個是 true 的時候，就會回傳 cash 的值，否則回傳 500 。 這樣就解決了剛剛的問題囉！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/" class="post-title-link" itemprop="url">JavaScript核心篇：Truthy&Falsy</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-04 13:57:58 / 修改時間：13:58:25" itemprop="dateCreated datePublished" datetime="2020-03-04T13:57:58+08:00">2020-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Truthy-Falsy"><a href="#Truthy-Falsy" class="headerlink" title="Truthy Falsy"></a>Truthy Falsy</h1><p>在 JavaScript 中，truthy(真值) 指的是在布林值判斷中，轉換後的值為真的值。我們也可以另外一個方向來理解「除了 falsy 以外的值都是 truthy」，那我們就可以來看看 falsy 的值有哪些了。如下</p>
 <ul>
-<li>例如：git reset HEAD index.html 假設 index.html 現在索引內，那他會取消索引。</li>
+<li>0</li>
+<li>NaN</li>
+<li>‘’ (空字串)</li>
+<li>false</li>
+<li>null</li>
+<li>undefined</li>
 </ul>
-<br/>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy.jpg?alt=media&token=a1723750-2d5b-49f3-8ef7-8c007eb3c73f" alt="Truthy Falsy"></p>
+<p>以下列程式碼為例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if ()&#123;</span><br><span class="line">    console.log(&#39;執行程式&#39;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    console.log(&#39;執行 falsy&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git reset –hard</strong></font>：可以把路徑目錄還原成最新一次 commit 的狀態，切記要先把所有檔案加入索引<br><strong>git add .</strong>，否則檔案依然會留存。</p>
-<br/>
+<p>在 if 的 () 當中輸入 falsy 的六種值，都會出現 ‘執行 falsy’ 的訊息。</p>
+<h2 id="包裹物件轉化"><a href="#包裹物件轉化" class="headerlink" title="包裹物件轉化"></a>包裹物件轉化</h2><p>如果我們使用了物件包裹，那就是另外一回事了！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (new Number(0))&#123;</span><br><span class="line">    console.log(&#39;執行程式&#39;); &#x2F;&#x2F; 會顯示這邊</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    console.log(&#39;執行 falsy&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git clone 網址</strong></font>：把你的遠端數據庫連接到你的本地數據庫。</p>
-<br/>
+<p>這裡可以看到我們利用包裹物件來把 0 轉化，它會變成 truthy。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (new Boolean(false))&#123;</span><br><span class="line">    console.log(&#39;執行程式&#39;); &#x2F;&#x2F; 一樣會顯示這邊</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    console.log(&#39;執行 falsy&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git push</strong></font>：把你的本地數據庫裡的資料 傳送/更新 到你連接的遠端數據庫。</p>
-<br/>
+<p>答案是因為利用包裹物件轉化的值都會變成物件，物件裡不管是什麼值都會回傳 true。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%BD%89%E5%8C%96.jpg?alt=media&token=bc21934c-c7da-4557-bcb3-e4bef5952881" alt="包裹物件轉化"></p>
 
-<p><font color=#ff0000><strong>git pull</strong></font>：從遠端數據庫拉其他工程師更新的資料。</p>
-<br/>
-<br/>
+      
+    </div>
 
-<h2 id="branch-分支"><a href="#branch-分支" class="headerlink" title="branch 分支"></a>branch 分支</h2><br/>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<p>HEAD 是一個指標，指向某一個分支，也可以把 HEAD 當作目前所在分支看待。</p>
-<br/>
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/">
 
-<p><font color=#ff0000><strong>git branch</strong></font>：查詢目前有哪些分支。</p>
-<br/>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
 
-<p><font color=#ff0000><strong>git branch -a</strong></font>：當你在新的工作環境要 pull 專案開發時，可以使用這個查分支，<br>因為pull下來用 git branch 查不到。</p>
-<br/>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型</a>
+        </h1>
 
-<p><font color=#ff0000><strong>git branch 分支名稱</strong></font>：建構分支的指令。</p>
-<br/>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
 
-<p><font color=#ff0000><strong>git checkout 前四碼</strong></font>： 回到你想要觀看commit的版本，輸入版本編號前四碼，就可以回到那個版本觀看當時的CODE。</p>
-<br/>
+              <time title="創建時間：2020-03-03 13:07:58" itemprop="dateCreated datePublished" datetime="2020-03-03T13:07:58+08:00">2020-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-04 13:58:47" itemprop="dateModified" datetime="2020-03-04T13:58:47+08:00">2020-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
 
-<p><font color=#ff0000><strong>git checkout 分支名稱</strong></font>：可以回到你要看的分支。</p>
-<br/>
+          
 
-<p><font color=#ff0000><strong>git checkout 標籤名稱</strong></font>：可以回到你要看的標籤。</p>
-<br/>
+        </div>
+      </header>
 
-<p><font color=#ff0000><strong>git checkout master</strong></font>：回到 master 分支。</p>
-<br/>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<p><font color=#ff0000><strong>git merge 分支名稱</strong></font>：可以把目前所在分支跟你輸入的分支合併。</p>
-<br/>
-<br/>
+      
+          <h1 id="寬鬆相等、嚴格相等以及隱含轉型"><a href="#寬鬆相等、嚴格相等以及隱含轉型" class="headerlink" title="寬鬆相等、嚴格相等以及隱含轉型"></a>寬鬆相等、嚴格相等以及隱含轉型</h1><blockquote>
+<p>「== 允許在比較中強制轉型，=== 不允許。」</p>
+</blockquote>
+<h2 id="嚴格相等"><a href="#嚴格相等" class="headerlink" title="嚴格相等"></a>嚴格相等</h2><p>嚴格相等必須<strong>值</strong>、<strong>型別</strong>都要相同才會回傳 true。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy%E5%9A%B4%E6%A0%BC%E6%AF%94%E8%BC%83.jpg?alt=media&token=eba46e48-5fd1-425e-aeab-cdc081700256" alt="嚴格比較"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1 &#x3D;&#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; false  &#x2F;&#x2F; &#39;1&#39;是字串</span><br><span class="line">console.log(1 &#x3D;&#x3D;&#x3D; 1); &#x2F;&#x2F; true</span><br><span class="line">console.log(1 !&#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 不過嚴格相等有兩個例外</span><br><span class="line"></span><br><span class="line">console.log(NaN &#x3D;&#x3D;&#x3D; NaN); &#x2F;&#x2F; false</span><br><span class="line">console.log(+0 &#x3D;&#x3D;&#x3D; -0); &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
 
-<h2 id="tag-標籤"><a href="#tag-標籤" class="headerlink" title="tag 標籤"></a>tag 標籤</h2><br>
+<h2 id="寬鬆相等"><a href="#寬鬆相等" class="headerlink" title="寬鬆相等"></a>寬鬆相等</h2><p>寬鬆等於只要值相等就會回傳 true，這裡說的值包含<strong>字串</strong>、<strong>布林</strong>轉化過來的值。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy%E5%AF%AC%E9%AC%86%E6%AF%94%E8%BC%83.jpg?alt=media&token=cdc6fb06-3ea3-4897-bf58-6fbc83676b8e" alt="寬鬆比較"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(1 &#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; true</span><br><span class="line">console.log(true &#x3D;&#x3D; &#39;1&#39;); &#x2F;&#x2F; true</span><br><span class="line">console.log(false &#x3D;&#x3D; &#39;0&#39;); &#x2F;&#x2F; true</span><br><span class="line">console.log(1 !&#x3D; &#39;1&#39;); &#x2F;&#x2F;false</span><br><span class="line"></span><br><span class="line">console.log(Number(!0)); &#x2F;&#x2F; 1</span><br><span class="line">console.log(1 &#x3D;&#x3D; !0); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
 
-<p><font color=#ff0000><strong>git tag</strong></font>：查詢目前有哪些標籤。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git tag 標籤名抽</strong></font>：這個指令可以新增一個標籤。例：git tag v1 ，等於新增一個 v1標籤。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git tag -am “備註” 標籤名稱</strong></font>：這個指令可以為標籤增加備註，可以用 git tag -n 來查，如果沒有標籤備註會顯示 commit 的備註。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git tag -n</strong></font>：可以查標籤的備註，或者是如果標籤沒有備註也會顯示 commit 的備註。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git tag -d</strong></font>：刪除指定的標籤。例如 ：git tag -d v1 就會刪除 v1 標籤。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git checkout 標籤名稱</strong></font>：可以回到你要看的標籤。</p>
-<br/>
-<br/>
-
-<h2 id="stash-暫存"><a href="#stash-暫存" class="headerlink" title="stash 暫存"></a>stash 暫存</h2><br>
-
-<p><font color=#ff0000><strong>git stash</strong></font>：暫存當前的目錄。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git stash list</strong></font>：瀏覽所有 stash 的列表。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git stash pop</strong></font>：還原暫存。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git stash apply</strong></font>：還原最新的暫存。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git stash apply stash@{n}</strong></font>：指定還原的暫存版本。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git stash drop</strong></font>：刪除最新的暫存。例：有 {0}{1}{2} 的 stash，那輸入指令會把 {2} 刪掉。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git stash clear</strong></font>：刪除所有暫存。</p>
-<br/>
-<br/>
-
-<h2 id="remote-遠端數據庫"><a href="#remote-遠端數據庫" class="headerlink" title="remote 遠端數據庫"></a>remote 遠端數據庫</h2><br>
-
-<p><font color=#ff0000><strong>git remote</strong></font>：查詢遠端數據庫。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git remote rename 原名稱 新名稱</strong></font>：遠端數據庫預設名稱會是origin，這個指令可以修改遠端數據庫名稱。 例：git remote origin newName 就會把原本 origin 的遠端數據庫改名為 newName</p>
-<br/>
-
-<p><font color=#ff0000><strong>git push</strong></font>：把你的本地數據庫裡的資料 傳送/更新 到你連接的遠端數據庫。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git push 遠端數據庫名稱 分支名稱</strong></font>：push 分支到遠端數據庫上。例：git push origin develop 就是把 develop push 到 origin 的遠端數據庫上。</p>
-<br/>
-
-<p><font color=#ff0000><strong>git fetch</strong></font>：會移到一個名為 FETCH_HEAD 的分支，可以拿來合併。 pull 就是 fetch + merge 的組合技。</p>
-<br/>
+<p>Null 跟 undefined 不能被轉化為數字型別。</p>
+<h2 id="物件與非物件比對"><a href="#物件與非物件比對" class="headerlink" title="物件與非物件比對"></a>物件與非物件比對</h2><p>在物件與非物件比對的時候，是使用<strong>包裹物件</strong>來進行轉換。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(Number([10])); &#x2F;&#x2F; 10</span><br><span class="line">console.log(10 &#x3D;&#x3D; [10]); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">console.log(String([&#39;A&#39;])); &#x2F;&#x2F; &#39;A&#39;</span><br><span class="line">console.log(&#39;A&#39; &#x3D;&#x3D; [&#39;A&#39;]);  &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
 
 
+<h2 id="物件比對"><a href="#物件比對" class="headerlink" title="物件比對"></a>物件比對</h2><p>物件經過隱含轉型後，會變成 [object Object]。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;c: 5&#125;;</span><br><span class="line">var b &#x3D; &#123;c: 5&#125;;</span><br><span class="line"></span><br><span class="line">a &lt; b; &#x2F;&#x2F; false</span><br><span class="line">a &gt; b; &#x2F;&#x2F; false</span><br><span class="line">a &#x3D;&#x3D; b; &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<p>object 指向的是記憶體位置，所以 a == b 時不會相等。</p>
+<blockquote>
+<p><a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">圖片取自</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/" class="post-title-link" itemprop="url">JavaScript核心篇：優先性、相依性</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-02 21:02:58" itemprop="dateCreated datePublished" datetime="2020-03-02T21:02:58+08:00">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-04 14:44:56" itemprop="dateModified" datetime="2020-03-04T14:44:56+08:00">2020-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="優先性及相依性"><a href="#優先性及相依性" class="headerlink" title="優先性及相依性"></a>優先性及相依性</h1><h2 id="優先性"><a href="#優先性" class="headerlink" title="優先性"></a>優先性</h2><p>優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。</p>
+<h2 id="相依性"><a href="#相依性" class="headerlink" title="相依性"></a>相依性</h2><p>相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。<br><strong>而當優先性相同時依據相依性的運算方向執行。</strong></p>
+<h2 id="加減乘除優先性"><a href="#加減乘除優先性" class="headerlink" title="加減乘除優先性"></a>加減乘除優先性</h2><p>以 <code>var a = 2 * 2 + 2 * 3;</code> 為例子</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=f9bfa0e0-02a3-45fd-96dd-98691b64506a" alt="加減乘除優先性"></p>
+<p>因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +(加號)的運算元，這也符合描述的優先性。</p>
+<h2 id="等號優先性"><a href="#等號優先性" class="headerlink" title="等號優先性"></a>等號優先性</h2><p>等號的相依性是由右至左，而且優先性其實不高。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AD%89%E8%99%9F%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=9143852e-2b02-4be5-b1f0-bbf4c2fdebf0" alt="等號優先性"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">var b &#x3D; 2;</span><br><span class="line">a &#x3D; b &#x3D; 3;</span><br><span class="line">console.log(a, b); &#x2F;&#x2F; 3 , 3</span><br></pre></td></tr></table></figure>
+
+<p>因為等號是由右至左，所以拆解出來會像下面這樣</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b &#x3D; 3; &#x2F;&#x2F; 3</span><br><span class="line">a &#x3D; b; &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<p>但是這邊要注意的一點是，a 雖然是 3 沒有錯，但是它是取到 b 的<strong>值</strong>，所以 a 取到的是 b 的回傳結果。</p>
+<br>
+
+<p>接下來看到另外一個範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var b &#x3D; &#123;&#125;;</span><br><span class="line">Object.defineProperty(b, &#39;a&#39;, &#123;</span><br><span class="line">    value: 2,  &#x2F;&#x2F; 值 &#x3D; 2</span><br><span class="line">    writable: false &#x2F;&#x2F; 不可寫入</span><br><span class="line">&#125;);</span><br><span class="line">var a &#x3D; 1;</span><br><span class="line">a &#x3D; b.a &#x3D; 1;</span><br><span class="line"></span><br><span class="line">console.log(a, b.a) &#x2F;&#x2F;  1 , 2</span><br></pre></td></tr></table></figure>
+
+<p>a 會回傳 1 的原因是因為<strong>所有表達式都會回傳值</strong>，如果沒有去接收它的話，它會立即釋放不會儲存，變成只是一個過程。(如下圖)<br>而 <code>=</code> 也是表達式，它的功能是將右側的值賦予至左側，居然它是表達式它就必須要回傳 <strong>值</strong>，而它回傳的值都是以右側來做表示的。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%84%AA%E5%85%88%E6%80%A7%E7%AF%84%E4%BE%8B.jpg?alt=media&token=d1d55e77-42b9-4080-a8a1-ffa006cbdfee" alt="範例"></p>
+<h2 id="大於小於的優先性"><a href="#大於小於的優先性" class="headerlink" title="大於小於的優先性"></a>大於小於的優先性</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%A4%A7%E6%96%BC%E5%B0%8F%E6%96%BC%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=ea744514-c2bb-470d-a8c6-9e58b88efb9b" alt="大於小於優先性"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">console.log(1 &lt; 2 &lt; 3); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 可以拆解成</span><br><span class="line">console.log(1 &lt; 2); &#x2F;&#x2F; true</span><br><span class="line">console.log(true &lt; 3); &#x2F;&#x2F; true</span><br><span class="line">console.log(1 &lt; 3); &#x2F;&#x2F;true 會因為型別的轉換會轉換成 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(3 &gt; 2 &gt; 1); &#x2F;&#x2F; false</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; false 的原因，會被拆解成下列這樣</span><br><span class="line">console.log(3 &gt; 2); &#x2F;&#x2F; true</span><br><span class="line">console.log(true &gt; 1); &#x2F;&#x2F; false</span><br><span class="line">console.log(1 &gt; 1); &#x2F;&#x2F; false 會因為型別的轉換會轉換成 1</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1335,7 +1117,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/cheeto.github.io/page/2/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><a class="page-number" href="/cheeto.github.io/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/cheeto.github.io/page/4/">4</a><a class="extend next" rel="next" href="/cheeto.github.io/page/4/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/cheeto.github.io/page/2/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><a class="page-number" href="/cheeto.github.io/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/cheeto.github.io/page/4/">4</a><a class="page-number" href="/cheeto.github.io/page/5/">5</a><a class="extend next" rel="next" href="/cheeto.github.io/page/4/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1401,16 +1183,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/cheeto.github.io/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分類</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">標籤</span>
       </div>
   </nav>

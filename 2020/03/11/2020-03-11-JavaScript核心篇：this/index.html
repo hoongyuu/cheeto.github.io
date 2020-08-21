@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
+    root: '/cheeto.github.io/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="this 每個執行環境都有屬於自己的 this 關鍵字 this 與函式如何宣告沒有關聯性，僅與呼叫方式有關 嚴格模式下，簡易呼叫會有很大個改變  this的實際指向跟我們如何去呼叫函式是有很大的關聯性的！ this指的並不是函式本身，而是指向目前呼叫函式或方法的擁有者(owner)物件。所以函式需要了解函式的幾種調用方式，就能一併了解this在這些情況下的不同。  this: 物件的方式調用(最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript核心篇：this (合併整理)">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="this 每個執行環境都有屬於自己的 this 關鍵字 this 與函式如何宣告沒有關聯性，僅與呼叫方式有關 嚴格模式下，簡易呼叫會有很大個改變  this的實際指向跟我們如何去呼叫函式是有很大的關聯性的！ this指的並不是函式本身，而是指向目前呼叫函式或方法的擁有者(owner)物件。所以函式需要了解函式的幾種調用方式，就能一併了解this在這些情況下的不同。  this: 物件的方式調用(最">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%BD%B1%E9%9F%BF%E5%87%BD%E5%BC%8F%20this%20%E7%9A%84%E8%AA%BF%E7%94%A8%E6%96%B9%E6%B3%95.jpg?alt=media&token=412fd868-72e1-44bc-b8ba-d8408447c684">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E7%9A%84%E7%94%A8%E9%80%94.jpg?alt=media&token=faaa2adc-6ab5-45f7-b3f2-3782119860fd">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F.jpg?alt=media&token=9e5acc26-1087-4072-85dc-a851b39ad0b4">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fcallback%E7%AF%84%E4%BE%8B.jpg?alt=media&token=2b15683c-8378-43d7-920b-01b239a26dbf">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fcall.jpg?alt=media&token=c6d6b156-5f64-4a2f-a5a9-29054464481c">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fapply6.jpg?alt=media&token=d8dbb732-8310-4052-9b50-4c840262f9da">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fapply6.jpg?alt=media&token=d8dbb732-8310-4052-9b50-4c840262f9da">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E9%80%B2%E9%9A%8E%E8%A7%80%E5%BF%B5.jpg?alt=media&token=6c1e2b67-148b-4c02-a6fa-b13b9dc24e04">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%9A%B4%E6%A0%BC%E6%A8%A1%E5%BC%8F.JPG?alt=media&token=a8478f9a-7845-4d7a-b030-66e3f404e77e">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%9A%B4%E6%A0%BC%E6%A8%A1%E5%BC%8Fthis.jpg?alt=media&token=8748a537-c086-46fa-980e-0a57083ed509">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FthisDOM%E7%AF%84%E4%BE%8B%E4%B8%80.jpg?alt=media&token=6cafe677-d0a5-4e10-81de-c07e480219bf">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FthisDOM%E7%AF%84%E4%BE%8B%E4%BA%8C.jpg?alt=media&token=9924ff20-5694-4a0c-882c-6201f32ff393">
+<meta property="article:published_time" content="2020-03-11T13:44:12.000Z">
+<meta property="article:modified_time" content="2020-03-12T10:46:40.509Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="JS核心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%BD%B1%E9%9F%BF%E5%87%BD%E5%BC%8F%20this%20%E7%9A%84%E8%AA%BF%E7%94%A8%E6%96%B9%E6%B3%95.jpg?alt=media&token=412fd868-72e1-44bc-b8ba-d8408447c684">
+
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript核心篇：this (合併整理) | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/cheeto.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript核心篇：this (合併整理)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-11 21:44:12" itemprop="dateCreated datePublished" datetime="2020-03-11T21:44:12+08:00">2020-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-12 18:46:40" itemprop="dateModified" datetime="2020-03-12T18:46:40+08:00">2020-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><ul>
+<li>每個執行環境都有屬於自己的 this 關鍵字</li>
+<li>this 與函式如何宣告<strong>沒有關聯性</strong>，僅與呼叫方式有關</li>
+<li>嚴格模式下，簡易呼叫會有很大個改變</li>
+</ul>
+<p><code>this</code>的實際指向跟我們如何去呼叫函式是有很大的關聯性的！</p>
+<p><code>this</code>指的並不是函式本身，而是指向<strong>目前呼叫函式或方法的擁有者(owner)物件</strong>。所以函式需要了解函式的幾種調用方式，就能一併了解<code>this</code>在這些情況下的不同。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%BD%B1%E9%9F%BF%E5%87%BD%E5%BC%8F%20this%20%E7%9A%84%E8%AA%BF%E7%94%A8%E6%96%B9%E6%B3%95.jpg?alt=media&token=412fd868-72e1-44bc-b8ba-d8408447c684" alt="影響函式this的調用方式"></p>
+<h2 id="this-物件的方式調用-最常見"><a href="#this-物件的方式調用-最常見" class="headerlink" title="this: 物件的方式調用(最常見)"></a>this: 物件的方式調用(最常見)</h2><ul>
+<li>this 與函式如何宣告<strong>沒有關聯性</strong>，僅與呼叫方式有關</li>
+<li>物件方法調用時，僅需要關注是在哪一個物件下呼叫</li>
+</ul>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E7%9A%84%E7%94%A8%E9%80%94.jpg?alt=media&token=faaa2adc-6ab5-45f7-b3f2-3782119860fd" alt="this的用途"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function callName(e) &#123;</span><br><span class="line">    console.log(this, this.myName);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    myName: &#39;小明家&#39;,</span><br><span class="line">    callName: callName,</span><br><span class="line">    Ming: &#123;</span><br><span class="line">        myName: &#39;小明&#39;,</span><br><span class="line">        callName: callName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">family.callName();</span><br><span class="line">family.Ming.callName();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F.jpg?alt=media&token=9e5acc26-1087-4072-85dc-a851b39ad0b4" alt="this 的常用方式"></p>
+<p>物件方法調用時，僅需要關注是在哪一個物件下呼叫。<br>所以<code>family.callName();</code>的<code>this</code>就是指向<code>family</code>；而<code>family.Ming.callName();</code>的<code>this</code>就是指向<code>family.Ming</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function callName(e) &#123;</span><br><span class="line">    console.log(this, this.myName);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    myName: &#39;小明家&#39;,</span><br><span class="line">    callName: function()&#123;</span><br><span class="line">        console.log(this.myName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var callName &#x3D; family.callName;</span><br><span class="line">callName();  &#x2F;&#x2F; 真心鎮大冒險</span><br></pre></td></tr></table></figure>
+
+<p><code>this</code> 與函式如何宣告<strong>沒有關聯性</strong>，僅與呼叫方式有關。</p>
+<p>所以我們只要管它是如何被呼叫出來的就好，而 <code>callName()</code> 是在全域裡面被執行出來的，所以它的<code>this</code> 就會指向 <code>window</code>。</p>
+<h2 id="this-簡易呼叫-simple-call"><a href="#this-簡易呼叫-simple-call" class="headerlink" title="this: 簡易呼叫(simple call)"></a>this: 簡易呼叫(simple call)</h2><ul>
+<li>盡可能不要使用 simple call 的 <code>this</code></li>
+</ul>
+<p><strong>簡易呼叫的 <code>this</code> 都會指向 window</strong><br><strong>簡易呼叫的 <code>this</code> 都會指向 window</strong><br><strong>簡易呼叫的 <code>this</code> 都會指向 window</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function callName()&#123;</span><br><span class="line">    console.log(this.myName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callName();  &#x2F;&#x2F; 真心鎮大冒險</span><br></pre></td></tr></table></figure>
+
+<p>原因是因為我們在全域呼叫函式，所以函式的 <code>this</code> 會指向 <code>window</code>，所以會指到全域變數的 myName。</p>
+<p>而這種直接在全域下呼叫的方式就算是「簡易呼叫」的一種。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; IIFE 立即函式</span><br><span class="line">(function ()&#123;</span><br><span class="line">    console.log(this.myName); &#x2F;&#x2F;真心鎮大冒險</span><br><span class="line">    function callSomeone()&#123;</span><br><span class="line">        console.log(this.myName);</span><br><span class="line">    &#125;</span><br><span class="line">    callSomeone(); &#x2F;&#x2F;真心鎮大冒險</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>this 不會看你的呼叫位置，而是依據呼叫方式而定的。</p>
+<h3 id="簡易呼叫-閉包"><a href="#簡易呼叫-閉包" class="headerlink" title="簡易呼叫(閉包)"></a>簡易呼叫(閉包)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function easyCard(base) &#123;</span><br><span class="line">    var money &#x3D; base;</span><br><span class="line">    var name &#x3D; &#39;悠遊卡&#39;;</span><br><span class="line">    return function (update) &#123;</span><br><span class="line">        money &#x3D; money + update;</span><br><span class="line">        console.log(this.myName, money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var MingEasyCard &#x3D; easyCard(100);</span><br><span class="line">MingEasyCard(10);  &#x2F;&#x2F; 真心鎮大冒險 110</span><br></pre></td></tr></table></figure>
+
+<p>這邊也可以看到它跟前面的例子一樣都是在全域下直接呼叫，所以它的<code>this</code>就是指向 window。</p>
+<h3 id="簡易呼叫-callback"><a href="#簡易呼叫-callback" class="headerlink" title="簡易呼叫(callback)"></a>簡易呼叫(callback)</h3><p>所謂的「Callback function」其實就是「把函式當作另一個函式的參數，透過另一個函式來呼叫它」。</p>
+<p>以<code>callback function</code> 的方式被呼叫，所以算是「簡易呼叫」。所以 <code>this</code> 會指向 window。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function myEasyCard(callback) &#123;</span><br><span class="line">    var money &#x3D; 100</span><br><span class="line">    return callback(money)</span><br><span class="line">&#125;</span><br><span class="line">myEasyCard(function (money) &#123;</span><br><span class="line">    console.log(this.myName, money + 100)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fcallback%E7%AF%84%E4%BE%8B.jpg?alt=media&token=2b15683c-8378-43d7-920b-01b239a26dbf" alt="callback範例"></p>
+<br>
+
+<p>再來下一個範例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    myName: &#39;小明家&#39;,</span><br><span class="line">    callName: function () &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(this.myName);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">family.callName();  &#x2F;&#x2F;真心鎮大冒險</span><br></pre></td></tr></table></figure>
+<p><code>this</code> 不會看你是在那裡執行，而是看你是如何去執行它。因為<code>setTimeout</code>的()內是一個<code>callback function</code>，所以它是以<code>callback function</code> 的方式被呼叫，所以算是「簡易呼叫」。</p>
+<br>
+
+<p>如果想要把 <code>this</code> 指向 <code>family</code> 的話，解決方法如下 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">myName: &#39;小明家&#39;,</span><br><span class="line">callName: function () &#123;</span><br><span class="line">    var self &#x3D; this; &#x2F;&#x2F; vm, that</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">      console.log(self.myName);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">family.callName(); &#x2F;&#x2F;小明家</span><br></pre></td></tr></table></figure>
+<h2 id="this：-call-apply-bind"><a href="#this：-call-apply-bind" class="headerlink" title="this： call, apply, bind"></a>this： call, apply, bind</h2><h3 id="call"><a href="#call" class="headerlink" title="call"></a>call</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn(&#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fcall.jpg?alt=media&token=c6d6b156-5f64-4a2f-a5a9-29054464481c" alt="call"></p>
+<p><code>call</code>的語法是能夠把 <code>family</code> 傳入 <code>this</code> 當中，這樣就能指定自己要的<code>this</code></p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.apply(family, [&#39;小明&#39;, &#39;杰倫&#39;]);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fapply6.jpg?alt=media&token=d8dbb732-8310-4052-9b50-4c840262f9da" alt="apply"></p>
+<p><code>apply</code>的語法其實跟<code>call</code>滿相近的，但是它後面的參數必須用陣列的方式設定。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind</code>的語法跟<code>call</code>是一樣的方式，但是兩者的不同在於說：「<code>bind</code>不會被立刻地執行」</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.bind(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>這裡如果執行的話只會出現 <code>fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</code> 的結果，而<code>bind</code>的執行結果不會出現。</p>
+<p>因為「<code>bind</code>不會被立刻地執行」</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">var fn2 &#x3D; fn.bind(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn2();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fapply6.jpg?alt=media&token=d8dbb732-8310-4052-9b50-4c840262f9da" alt="apply"></p>
+<h3 id="call-apply-bind-進階觀念"><a href="#call-apply-bind-進階觀念" class="headerlink" title="call, apply, bind 進階觀念"></a>call, apply, bind 進階觀念</h3><p>以<code>call</code>, <code>apply</code>, <code>bind</code>呼叫函式時，<strong>可以綁定<code>this</code>是什麼。<code>this</code>會是傳進該函式的第一個參數。</strong></p>
+<p><code>call</code>, <code>apply</code>, <code>bind</code><strong>在非嚴格的模式下，<code>null</code>, <code>undefined</code>會被置換成全域變數</strong>，而原生型態的值將會被物件包裹呈現</p>
+<p>如果把<code>this</code>傳入純值的話，會用物件包裹的方式呈現。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(1, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.call(&#39;文字&#39;, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.call(true, &#39;小明&#39;, &#39;杰倫&#39;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E9%80%B2%E9%9A%8E%E8%A7%80%E5%BF%B5.jpg?alt=media&token=6c1e2b67-148b-4c02-a6fa-b13b9dc24e04" alt="this進階觀念"></p>
+<h2 id="嚴格模式-Strict-Mode"><a href="#嚴格模式-Strict-Mode" class="headerlink" title="嚴格模式(Strict Mode)"></a>嚴格模式(Strict Mode)</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%9A%B4%E6%A0%BC%E6%A8%A1%E5%BC%8F.JPG?alt=media&token=a8478f9a-7845-4d7a-b030-66e3f404e77e" alt="嚴格模式"></p>
+<ul>
+<li>在嚴格模式下未定義的變數不能直接的賦予值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function () &#123;</span><br><span class="line">    &#39;use strict&#39;;</span><br><span class="line">    auntie &#x3D; &#39;漂亮阿姨&#39;;</span><br><span class="line">    &#x2F;&#x2F; Uncaught ReferenceError: auntie is not defined</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>嚴格模式對<code>this</code>的影響</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function callStrict(para1, para2) &#123;</span><br><span class="line">    &#39;use strict&#39;;</span><br><span class="line">    console.log(this, typeof this, para1, para2);</span><br><span class="line">&#125;</span><br><span class="line">callStrict.call(1, &#39;小明&#39;, &#39;杰倫&#39;)</span><br><span class="line">callStrict.call(undefined, &#39;小明&#39;, &#39;杰倫&#39;)</span><br><span class="line">callStrict(&#39;小明&#39;, &#39;杰倫&#39;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%9A%B4%E6%A0%BC%E6%A8%A1%E5%BC%8Fthis.jpg?alt=media&token=8748a537-c086-46fa-980e-0a57083ed509" alt="嚴格模式this"></p>
+<p>simple call的<code>this</code>沒有設定的話預設會是<code>undefined</code>，但是在非嚴格模式的時候會被轉成<code>object</code>，然而在嚴格模式下它並不會轉化，依舊會維持本來的<code>undefined</code>，所以<strong>盡可能不要使用簡易呼叫的<code>this</code></strong>！！！</p>
+<h2 id="this-DOM"><a href="#this-DOM" class="headerlink" title="this: DOM"></a>this: DOM</h2><p>DOM跟<code>this</code>綁定會讓<code>this</code>指向觸發事件的元素(HTML element)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick&#x3D;&quot;console.dir(this)&quot;&gt;按鈕&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FthisDOM%E7%AF%84%E4%BE%8B%E4%B8%80.jpg?alt=media&token=6cafe677-d0a5-4e10-81de-c07e480219bf" alt="thisDOM範例一"></p>
+<p>這裡<code>onclick</code>事件裡的<code>this</code>，就是指向<code>button</code>的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var fn &#x3D; function () &#123;</span><br><span class="line">    console.dir(this);</span><br><span class="line">    this.style.backgroundColor &#x3D; &#39;orange&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var els &#x3D; document.querySelectorAll(&#39;li&#39;);</span><br><span class="line"></span><br><span class="line">for (let i &#x3D; 0; i &lt; els.length; i++) &#123;</span><br><span class="line">    els[i].addEventListener(&#39;click&#39;, fn, false);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FthisDOM%E7%AF%84%E4%BE%8B%E4%BA%8C.jpg?alt=media&token=9924ff20-5694-4a0c-882c-6201f32ff393" alt="thisDOM範例二"></p>
+<p>DOM的事件監聽會讓<code>this</code>指向觸發事件的元素(HTML element)。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/" rel="prev" title="JavaScript核心篇：閉包">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：閉包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/" rel="next" title="JavaScript核心篇：原型在哪裡？">
+      JavaScript核心篇：原型在哪裡？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this"><span class="nav-number">1.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#this-物件的方式調用-最常見"><span class="nav-number">1.1.</span> <span class="nav-text">this: 物件的方式調用(最常見)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this-簡易呼叫-simple-call"><span class="nav-number">1.2.</span> <span class="nav-text">this: 簡易呼叫(simple call)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#簡易呼叫-閉包"><span class="nav-number">1.2.1.</span> <span class="nav-text">簡易呼叫(閉包)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#簡易呼叫-callback"><span class="nav-number">1.2.2.</span> <span class="nav-text">簡易呼叫(callback)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this：-call-apply-bind"><span class="nav-number">1.3.</span> <span class="nav-text">this： call, apply, bind</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.3.1.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply"><span class="nav-number">1.3.2.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">1.3.3.</span> <span class="nav-text">bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-apply-bind-進階觀念"><span class="nav-number">1.3.4.</span> <span class="nav-text">call, apply, bind 進階觀念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嚴格模式-Strict-Mode"><span class="nav-number">1.4.</span> <span class="nav-text">嚴格模式(Strict Mode)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this-DOM"><span class="nav-number">1.5.</span> <span class="nav-text">this: DOM</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/cheeto.github.io/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/cheeto.github.io/lib/anime.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/cheeto.github.io/js/utils.js"></script>
+
+<script src="/cheeto.github.io/js/motion.js"></script>
+
+
+<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/cheeto.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
