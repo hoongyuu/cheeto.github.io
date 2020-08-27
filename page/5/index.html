@@ -169,6 +169,288 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/" class="post-title-link" itemprop="url">JavaScript： var、( let , const ) 差異</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-20 16:44:11" itemprop="dateCreated datePublished" datetime="2020-02-20T16:44:11+08:00">2020-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-03 19:46:44" itemprop="dateModified" datetime="2020-03-03T19:46:44+08:00">2020-03-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JavaScript：-var、-let-const-差異"><a href="#JavaScript：-var、-let-const-差異" class="headerlink" title="JavaScript： var、( let , const ) 差異"></a>JavaScript： var、( let , const ) 差異</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在ES6之前，JavaScript要宣告變數的時候，會使用到 var 宣告變數，<br>但是到了ES6之後，建議盡量都用 ( let , const ) 來做宣告，不要再用 var 了。</p>
+<p>因為 var 有一個缺點，那就是它很容易汙染到全域變數。 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 15;</span><br><span class="line"></span><br><span class="line">console.log(a);  &#x2F;&#x2F; 15</span><br><span class="line">&#x2F;&#x2F;用 var 的話會讓 a 直接跑到 window 下面變成全域變數</span><br><span class="line">console.log(window.a);  &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="var、-let-const-差異在哪？"><a href="#var、-let-const-差異在哪？" class="headerlink" title="var、( let , const ) 差異在哪？"></a>var、( let , const ) 差異在哪？</h2><p>我們開發時應該盡量避免汙染到全域變數，所以ES6因為這個原因發明了 「let」、「const」，來改善這個問題，那它們之間的差異在哪裡呢？ 讓我們繼續看下去。</p>
+<h3 id="let-const-是以-來做區隔的，而-var-是以-function-來做區隔。"><a href="#let-const-是以-來做區隔的，而-var-是以-function-來做區隔。" class="headerlink" title="let / const 是以 {} 來做區隔的，而 var 是以 function 來做區隔。"></a>let / const 是以 <strong><code>{}</code></strong> 來做區隔的，而 var 是以 function 來做區隔。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2 三個值沒有問題，但是重點來了！</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<p>發現問題點了嗎？ 在for迴圈裏面用 var 宣告的 i (變數) 已經污染到全域變數了！</p>
+<p>遇到這樣的問題的話，let 其實就很好解決了，因為 let 是用 <strong><code>{}</code></strong> 來做區隔的，所以它並不會汙染到全域變數。 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; Uncaught ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
+
+<p>如果用 let 宣告的話會出現 i is not defined 這樣的結果。</p>
+<br>
+
+
+<h3 id="let-const-沒有變數提升的這個特性，var-有變數提升的特性。"><a href="#let-const-沒有變數提升的這個特性，var-有變數提升的特性。" class="headerlink" title="let / const 沒有變數提升的這個特性，var 有變數提升的特性。"></a>let / const 沒有變數提升的這個特性，var 有變數提升的特性。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); &#x2F;&#x2F; Cannot access &#39;c&#39; before initialization</span><br><span class="line">let a &#x3D; 15;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 15 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
+
+<p>使用 let 宣告的話並不會有變數提升的特性，所以在宣告之前它並不能讀取出來。</p>
+<p>相反的是 var 可以，因為 var 有變數提升的特性所以它其實是變成這樣。 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
+
+<p>變數提升的特性會讓 b 宣告出現在最上方，但是它的「值」會在原地立正站好，並沒有那麼的聽話呀！！</p>
+<br>
+
+<h3 id="let-const-不能再同一個區塊重複命名！！！"><a href="#let-const-不能再同一個區塊重複命名！！！" class="headerlink" title="let / const 不能再同一個區塊重複命名！！！"></a>let / const 不能再同一個區塊重複命名！！！</h3><p>var 在同一個區塊上重複宣告也沒有關係，但是 let / const 是沒有辦法的。 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 5;</span><br><span class="line">var a &#x3D; 10;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 10</span><br><span class="line"></span><br><span class="line">let b &#x3D; 5;</span><br><span class="line">let b &#x3D; 10; &#x2F;&#x2F; Identifier &#39;c&#39; has already been declared</span><br></pre></td></tr></table></figure>
+
+<p>在用 let 再一次宣告的時候，會先跳出 ‘c’ has already been declared 這樣的錯誤，理所當然就沒辦法 console 了。</p>
+<hr>
+<p>最後要建議所有人：不管是 var 或者 let / const，在使用變數前都要先宣告，養成良好的 coding 習慣才是第一關鍵！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/" class="post-title-link" itemprop="url">CSS：base、新增子模組</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-02-15 16:38:31" itemprop="dateCreated datePublished" datetime="2020-02-15T16:38:31+08:00">2020-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-01 16:45:16" itemprop="dateModified" datetime="2020-03-01T16:45:16+08:00">2020-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CSS：base、新增子模組"><a href="#CSS：base、新增子模組" class="headerlink" title="CSS：base、新增子模組"></a>CSS：base、新增子模組</h1><h2 id="CSS：base-基底"><a href="#CSS：base-基底" class="headerlink" title="CSS：base(基底)"></a>CSS：base(基底)</h2><p>在做一個專案之前，可以觀察設計稿當中究竟有哪些共通的元素，那就可以在開發之前就建立一個基本的樣式，例如說文字的顏色，文字的間距等等…<br>那在做一個專案之前是不是能夠把這些共通的元素先設定起來？</p>
+<p><font color=#ffc000><strong>base</strong></font> 就是這樣的一個概念，base就是建立一個網站的基本樣式，如果今天你的網站標題都是 <code>#555</code> 的顏色，那就可以先把<strong>h1~h5</strong>都設定<code>#555</code>的字體顏色。</p>
+<p>雖然說base這樣的基本樣式沒辦法所有的元素都共用，但只要能滿足80%以上就能夠讓程式碼更加的簡潔了！</p>
+<h2 id="模組化概念-新增子模組"><a href="#模組化概念-新增子模組" class="headerlink" title="模組化概念 - 新增子模組"></a>模組化概念 - 新增子模組</h2><p>這個概念跟base有異曲同工之妙，在做專案的時候可能會有兩個按鈕大小都相同，可能只有顏色或是文字不同 (如下)</p>
+<p><a href="https://codepen.io/Chee7o/pen/MWYMEjQ" target="_blank" rel="noopener">Demo 範例</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn-submit&quot;&gt;</span><br><span class="line">  送出</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button class&#x3D;&quot;btn-reset&quot;&gt;</span><br><span class="line">  重置</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #666;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其實<code>.btn-submit .btn-reset</code>的程式碼當中有許多重複的屬性，就是因為如此所以有開發者想出了模組化的概念。<br>先建立一個<code>.btn</code>的基礎樣式，再利用新增子模組來改變他們不同的屬性。(如下)</p>
+<p><a href="https://codepen.io/Chee7o/pen/dyPBVWb" target="_blank" rel="noopener">Demo 範例</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn btn-submit&quot;&gt;</span><br><span class="line">    送出</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;btn btn-reset&quot;&gt;</span><br><span class="line">    重置</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 30px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  background-color: #666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上方CSS所示，藉由<code>.btn</code>來建立一個基礎樣式，那<code>.btn-submit .btn-reset</code>只要輸入他們兩個屬性上的差別就可以了，方便管理也能達到code的簡潔。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/" class="post-title-link" itemprop="url">SCSS：變數</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-31 17:46:46" itemprop="dateCreated datePublished" datetime="2020-01-31T17:46:46+08:00">2020-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-01 16:30:55" itemprop="dateModified" datetime="2020-03-01T16:30:55+08:00">2020-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/scss/" itemprop="url" rel="index">
+                    <span itemprop="name">scss</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="變數-Variable"><a href="#變數-Variable" class="headerlink" title="變數 Variable"></a>變數 Variable</h1><p>在 scss 裡面可以使用到變數，在你時常會撰寫到的程式碼上面，可以使用到變數的功能。</p>
+<p>變數的語法是這樣： $變數名稱: 值;    (如下)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;變數設定語法</span><br><span class="line">$title-color: #666;</span><br><span class="line">$content-color: #888;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;套用變數</span><br><span class="line">.header&#123;</span><br><span class="line">  h2&#123; </span><br><span class="line">    color: $title-color;  </span><br><span class="line">  &#125;</span><br><span class="line">  p&#123;  </span><br><span class="line">    color: $content-color;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;編譯結果</span><br><span class="line">.header h2&#123;  </span><br><span class="line">  color: #666; </span><br><span class="line">&#125;</span><br><span class="line">.header p&#123;  </span><br><span class="line">  color: #888;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="常用變數"><a href="#常用變數" class="headerlink" title="常用變數"></a>常用變數</h2><p>在製作專案拿到設計稿時，可以先觀察這份設計稿有沒有什麼共通的地方，例如：字型、文字顏色等..</p>
+<p>常用的變數設定：</p>
+<p>$title-color: #444;  //預設標題顏色<br>$text-color: pink;  //預設文字顏色<br>$link-color: #000;  //文字連結樣式，多則就再加紹數字<br>$link-color-hover: #fff;  //滑鼠拖曳過後的樣式顏色<br>$font-size: 13px;  //全域字型大小，可以增加尺寸 EX: $font-size-l $font-size-m $font-size-s<br>$line-height: 1.8;  //全域行距<br>$container-width: 960px;  // 網站整體寬度<br>$font-style： Microsoft JhengHei;  //全域字型</p>
+<br>
+
+<h2 id="明亮度"><a href="#明亮度" class="headerlink" title="明亮度"></a>明亮度</h2><p>在 scss 當中可以使用 darken、lighten 來讓顏色加深或變淺。</p>
+<p><a href="https://codepen.io/Chee7o/pen/YzPoxwj" target="_blank" rel="noopener">Demo 範例</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;lighten語法</span><br><span class="line">------</span><br><span class="line">lighten(色碼,%數)</span><br><span class="line">darken(色碼,%數)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;範例</span><br><span class="line">------</span><br><span class="line">.box1&#123;</span><br><span class="line">  background-color: lighten(色碼,%數);</span><br><span class="line">&#125;</span><br><span class="line">.box3&#123;</span><br><span class="line">  background-color: darken(色碼,%數);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -200,7 +482,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:31:17" itemprop="dateModified" datetime="2020-03-01T16:31:17+08:00">2020-03-01</time>
+                <time title="修改時間：2020-08-27 16:16:30" itemprop="dateModified" datetime="2020-08-27T16:16:30+08:00">2020-08-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +509,7 @@
       
           <h1 id="CSS：checked-互動技巧"><a href="#CSS：checked-互動技巧" class="headerlink" title="CSS：checked 互動技巧"></a>CSS：checked 互動技巧</h1><p>CSS的:checked 表單狀態選取器，這個選取器是能夠選取 checkbox 被勾選的狀態，而這個技巧能夠幫助我們在不需要用到程式的情況之下，也能夠在網頁上做到互動的效果唷！</p>
 <p>下面就讓我們試試看吧！！</p>
-<p><a href="https://codepen.io/Chee7o/pen/zYGwrQG" target="_blank" rel="noopener">範例連結</a></p>
+<p><a href="https://codepen.io/Chee7o/pen/zYGwrQG" target="_blank" rel="noopener">Demo</a></p>
 <p>首先我們可以先做出像這樣的圖片</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0" alt="初始照片"></p>
 <p>在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。</p>
@@ -392,7 +674,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/cheeto.github.io/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">jquery：操控網頁元素</a>
+            <a href="/cheeto.github.io/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">jQuery：操控網頁元素</a>
         </h1>
 
         <div class="post-meta">
@@ -409,7 +691,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:27:46" itemprop="dateModified" datetime="2020-03-01T16:27:46+08:00">2020-03-01</time>
+                <time title="修改時間：2020-08-27 16:13:44" itemprop="dateModified" datetime="2020-08-27T16:13:44+08:00">2020-08-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -599,7 +881,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/" class="post-title-link" itemprop="url">CSS：overflow搭配CSS做出滑動效果</a>
+            <a href="/cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/" class="post-title-link" itemprop="url">CSS：overflow 搭配 CSS 做出滑動效果</a>
         </h1>
 
         <div class="post-meta">
@@ -616,7 +898,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:30:25" itemprop="dateModified" datetime="2020-03-01T16:30:25+08:00">2020-03-01</time>
+                <time title="修改時間：2020-08-27 16:14:45" itemprop="dateModified" datetime="2020-08-27T16:14:45+08:00">2020-08-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -688,7 +970,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/cheeto.github.io/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/" class="post-title-link" itemprop="url">jQuery：利用toggleClass搭配CSS做出動畫效果</a>
+            <a href="/cheeto.github.io/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/" class="post-title-link" itemprop="url">jQuery：利用 toggleClass 搭配 CSS 做出動畫效果</a>
         </h1>
 
         <div class="post-meta">
@@ -705,7 +987,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:34:46" itemprop="dateModified" datetime="2020-03-01T16:34:46+08:00">2020-03-01</time>
+                <time title="修改時間：2020-08-27 16:14:27" itemprop="dateModified" datetime="2020-08-27T16:14:27+08:00">2020-08-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1049,160 +1331,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/01/16/2020-01-16-markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/01/16/2020-01-16-markdown/" class="post-title-link" itemprop="url">Markdown</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-01-16 14:52:55" itemprop="dateCreated datePublished" datetime="2020-01-16T14:52:55+08:00">2020-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-01-20 14:47:04" itemprop="dateModified" datetime="2020-01-20T14:47:04+08:00">2020-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/markdown/" itemprop="url" rel="index">
-                    <span itemprop="name">markdown</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Markdown-學習筆記"><a href="#Markdown-學習筆記" class="headerlink" title="Markdown 學習筆記"></a>Markdown 學習筆記</h1><h2 id="標題"><a href="#標題" class="headerlink" title="標題"></a>標題</h2><p><code># = h1，## = h2</code>，以此類推最多可以6個 。</p>
-<h2 id="超連結"><a href="#超連結" class="headerlink" title="超連結"></a>超連結</h2><p><code>[超連結內容](網址)</code><br>例如： <code>[Yahoo！](http://www.yahoo.com.tw)</code> 會變成 <a href="http://www.yahoo.com.tw" target="_blank" rel="noopener">Yahoo！</a></p>
-<h2 id="程式碼標記"><a href="#程式碼標記" class="headerlink" title="程式碼標記"></a>程式碼標記</h2><p>單行的用 ` 包住，多行的用  ``` 包住。</p>
-<h2 id="粗體、刪除線"><a href="#粗體、刪除線" class="headerlink" title="粗體、刪除線"></a>粗體、刪除線</h2><p><strong>這是粗體</strong> = <code>**這是粗體**</code><br><del>這是刪除線</del> = <code>~~這是刪除線~~</code></p>
-<h2 id="文字顏色"><a href="#文字顏色" class="headerlink" title="文字顏色"></a>文字顏色</h2><p><code>&lt;font color=#ff0000&gt;紅色&lt;/font&gt;</code> = <font color=#ff0000><strong>紅色</strong></font><br><code>&lt;font color=#ff0000&gt;**紅色**&lt;/font&gt;</code> 可直接套入 markdown 樣式 = <font color=#ff0000><strong>紅色</strong></font> </p>
-<h2 id="無序清單"><a href="#無序清單" class="headerlink" title="無序清單"></a>無序清單</h2><ul>
-<li>Cheeto = <code>* Cheeto</code></li>
-</ul>
-<ul>
-<li>好帥喔 = <code>+ 好帥喔</code></li>
-</ul>
-<ul>
-<li>太帥了 = <code>- 太帥了</code><br>三種符號都可以 * / + / - 都可以作為清單標記。</li>
-</ul>
-<p><font color=#CCCCFF><strong>新增子清單</strong></font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* 食材</span><br><span class="line">  * 肉絲</span><br><span class="line">  * 青椒</span><br><span class="line">* 飲品</span><br><span class="line">  * 綠茶</span><br><span class="line">  * 柳橙汁</span><br></pre></td></tr></table></figure>
-<p>結果如下</p>
-<ul>
-<li>食材<ul>
-<li>肉絲</li>
-<li>青椒</li>
-</ul>
-</li>
-<li>飲品<ul>
-<li>綠茶</li>
-<li>柳橙汁</li>
-</ul>
-</li>
-</ul>
-<h2 id="有序清單"><a href="#有序清單" class="headerlink" title="有序清單"></a>有序清單</h2><ol>
-<li>第一項目 = <code>1. 第一項目</code></li>
-<li>第二項目 = <code>2. 第二項目</code></li>
-<li>衝突 = <code>0857. 衝突</code></li>
-</ol>
-<p>以上為例，輸入 0857 卻還是出現 3的結果，可用下面語法解。</p>
-<p>0857. 解決衝突 = <code>0857\. 解決衝突</code> </p>
-<blockquote>
-<p>要避免類似的指令衝突可以加入 \ 來避免。 (如上)</p>
-</blockquote>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p><code>&gt; Welcome to Cheeto&#39;blog</code></p>
-<p>結果如下</p>
-<blockquote>
-<p>Welcome to Cheeto’blog</p>
-</blockquote>
-<p><font color=#CCCCFF><strong>多行引用</strong></font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Welcome to Cheeto&#39;blog</span><br><span class="line">&gt;</span><br><span class="line">&gt; good lock for you</span><br></pre></td></tr></table></figure>
-<p>結果如下</p>
-<blockquote>
-<p>Welcome to Cheeto’blog</p>
-<p>good lock for you</p>
-</blockquote>
-<p><font color=#CCCCFF><strong>階層式引用</strong></font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;第一層</span><br><span class="line">&gt;&gt;第二層</span><br><span class="line">&gt;&gt;&gt;第三層</span><br></pre></td></tr></table></figure>
-<p>結果如下</p>
-<blockquote>
-<p>第一層</p>
-<blockquote>
-<p>第二層</p>
-<blockquote>
-<p>第三層</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="代辦事項"><a href="#代辦事項" class="headerlink" title="代辦事項"></a>代辦事項</h2><p><strong>寫一篇學習筆記。</strong></p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 已完成 = <code>- [x] 已完成</code></li>
-<li><input disabled="" type="checkbox"> 未完成 = <code>- [ ] 未完成</code></li>
-</ul>
-<h2 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h2><p><code>![替代文字](圖片路徑)</code> = 如下<br><img src="https://picsum.photos/seed/picsum/300/200" alt="假圖"></p>
-<h2 id="水平線"><a href="#水平線" class="headerlink" title="水平線"></a>水平線</h2><p><code>---</code> OR <code>***</code> = 如下</p>
-<hr>
-<p>上面的水平線就是 <code>---</code> OR <code>***</code></p>
-<h2 id="斷行"><a href="#斷行" class="headerlink" title="斷行"></a>斷行</h2><p>如果想要斷行也可以用 \ 這個符號。 例如<br>我<br>好<br>帥</p>
-<p>上方的程式碼，如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我\</span><br><span class="line">好\</span><br><span class="line">帥</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/cheeto.github.io/page/4/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/cheeto.github.io/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/cheeto.github.io/page/4/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/cheeto.github.io/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/cheeto.github.io/page/6/">6</a><a class="extend next" rel="next" href="/cheeto.github.io/page/6/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1268,7 +1401,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/cheeto.github.io/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

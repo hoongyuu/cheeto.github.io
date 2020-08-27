@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
+    root: '/cheeto.github.io/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="JavaScript：ES6 - ... 其餘及展開ES6： ... 其餘及展開ES6 多了一個 ... 的其餘及展開的方法，而這個方法可以實作在許多的用途上面，那就讓我們來看看 ... 的實作方法吧！ 合併陣列的方式過去我們要合併陣列時，都會使用 concat 的陣列方法，但是現在可以直接通過 ... 展開來實踐。 12345let groupA &#x3D; [&#39;小明&#39;, &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript：ES6 - ... 其餘及展開">
+<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="JavaScript：ES6 - ... 其餘及展開ES6： ... 其餘及展開ES6 多了一個 ... 的其餘及展開的方法，而這個方法可以實作在許多的用途上面，那就讓我們來看看 ... 的實作方法吧！ 合併陣列的方式過去我們要合併陣列時，都會使用 concat 的陣列方法，但是現在可以直接通過 ... 展開來實踐。 12345let groupA &#x3D; [&#39;小明&#39;, &amp;#">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E8%A4%87%E8%A3%BD.jpg?alt=media&token=59e9250a-27a6-4018-a04d-72ef260a128c">
+<meta property="article:published_time" content="2020-08-27T08:08:34.000Z">
+<meta property="article:modified_time" content="2020-08-27T08:09:42.110Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E8%A4%87%E8%A3%BD.jpg?alt=media&token=59e9250a-27a6-4018-a04d-72ef260a128c">
+
+<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript：ES6 - ... 其餘及展開 | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/cheeto.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript：ES6 - ... 其餘及展開
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-08-27 16:08:34 / 修改時間：16:09:42" itemprop="dateCreated datePublished" datetime="2020-08-27T16:08:34+08:00">2020-08-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JavaScript：ES6-其餘及展開"><a href="#JavaScript：ES6-其餘及展開" class="headerlink" title="JavaScript：ES6 - ... 其餘及展開"></a>JavaScript：ES6 - <code>...</code> 其餘及展開</h1><h2 id="ES6：-其餘及展開"><a href="#ES6：-其餘及展開" class="headerlink" title="ES6： ... 其餘及展開"></a>ES6： <code>...</code> 其餘及展開</h2><p><strong>ES6</strong> 多了一個 <code>...</code> 的其餘及展開的方法，而這個方法可以實作在許多的用途上面，那就讓我們來看看 <code>...</code> 的實作方法吧！</p>
+<h3 id="合併陣列的方式"><a href="#合併陣列的方式" class="headerlink" title="合併陣列的方式"></a>合併陣列的方式</h3><p>過去我們要合併陣列時，都會使用 <code>concat</code> 的陣列方法，但是現在可以直接通過 <code>...</code> 展開來實踐。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let groupA &#x3D; [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;];</span><br><span class="line">let groupB &#x3D; [&#39;老媽&#39;, &#39;老爸&#39;];</span><br><span class="line">let groupAll &#x3D; [...groupA, ...groupB];</span><br><span class="line">console.log(...groupA); &#x2F;&#x2F; 回傳 小明 杰倫 阿姨</span><br><span class="line">console.log(groupAll); &#x2F;&#x2F; 回傳 [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;, &#39;老媽&#39;, &#39;老爸&#39;]</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到如果直接回傳 <code>...groupA</code> 它是會一個一個展開取出裡面的值。</p>
+<h3 id="利用-做到淺層複製"><a href="#利用-做到淺層複製" class="headerlink" title="利用 ... 做到淺層複製"></a>利用 <code>...</code> 做到淺層複製</h3><p>之前知道可以用 <code>Object.assign</code>，但是通過 <code>...</code> 展開之後，不管是<strong>陣列</strong>還是<strong>物件</strong>也是可以做到淺層複製，實在是方便且快速！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let groupA &#x3D; [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;];</span><br><span class="line">let groupB &#x3D; [...groupA]; &#x2F;&#x2F; 這裡 groupB 已經是一個新的陣列</span><br><span class="line">groupB.push(&#39;阿明&#39;);</span><br><span class="line">console.log(groupA); &#x2F;&#x2F; 回傳 [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const GinyuTeam &#x3D; &#123;</span><br><span class="line">  Ginyu: &#123;</span><br><span class="line">    name: &#39;基紐&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  Jeice: &#123;</span><br><span class="line">    name: &#39;吉斯&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  burter: &#123; </span><br><span class="line">    name: &#39;巴特&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const newTeam &#x3D; &#123; ...GinyuTeam &#125;;</span><br><span class="line">console.log(newTeam);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E8%A4%87%E8%A3%BD.jpg?alt=media&token=59e9250a-27a6-4018-a04d-72ef260a128c" alt=""></p>
+<h3 id="類陣列處理"><a href="#類陣列處理" class="headerlink" title="類陣列處理"></a>類陣列處理</h3><p>當遇到類陣列的時候，我們可以通過 <code>...</code> 展開將<strong>類陣列</strong>轉換成陣列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function updateEasyCard() &#123;</span><br><span class="line">  const arg &#x3D; [...arguments]; &#x2F;&#x2F; arguments 本來是類陣列，把它轉換成陣列</span><br><span class="line">  const sum &#x3D; arg.reduce(function (a, b) &#123;</span><br><span class="line">    return a + b; </span><br><span class="line">  &#125;, 0);</span><br><span class="line">  console.log(&#39;我有 &#39; + sum + &#39; 元&#39;);</span><br><span class="line">&#125;;</span><br><span class="line">updateEasyCard(10, 50, 100, 50, 5, 1, 1, 1, 500); &#x2F;&#x2F; 回傳 我有 718 元</span><br></pre></td></tr></table></figure>
+
+<p><code>arguments</code>本來是一個類陣列，並不能使用 <code>reduce</code> 的方法，但是我們可以利用 <code>...</code> 來轉換成陣列。</p>
+<h3 id="其餘參數"><a href="#其餘參數" class="headerlink" title="其餘參數"></a>其餘參數</h3><p>本來在 <strong>ES6</strong> 之前，都是使用 <code>arguments</code> 來取得其餘參數，不過 <code>arguments</code> 是類陣列，所以很多陣列方法並不能用，都必須轉換成陣列，多了一個步驟。</p>
+<p>現在 <strong>ES6</strong> 推出了 <code>...</code> 來取得其餘參數，可以直接設定名稱直接取得之外，它還是一個陣列，所以可以直接使用陣列方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function moreMoney(name, ...money) &#123;</span><br><span class="line">  console.log(name, money);</span><br><span class="line">&#125;;</span><br><span class="line">moreMoney(&#39;小辣椒&#39;, 100, 100, 100); &#x2F;&#x2F; 小辣椒 [100, 100, 100]</span><br></pre></td></tr></table></figure>
+
+<p>這邊要特地說一個重點，利用其餘參數所回傳的會是一個真正的<strong>陣列</strong>。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9A%E9%99%A3%E5%88%97%E6%96%B9%E6%B3%95/" rel="prev" title="JavaScript：陣列方法">
+      <i class="fa fa-chevron-left"></i> JavaScript：陣列方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/cheeto.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AindexOf/" rel="next" title="JavaScript：indexOf()">
+      JavaScript：indexOf() <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript：ES6-其餘及展開"><span class="nav-number">1.</span> <span class="nav-text">JavaScript：ES6 - ... 其餘及展開</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6：-其餘及展開"><span class="nav-number">1.1.</span> <span class="nav-text">ES6： ... 其餘及展開</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合併陣列的方式"><span class="nav-number">1.1.1.</span> <span class="nav-text">合併陣列的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-做到淺層複製"><span class="nav-number">1.1.2.</span> <span class="nav-text">利用 ... 做到淺層複製</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類陣列處理"><span class="nav-number">1.1.3.</span> <span class="nav-text">類陣列處理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其餘參數"><span class="nav-number">1.1.4.</span> <span class="nav-text">其餘參數</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/cheeto.github.io/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/cheeto.github.io/lib/anime.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/cheeto.github.io/js/utils.js"></script>
+
+<script src="/cheeto.github.io/js/motion.js"></script>
+
+
+<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/cheeto.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

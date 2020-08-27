@@ -169,6 +169,308 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/" class="post-title-link" itemprop="url">JavaScript核心篇：物件擴充的修改與調整</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-14 19:40:22" itemprop="dateCreated datePublished" datetime="2020-03-14T19:40:22+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-16 14:52:27" itemprop="dateModified" datetime="2020-03-16T14:52:27+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="物件擴充的修改與調整"><a href="#物件擴充的修改與調整" class="headerlink" title="物件擴充的修改與調整"></a>物件擴充的修改與調整</h1><p>這個章節一共會教三個物件方法：</p>
+<ul>
+<li>preventExtensions - 防止擴充</li>
+<li>seal - 封裝</li>
+<li>Freeze - 凍結</li>
+</ul>
+<h2 id="preventExtensions-防止擴充"><a href="#preventExtensions-防止擴充" class="headerlink" title="preventExtensions - 防止擴充"></a>preventExtensions - 防止擴充</h2><p><code>preventExtensions</code>用意是無法新增屬性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: 2,</span><br><span class="line">  c: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.preventExtensions(person);</span><br><span class="line">console.log(&#39;是否可被擴充&#39;, Object.isExtensible(person));</span><br><span class="line">console.log(&#39;person a 的屬性特徵&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整屬性</span><br><span class="line">person.a &#x3D; &#39;a&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 新增屬性</span><br><span class="line">person.d &#x3D; &#39;d&#39;;  &#x2F;&#x2F; 無效，因為防止擴充無法新增屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 巢狀屬性調整</span><br><span class="line">person.c.a &#x3D; &#39;ca&#39;; &#x2F;&#x2F; 有效，因為防止擴充只能限制第一層</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整特徵</span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">  configurable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 刪除</span><br><span class="line">delete person.b;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 結果</span><br><span class="line">console.log(&#39;person 物件&#39;, person);</span><br><span class="line">console.log(&#39;person a 屬性特徵(嘗試修改後)&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-1.jpg?alt=media&token=cae38dad-00dc-4327-a2df-98cd40e5411f" alt="物件擴充的修改與調整-1"></p>
+<p>我們可以看到 <code>preventExtensions</code> 主要的功能就是防止擴充，但是它的作用只能在指定物件的第一層屬性。因為物件是傳址的，所以只能對當下的屬性作動。</p>
+<p>所以我們去刪除屬性、調整屬性都是被允許的。</p>
+<h2 id="seal-封裝"><a href="#seal-封裝" class="headerlink" title="seal - 封裝"></a>seal - 封裝</h2><p><code>seal</code> ： 讓指定物件的屬性無法新增、刪除，也無法重新配置特徵，但是可以調整屬性值。</p>
+<ul>
+<li>預設會讓物件加上 <code>preventExtensions</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.seal(person);</span><br><span class="line">console.log(&#39;是否可被擴充&#39;, Object.isExtensible(person));</span><br><span class="line">console.log(&#39;是否被 封裝 &#39;, Object.isSealed(person));</span><br><span class="line">console.log(&#39;person a 的屬性特徵&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整屬性</span><br><span class="line">person.a &#x3D; &#39;a&#39;;  &#x2F;&#x2F; 有效，seal可以調整屬性值</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 新增屬性</span><br><span class="line">person.d &#x3D; &#39;d&#39;;  &#x2F;&#x2F; 無效，seal 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 巢狀屬性調整</span><br><span class="line">person.c.a &#x3D; &#39;ca&#39;; &#x2F;&#x2F; 有效，因為 seal 只能限制第一層</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整特徵</span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">	writable: false  &#x2F;&#x2F; 無效，seal 無法重新配置特徵</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 刪除</span><br><span class="line">delete person.b; &#x2F;&#x2F; 無效， seal 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 結果</span><br><span class="line">console.log(&#39;person 物件&#39;, person);</span><br><span class="line">console.log(&#39;person a 屬性特徵(嘗試修改後)&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-2.jpg?alt=media&token=59839c23-9cad-4eb3-9185-ebcb917ffe0c" alt="物件擴充的修改與調整-2"></p>
+<p>可以看到<code>seal</code>不能被新增、刪除屬性，也無法重新配置特徵，但是可以被調整屬性值。</p>
+<p><code>seal</code> 跟 <code>preventExtensions</code> 一樣只能限制到第一層的屬性。主要是因為物件是傳址的，所以只能對當下的屬性作動。</p>
+<h2 id="freeze"><a href="#freeze" class="headerlink" title="freeze"></a>freeze</h2><ul>
+<li>物件會加上 <code>seal</code>，且無法調整值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: 2,</span><br><span class="line">  c: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.freeze(person);</span><br><span class="line">console.log(&#39;是否可被擴充&#39;, Object.isExtensible(person));</span><br><span class="line">console.log(&#39;是否被 封裝 &#39;, Object.isSealed(person));</span><br><span class="line">console.log(&#39;是否被 凍結 &#39;, Object.isFrozen(person));</span><br><span class="line">console.log(&#39;person a 的屬性特徵&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整屬性</span><br><span class="line">person.a &#x3D; &#39;a&#39;;  &#x2F;&#x2F; 無效， freeze 無法調整值</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 新增屬性</span><br><span class="line">person.d &#x3D; &#39;d&#39;;  &#x2F;&#x2F; 無效，freeze 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 巢狀屬性調整</span><br><span class="line">person.c.a &#x3D; &#39;ca&#39;; &#x2F;&#x2F; 有效，因為 freeze 只能限制第一層</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 刪除</span><br><span class="line">delete person.b; &#x2F;&#x2F; 無效， freeze 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 結果</span><br><span class="line">console.log(&#39;person 物件&#39;, person);</span><br><span class="line">console.log(&#39;person a 屬性特徵(嘗試修改後)&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-3.jpg?alt=media&token=3669ec70-f01c-4bb6-b0df-04d46c9394bf" alt="物件擴充的修改與調整-3"></p>
+<p><code>freeze</code> 有 <code>seal</code> 的所有功能，但是它又多了一個<strong>不能調整值</strong>的功能。</p>
+<p>還有另外一點，它在調整屬性特徵時 <code>console.log</code> 會跳錯。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/" class="post-title-link" itemprop="url">JavaScript核心篇：屬性特徵是什麼？</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-14 15:40:22" itemprop="dateCreated datePublished" datetime="2020-03-14T15:40:22+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-16 14:51:32" itemprop="dateModified" datetime="2020-03-16T14:51:32+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="屬性特徵是什麼？"><a href="#屬性特徵是什麼？" class="headerlink" title="屬性特徵是什麼？"></a>屬性特徵是什麼？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Object.defineProperty</span><br><span class="line">&#x2F;&#x2F; 屬性，調整屬性特徵</span><br><span class="line">&#x2F;&#x2F; 1. 值、 2. 可否寫入、 3. 可否被刪除、 4. 可否被列舉</span><br><span class="line">&#x2F;&#x2F; Object.defineProperty(物件, &#39;屬性&#39;, &#39;參數&#39;);</span><br><span class="line"></span><br><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到 <code>person[&#39;a&#39;]</code> 的值已經被改寫了。</p>
+<p>如果我們把 <code>writable</code> 改成 false 呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: false, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">person[&#39;a&#39;] &#x3D; 10;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以發現如果我們把 <code>writable</code> 改成 <code>false</code> 就能夠讓屬性不能夠被寫入。</p>
+<p>再來我們測試 <code>configurable</code> 吧 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;b&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 可否被刪除</span><br><span class="line">    configurable: false, &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">delete person[&#39;a&#39;];</span><br><span class="line">delete person[&#39;b&#39;];</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以發現我們把 <code>configurable</code> 改成 <code>false</code> 之後就能夠讓屬性無法被刪除了。</p>
+<p>那<strong>可否被列舉</strong>是什麼意思呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &quot;c&quot;, &#123;</span><br><span class="line">	enumerable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">for (var key in person) &#123;</span><br><span class="line">	console.log(&quot;列舉&quot;, key);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-1.jpg?alt=media&token=f2741b9f-4cf6-4995-8537-de2f62b4e540" alt="屬性特徵是什麼-1"></p>
+<p>這邊可以看到我把 <code>c</code> 設定為 <code>enumerable: false</code> 之後它就無法被列舉了！</p>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 淺層保護</span><br><span class="line">Object.defineProperty(person, &#39;d&#39;, &#123;</span><br><span class="line">	value: &#123;&#125;,</span><br><span class="line">	writable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);</span><br><span class="line">person[&#39;d&#39;][&#39;name&#39;] &#x3D; &#39;cheeto&#39;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-2.jpg?alt=media&token=e1ff53dc-1416-4dc2-9181-7a5c2cb54867" alt="屬性特徵是什麼-2"></p>
+<p>這邊如果輸入 <code>person[&#39;d&#39;] = 6</code> 的話的確它是沒有辦法被寫入的，但是因為<strong>物件是傳址的特性</strong>，所以它裡面的屬性是可以被新增和修改的。</p>
+<p>所以 <code>Object.defineProperty</code> 只能做到淺層保護的作用。切記切記</p>
+<h3 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties"></a>Object.defineProperties</h3><p>這個語法可以大量定義我們要定義的屬性特徵，我們來看看吧 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person); &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperties(person, &#123;</span><br><span class="line">    a: &#123;</span><br><span class="line">        value: 5,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;,</span><br><span class="line">    b: &#123;</span><br><span class="line">        value: 6,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;,</span><br><span class="line">    c: &#123;</span><br><span class="line">        value: 10,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">person[&#39;a&#39;] &#x3D; 15; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line">person[&#39;b&#39;] &#x3D; 20; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line">person[&#39;c&#39;] &#x3D; 30; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 5, b: 6, c: 10&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個語法跟 <code>Object.defineProperty</code> 其實差不多，但是它可以一次輸入大量的屬性去定義。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">JavaScript核心篇：原型鍊、建構函式整體結構概念</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-13 23:20:22" itemprop="dateCreated datePublished" datetime="2020-03-13T23:20:22+08:00">2020-03-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-03-14 14:33:19" itemprop="dateModified" datetime="2020-03-14T14:33:19+08:00">2020-03-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="原型鍊、建構函式整體結構概念"><a href="#原型鍊、建構函式整體結構概念" class="headerlink" title="原型鍊、建構函式整體結構概念"></a>原型鍊、建構函式整體結構概念</h1><p>原型鍊是實體可以繼承原型，而原型又可以繼承在它之上的原型，直到最頂層級(null)為止，而<code>null</code>也是原型鍊的最後一個鏈結。</p>
+<p>就像下面這張圖 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5-1.jpg?alt=media&token=33666420-9e14-4595-89c4-90e96d6f1382" alt="原型鍊、建構函式整體結構概念-1"></p>
+<br>
+
+
+<ul>
+<li>建構函式會連接到 <code>constructor</code> </li>
+<li><code>__proto__</code> 可以向上尋找原型</li>
+</ul>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5-2.jpg?alt=media&token=56b911ca-a91c-49af-9987-8925ff93a59f" alt="原型鍊、建構函式整體結構概念-2"></p>
+<p>我們可以使用程式碼來驗證看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function Animal(family) &#123;</span><br><span class="line">	this[&#39;kingdom&#39;] &#x3D; &#39;動物界&#39;;</span><br><span class="line">	this[&#39;family&#39;] &#x3D; this.family || &#39;人科&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Animal.prototype.move &#x3D; function name(params) &#123;</span><br><span class="line">	console.log(this[&#39;name&#39;] + &#39; 移動&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	&#x2F;&#x2F; 利用 call 指定 this 能夠指向每一個實體</span><br><span class="line">	Animal.call(this, &#39;犬科&#39;);</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color || &#39;黑色&#39;;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size || &#39;小&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dog.prototype &#x3D; Object.create(Animal.prototype);</span><br><span class="line">Dog.prototype.constructor &#x3D; &#39;Dog&#39;;</span><br><span class="line">Dog.prototype.bark &#x3D; function (e) &#123;</span><br><span class="line">	console.log(this[&#39;name&#39;] + &#39; 吠叫&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 驗證原型鍊結構</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Dog[&#39;prototype&#39;]); &#x2F;&#x2F;true</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;][&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Animal[&#39;prototype&#39;]);  &#x2F;&#x2F;true</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;][&#39;__proto__&#39;][&#39;constructor&#39;] &#x3D;&#x3D;&#x3D; Animal); &#x2F;&#x2F;true</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;][&#39;__proto__&#39;][&#39;__proto__&#39;][&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; null); &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+<p>上方程式碼就能夠驗證上面那張圖所描述的，<code>__proto__</code> 可以向上尋找原型，而 <code>__proto__</code> 跟上面第一層原型的 <code>prototype</code> 是完全相等的。</p>
+<br>
+
+<p>接下來我們可以驗證看看函式的繼承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(Bibi[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; flase</span><br><span class="line">console.log(Dog[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; true</span><br><span class="line">console.log(Animal[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; true</span><br><span class="line">console.log(Object[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到只要是函式，都會繼承函式的原型。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -920,326 +1222,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：立即函式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-03-08 16:42:40" itemprop="dateCreated datePublished" datetime="2020-03-08T16:42:40+08:00">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-09 16:55:29" itemprop="dateModified" datetime="2020-03-09T16:55:29+08:00">2020-03-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript核心篇</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="立即函式"><a href="#立即函式" class="headerlink" title="立即函式"></a>立即函式</h1><p>立即函式有幾個特點：</p>
-<ol>
-<li>立刻執行</li>
-<li>無法在函式外被再次執行</li>
-</ol>
-<h2 id="語法"><a href="#語法" class="headerlink" title="語法"></a>語法</h2><p>一般的函式是這樣子寫的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>那立即函式的語法就像這樣 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">(function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-
-<p>如果我們再次把它叫出來會發生什麼事呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;());</span><br><span class="line">IIFE();</span><br></pre></td></tr></table></figure>
-
-<p>呈現結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F%E5%86%8D%E6%AC%A1%E5%AE%A3%E5%91%8A.jpg?alt=media&token=d2f596a5-2ae1-4793-92ac-cee20cc0fae9" alt="立即函式再次呼叫"></p>
-<p>因為立即函式<strong>無法在函式外被再次執行</strong></p>
-<br>
-
-<p>立即函式就算不給它名稱也能夠執行，大部分的立即函式都不需要名稱的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(function ()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;把函式內的括號放到外面也能夠執行</span><br><span class="line"></span><br><span class="line">(function ()&#123;</span><br><span class="line">    console.log(&#39;把函式內的括號放到外面也能夠執行&#39;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F%E5%90%8D%E7%A8%B1%E5%95%8F%E9%A1%8C.jpg?alt=media&token=089bb9fc-1e96-42d6-9dc0-90e5f09edc56" alt="立即函式名稱問題"></p>
-<h2 id="立即函式用途"><a href="#立即函式用途" class="headerlink" title="立即函式用途"></a>立即函式用途</h2><ol>
-<li>限制變數的作用域</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function ()&#123;</span><br><span class="line">    var Ming &#x3D; &#39;小明&#39;;</span><br><span class="line">    console.log(Ming); &#x2F;&#x2F;小明</span><br><span class="line">&#125;)();</span><br><span class="line">console.log(Ming); &#x2F;&#x2F;not defined</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>可以帶入參數</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function (where)&#123;</span><br><span class="line">    console.log(where)</span><br><span class="line">&#125;)(&#39;小明在此&#39;);  &#x2F;&#x2F; 回傳 &#39;小明在此&#39;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>return 後可以帶入變數</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var whereMing &#x3D; (function (where) &#123;</span><br><span class="line">    console.log(where)</span><br><span class="line">    return where;</span><br><span class="line">&#125;)(&#39;小明在此&#39;); &#x2F;&#x2F; 回傳 &#39;小明在此&#39;</span><br><span class="line"></span><br><span class="line">console.log(whereMing); &#x2F;&#x2F; 回傳 &#39;小明在此&#39;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>立即函式間的傳遞</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;&#125;;</span><br><span class="line">(function (b)&#123;</span><br><span class="line">    b.name &#x3D; &#39;小明&#39;;</span><br><span class="line">&#125;(a));</span><br><span class="line"></span><br><span class="line">(function (c)&#123;</span><br><span class="line">    console.log(c.name); &#x2F;&#x2F; 回傳 &#39;小明&#39;</span><br><span class="line">&#125;(a));</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：什麼是函式？</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-03-07 15:40:40" itemprop="dateCreated datePublished" datetime="2020-03-07T15:40:40+08:00">2020-03-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-09 16:41:36" itemprop="dateModified" datetime="2020-03-09T16:41:36+08:00">2020-03-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript核心篇</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="什麼是函式"><a href="#什麼是函式" class="headerlink" title="什麼是函式"></a>什麼是函式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function afunction(parameter) &#123;</span><br><span class="line">    var localVariable &#x3D; &#39;區域變數&#39;;</span><br><span class="line">    console.log(this, localVariable); &#x2F;&#x2F; This、區域變數</span><br><span class="line"></span><br><span class="line">    return &#39;附加一段&#39; + parameter; &#x2F;&#x2F; 回傳、參數</span><br><span class="line">&#125;</span><br><span class="line">var data &#x3D; afunction(&#39;參數&#39;);&#x2F;&#x2F; 呼叫函式</span><br><span class="line">console.log(data);</span><br></pre></td></tr></table></figure>
-
-<p>結果會呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E7%B5%90%E6%A7%8B.jpg?alt=media&token=ee48e915-6932-4110-a850-8d8cc82f4569" alt="函式結構"></p>
-<p>function 有預設一個回傳的<strong>值</strong>，所以它能夠被當作表達式來用。</p>
-<br>
-
-<p>當我們使用 <code>function</code> 去宣告一個字詞的時候，這個字詞就會變成一段函式，它就能夠有下列三種特性。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F.jpg?alt=media&token=8b8a8324-d127-4eeb-8a2d-d15185c02c7c" alt="什麼是函式"></p>
-<p>函式的名稱是選用的，意思就是可以有名稱也可以沒有，有名稱的稱為「<strong>具名函式</strong>」；沒名稱的稱為「<strong>匿名函式</strong>」。</p>
-<h2 id="函式-陳述式、表達式"><a href="#函式-陳述式、表達式" class="headerlink" title="函式 ( 陳述式、表達式 )"></a>函式 ( 陳述式、表達式 )</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function functionA() &#123;</span><br><span class="line">    console.log(&#39;函式陳述式&#39;, &#39;具名函式&#39;);</span><br><span class="line">    console.log(functionA);</span><br><span class="line">&#125;</span><br><span class="line">functionA();</span><br><span class="line"></span><br><span class="line">var functionB &#x3D; function() &#123;</span><br><span class="line">	console.log(&#39;函式表達式&#39;, &#39;匿名函式&#39;);</span><br><span class="line">	console.log(functionB);</span><br><span class="line">&#125;</span><br><span class="line">functionB();</span><br></pre></td></tr></table></figure>
-
-<p>結果會呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F(%E9%99%B3%E8%BF%B0%E5%BC%8F%E3%80%81%E8%A1%A8%E9%81%94%E5%BC%8F).jpg?alt=media&token=a74c29eb-f405-4ddd-b26c-5bd9b854cd9e" alt="函式 ( 陳述式、表達式 )"></p>
-<h3 id="函式表達式也能用具名函式"><a href="#函式表達式也能用具名函式" class="headerlink" title="函式表達式也能用具名函式"></a>函式表達式也能用具名函式</h3><p>用函式表達式也能夠使用具名函式，但是只能在函式內被調用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var functionC &#x3D; function functionD() &#123;</span><br><span class="line">     console.log(functionC ,functionD);</span><br><span class="line">&#125;</span><br><span class="line">functionC();</span><br><span class="line">console.log(functionD); &#x2F;&#x2F; functionD is not defined</span><br></pre></td></tr></table></figure>
-
-<p>結果會呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E8%A1%A8%E9%81%94%E5%BC%8F(%E5%85%B7%E5%90%8D%E5%87%BD%E5%BC%8F).jpg?alt=media&token=68368f28-92b7-4d51-90cd-08105eaf39de" alt="函式表達式(具名函式)"></p>
-<p>會 <code>not defined</code> 是因為，<strong>函式表達式(具名函式)只能在函式內被調用！！！</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/" class="post-title-link" itemprop="url">JavaScript核心篇：淺層複製及深層複製</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
-
-              <time title="創建時間：2020-03-06 18:33:22 / 修改時間：18:33:21" itemprop="dateCreated datePublished" datetime="2020-03-06T18:33:22+08:00">2020-03-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript核心篇</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="淺層複製及深層複製"><a href="#淺層複製及深層複製" class="headerlink" title="淺層複製及深層複製"></a>淺層複製及深層複製</h1><h2 id="淺層複製-Shallow-Copy"><a href="#淺層複製-Shallow-Copy" class="headerlink" title="淺層複製 (Shallow Copy)"></a>淺層複製 (Shallow Copy)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  console.log(key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D.jpg?alt=media&token=30901fad-8369-4e1c-8cfd-e2af59d82567" alt="淺拷貝"></p>
-<p>這裡可以看到 <code>key</code> 的值其實就是 <code>family</code> 的第一層屬性。</p>
-<p>所以我們可以利用這種方式做到第一層的複製。 如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  newFamily[key] &#x3D; family[key];</span><br><span class="line">&#125;</span><br><span class="line">console.log(newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>這樣就可以利用 <code>key</code>  依序把第一層的屬性 <code>name</code>,<code>members</code> 取出來放到 <code>newFamily</code> 裡面。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D2.jpg?alt=media&token=9906bd33-c66b-4eb4-997d-f5ffc1abe901" alt="淺拷貝2"></p>
-<p>這裡 <code>family</code> 跟 <code>newFamily</code> 就不會是在同一個位址上，我們可以換一種方式來測試。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  newFamily[key] &#x3D; family[key];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newFamily.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">console.log(family);</span><br><span class="line">console.log(newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>會出現下面這樣的結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D3.jpg?alt=media&token=194a33ef-e39b-4f5c-9c8d-83f468438c92" alt="淺拷貝3"></p>
-<p>由此可知它們已經完全沒有關係了。((但是只限第一層喔！</p>
-<p>原因是為什麼呢？ 我們接著看下去 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  newFamily[key] &#x3D; family[key];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newFamily.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">newFamily.members.ming &#x3D; &#39;杰倫&#39;;</span><br><span class="line">console.log(family);</span><br><span class="line">console.log(newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>結果如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D4.jpg?alt=media&token=55bbec2d-e57b-443e-b6db-50cc15996892" alt="淺拷貝4"></p>
-<p>原因是 <code>newFamily</code> 宣告了新物件也把 <code>family</code> 第一層的屬性依序加進去，但是 <code>members</code> 本來就是一個物件了！所以你把 <code>members</code> 丟到 <code>newFamily</code> 其實也是把一個參考位址丟過去。(在 ‘取值&amp;取址’章節 有講到)</p>
-<p>這種方式就叫做「淺層複製」也能稱為「淺拷貝」。</p>
-<p>上面講的是基本原理，現在除了 <code>for in</code> 之外也有其他方法可以很快速的做出這樣的淺層複製，讓我們繼續看下去。</p>
-<p>第一種是利用 jQuery 的方式，語法如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newFamily &#x3D; jQuery.extend(&#123;&#125;, family);</span><br></pre></td></tr></table></figure>
-
-<p>第二種是新的 ES6 才有的語法 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newFamily &#x3D; Object.assign(&#123;&#125;, family);</span><br></pre></td></tr></table></figure>
-
-<p>上述的兩種方法都能夠做到淺層複製的效果喔！</p>
-<h2 id="深層複製-deep-copy"><a href="#深層複製-deep-copy" class="headerlink" title="深層複製 (deep copy)"></a>深層複製 (deep copy)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 深層複製語法 ↓</span><br><span class="line">var newFamily &#x3D; JSON.parse(JSON.stringify(family));</span><br><span class="line"></span><br><span class="line">newFamily.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">newFamily.members.ming &#x3D; &#39;杰倫&#39;;</span><br><span class="line">console.log(family)</span><br><span class="line">console.log(newFamily);</span><br><span class="line">console.log(family &#x3D;&#x3D;&#x3D; newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>原理是把 <code>family</code> 裡面的所有東西轉成字串之後，本身的記憶體參考位址會消失，然後再轉回物件的時候，又會再指向新的一個記憶體參考位址。</p>
-<p>所以利用著這個方式就可以做到「深層複製」也能稱為「深拷貝」。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/cheeto.github.io/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/cheeto.github.io/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/cheeto.github.io/page/5/">5</a><a class="extend next" rel="next" href="/cheeto.github.io/page/3/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/cheeto.github.io/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/cheeto.github.io/">1</a><span class="page-number current">2</span><a class="page-number" href="/cheeto.github.io/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/cheeto.github.io/page/6/">6</a><a class="extend next" rel="next" href="/cheeto.github.io/page/3/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1305,7 +1292,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/cheeto.github.io/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
