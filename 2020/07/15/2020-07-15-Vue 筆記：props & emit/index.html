@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -46,25 +46,25 @@
   };
 </script>
 
-  <meta name="description" content="propsprops 是把資料從外層為內層傳遞的一個方法。 props 是單向數據流單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。  1234567891011121314151617181920212223242526272829303132&#x2F;&#x2F; 利用&quot;內層&quot; :">
+  <meta name="description" content="propsprops 是把資料從外層為內層傳遞的一個方法。 props 是單向數據流單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue：props &amp; emit">
-<meta property="og:url" content="https://cheeto.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/index.html">
 <meta property="og:site_name" content="Cheeto">
-<meta property="og:description" content="propsprops 是把資料從外層為內層傳遞的一個方法。 props 是單向數據流單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。  1234567891011121314151617181920212223242526272829303132&#x2F;&#x2F; 利用&quot;內層&quot; :">
+<meta property="og:description" content="propsprops 是把資料從外層為內層傳遞的一個方法。 props 是單向數據流單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/J4ec9Bz.png">
 <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Fprops.jpg?alt=media&token=73e364d4-347b-4587-b927-7d178e07b3ca">
 <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Femit.jpg?alt=media&token=9b37b125-a0fb-49b0-8358-044317ec0501">
 <meta property="article:published_time" content="2020-07-15T07:38:34.000Z">
-<meta property="article:modified_time" content="2020-08-27T08:12:10.804Z">
+<meta property="article:modified_time" content="2020-09-28T06:47:00.994Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/J4ec9Bz.png">
 
-<link rel="canonical" href="https://cheeto.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/">
 
 
 <script id="page-configurations">
@@ -145,6 +145,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -176,10 +186,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -206,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-08-27 16:12:10" itemprop="dateModified" datetime="2020-08-27T16:12:10+08:00">2020-08-27</time>
+                <time title="修改時間：2020-09-28 14:47:00" itemprop="dateModified" datetime="2020-09-28T14:47:00+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,6 +244,8 @@
         <h1 id="props"><a href="#props" class="headerlink" title="props"></a>props</h1><p>props 是把資料從外層為內層傳遞的一個方法。</p>
 <h2 id="props-是單向數據流"><a href="#props-是單向數據流" class="headerlink" title="props 是單向數據流"></a>props 是單向數據流</h2><p>單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。</p>
 <p><img src="https://i.imgur.com/J4ec9Bz.png" alt=""></p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 利用&quot;內層&quot; :person 來把&quot;外層&quot; item 的資料帶入&quot;內層元件&quot;內 </span><br><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;global-component v-for&#x3D;&quot;(item, i) in nameData&quot; :person&#x3D;&quot;item&quot; :key&#x3D;&quot;i&quot;&gt;&lt;&#x2F;global-component&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.component(&quot;global-component&quot;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 利用 props 建立 &#39;person&#39; 來接收外層的資料</span><br><span class="line">    props: [&#39;person&#39;],</span><br><span class="line">    template: &#96;&lt;div&gt; &#123;&#123; person.name &#125;&#125; &lt;&#x2F;div&gt;&#96;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &quot;#app&quot;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      nameData: [</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;小明&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;杰倫&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;漂亮阿姨&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;老媽&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Fprops.jpg?alt=media&token=73e364d4-347b-4587-b927-7d178e07b3ca" alt=""></p>
@@ -334,6 +346,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -347,15 +361,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -385,7 +414,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -411,7 +440,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

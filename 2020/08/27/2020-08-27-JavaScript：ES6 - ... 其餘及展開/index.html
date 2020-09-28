@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,19 +49,19 @@
   <meta name="description" content="JavaScript：ES6 - ... 其餘及展開ES6： ... 其餘及展開ES6 多了一個 ... 的其餘及展開的方法，而這個方法可以實作在許多的用途上面，那就讓我們來看看 ... 的實作方法吧！ 合併陣列的方式過去我們要合併陣列時，都會使用 concat 的陣列方法，但是現在可以直接通過 ... 展開來實踐。 12345let groupA &#x3D; [&#39;小明&#39;, &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript：ES6 - ... 其餘及展開">
-<meta property="og:url" content="https://cheeto.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="JavaScript：ES6 - ... 其餘及展開ES6： ... 其餘及展開ES6 多了一個 ... 的其餘及展開的方法，而這個方法可以實作在許多的用途上面，那就讓我們來看看 ... 的實作方法吧！ 合併陣列的方式過去我們要合併陣列時，都會使用 concat 的陣列方法，但是現在可以直接通過 ... 展開來實踐。 12345let groupA &#x3D; [&#39;小明&#39;, &amp;#">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E8%A4%87%E8%A3%BD.jpg?alt=media&token=59e9250a-27a6-4018-a04d-72ef260a128c">
 <meta property="article:published_time" content="2020-08-27T08:08:34.000Z">
-<meta property="article:modified_time" content="2020-08-27T08:09:42.110Z">
+<meta property="article:modified_time" content="2020-09-28T06:47:23.469Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E8%A4%87%E8%A3%BD.jpg?alt=media&token=59e9250a-27a6-4018-a04d-72ef260a128c">
 
-<link rel="canonical" href="https://cheeto.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/">
 
 
 <script id="page-configurations">
@@ -142,6 +142,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -173,10 +183,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/08/27/2020-08-27-JavaScript%EF%BC%9AES6%20-%20...%20%E5%85%B6%E9%A4%98%E5%8F%8A%E5%B1%95%E9%96%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -195,10 +205,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-08-27 16:08:34 / 修改時間：16:09:42" itemprop="dateCreated datePublished" datetime="2020-08-27T16:08:34+08:00">2020-08-27</time>
+              <time title="創建時間：2020-08-27 16:08:34" itemprop="dateCreated datePublished" datetime="2020-08-27T16:08:34+08:00">2020-08-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:47:23" itemprop="dateModified" datetime="2020-09-28T14:47:23+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -227,6 +243,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let groupA &#x3D; [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;];</span><br><span class="line">let groupB &#x3D; [&#39;老媽&#39;, &#39;老爸&#39;];</span><br><span class="line">let groupAll &#x3D; [...groupA, ...groupB];</span><br><span class="line">console.log(...groupA); &#x2F;&#x2F; 回傳 小明 杰倫 阿姨</span><br><span class="line">console.log(groupAll); &#x2F;&#x2F; 回傳 [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;, &#39;老媽&#39;, &#39;老爸&#39;]</span><br></pre></td></tr></table></figure>
 
 <p>這邊可以看到如果直接回傳 <code>...groupA</code> 它是會一個一個展開取出裡面的值。</p>
+<a id="more"></a>
+
+
 <h3 id="利用-做到淺層複製"><a href="#利用-做到淺層複製" class="headerlink" title="利用 ... 做到淺層複製"></a>利用 <code>...</code> 做到淺層複製</h3><p>之前知道可以用 <code>Object.assign</code>，但是通過 <code>...</code> 展開之後，不管是<strong>陣列</strong>還是<strong>物件</strong>也是可以做到淺層複製，實在是方便且快速！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let groupA &#x3D; [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;];</span><br><span class="line">let groupB &#x3D; [...groupA]; &#x2F;&#x2F; 這裡 groupB 已經是一個新的陣列</span><br><span class="line">groupB.push(&#39;阿明&#39;);</span><br><span class="line">console.log(groupA); &#x2F;&#x2F; 回傳 [&#39;小明&#39;, &#39;杰倫&#39;, &#39;阿姨&#39;];</span><br></pre></td></tr></table></figure>
 
@@ -332,6 +351,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -345,15 +366,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -383,7 +419,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -409,7 +445,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

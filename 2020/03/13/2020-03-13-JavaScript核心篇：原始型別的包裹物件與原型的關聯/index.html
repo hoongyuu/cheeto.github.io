@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,20 +49,20 @@
   <meta name="description" content="原始型別的包裹物件與原型的關聯12var a &#x3D; &#39;a&#39;;console.log(a.toUpperCase()); &#x2F;&#x2F; A  這邊可以看到我們利用 toUpperCase() 的方法來讓本來a變成大寫，而toUpperCase()其實就是原型的方法。 12var b &#x3D; new String(&#39;bcde&#39;);console">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript核心篇：原始型別的包裹物件與原型的關聯">
-<meta property="og:url" content="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="原始型別的包裹物件與原型的關聯12var a &#x3D; &#39;a&#39;;console.log(a.toUpperCase()); &#x2F;&#x2F; A  這邊可以看到我們利用 toUpperCase() 的方法來讓本來a變成大寫，而toUpperCase()其實就是原型的方法。 12var b &#x3D; new String(&#39;bcde&#39;);console">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF-1.jpg?alt=media&token=b3e6c7bc-c6c5-4fec-8440-34f59cdc384f">
 <meta property="article:published_time" content="2020-03-13T10:20:22.000Z">
-<meta property="article:modified_time" content="2020-03-14T06:31:23.486Z">
+<meta property="article:modified_time" content="2020-09-28T06:42:35.135Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="JS核心">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF-1.jpg?alt=media&token=b3e6c7bc-c6c5-4fec-8440-34f59cdc384f">
 
-<link rel="canonical" href="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/">
 
 
 <script id="page-configurations">
@@ -143,6 +143,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -174,10 +184,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -204,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-14 14:31:23" itemprop="dateModified" datetime="2020-03-14T14:31:23+08:00">2020-03-14</time>
+                <time title="修改時間：2020-09-28 14:42:35" itemprop="dateModified" datetime="2020-09-28T14:42:35+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,6 +246,8 @@
 
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF-1.jpg?alt=media&token=b3e6c7bc-c6c5-4fec-8440-34f59cdc384f" alt="原始型別的包裹物件與原型的關聯-1"></p>
 <p>雖然利用了包裹物件會讓純值變成物件型別，但是我們可以利用這個方法來看原型裡面的所有屬性及方法。</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var b &#x3D; new String(&#39;bcde&#39;);</span><br><span class="line"></span><br><span class="line">String.prototype.lastText &#x3D; function (e) &#123;</span><br><span class="line">  return this[this.length -1];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(b.lastText()); &#x2F;&#x2F; e</span><br></pre></td></tr></table></figure>
 
 <p>可以看到我們在原型上面新增一個方法，下面的實體都能夠共用。</p>
@@ -342,6 +354,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -355,15 +369,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -393,7 +422,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -419,7 +448,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

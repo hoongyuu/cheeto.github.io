@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,17 +49,17 @@
   <meta name="description" content="overflow搭配CSS做出滑動效果  codePen 範例參考 HTML環境設置： 123&lt;div class&#x3D;&quot;box&quot;&gt;  &lt;h1 class&#x3D;&quot;title&quot;&gt;商品標題&lt;&#x2F;h1&gt;&lt;&#x2F;div&gt;    這個效果是讓滑鼠hover到box的時候，讓title滑動出來的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS：overflow 搭配 CSS 做出滑動效果">
-<meta property="og:url" content="https://cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="overflow搭配CSS做出滑動效果  codePen 範例參考 HTML環境設置： 123&lt;div class&#x3D;&quot;box&quot;&gt;  &lt;h1 class&#x3D;&quot;title&quot;&gt;商品標題&lt;&#x2F;h1&gt;&lt;&#x2F;div&gt;    這個效果是讓滑鼠hover到box的時候，讓title滑動出來的">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-01-20T05:07:21.000Z">
-<meta property="article:modified_time" content="2020-08-27T08:14:45.495Z">
+<meta property="article:modified_time" content="2020-09-28T06:46:21.015Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
 
 
 <script id="page-configurations">
@@ -140,6 +140,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -171,10 +181,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -201,7 +211,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-08-27 16:14:45" itemprop="dateModified" datetime="2020-08-27T16:14:45+08:00">2020-08-27</time>
+                <time title="修改時間：2020-09-28 14:46:21" itemprop="dateModified" datetime="2020-09-28T14:46:21+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,6 +245,7 @@
 <br/>
 
 <p>這個效果是讓滑鼠hover到box的時候，讓title滑動出來的 transition 特效。</p>
+<a id="more"></a>
 <p>CSS如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">      position: relative;</span><br><span class="line">      margin: 0 auto;</span><br><span class="line">      width: 350px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      border: 2px solid #ccc;</span><br><span class="line">      overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box:hover .title &#123;</span><br><span class="line">      left: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .title &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: -45px;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: brown;</span><br><span class="line">      color: rgb(233, 233, 233);</span><br><span class="line">      padding: 0 12px;</span><br><span class="line">      -webkit-writing-mode: vertical-lr;</span><br><span class="line">      writing-mode: vertical-lr;</span><br><span class="line">      text-align: center;</span><br><span class="line">      font-weight: bold;</span><br><span class="line">      letter-spacing: 2px;</span><br><span class="line">      transition: all 1.5s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -330,6 +341,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -343,15 +356,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -381,7 +409,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -407,7 +435,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

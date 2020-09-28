@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,7 +49,7 @@
   <meta name="description" content="Git 常用指令來源：六角 工作目錄：是處理你現在處理檔案下的目錄，而 GIT 的相關操作都會在你路徑的目錄下完成。 索引：處於工作目錄、本地數據庫的中間 ( 如上圖 )，是提交到數據庫前的暫存區。 數據庫：是紀錄檔案、目錄狀態的地方，也會儲存內容的修改、歷史紀錄。而數據庫又有分為 本地數據庫 、遠端數據庫。  本地數據庫：自己方便使用，在個人電腦上配置的數據庫。 遠端數據庫：配置專門的伺服器，為">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 常用指令">
-<meta property="og:url" content="https://cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="Git 常用指令來源：六角 工作目錄：是處理你現在處理檔案下的目錄，而 GIT 的相關操作都會在你路徑的目錄下完成。 索引：處於工作目錄、本地數據庫的中間 ( 如上圖 )，是提交到數據庫前的暫存區。 數據庫：是紀錄檔案、目錄狀態的地方，也會儲存內容的修改、歷史紀錄。而數據庫又有分為 本地數據庫 、遠端數據庫。  本地數據庫：自己方便使用，在個人電腦上配置的數據庫。 遠端數據庫：配置專門的伺服器，為">
 <meta property="og:locale" content="zh_TW">
@@ -63,7 +63,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/git.png?alt=media&token=5ca8ca68-343f-48a2-9ba4-2b637ad9527b">
 
-<link rel="canonical" href="https://cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
 
 
 <script id="page-configurations">
@@ -144,6 +144,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -175,10 +185,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -501,6 +511,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -514,15 +526,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -552,7 +579,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -578,7 +605,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,7 +49,7 @@
   <meta name="description" content="Cheeto 的學習部落格">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cheeto">
-<meta property="og:url" content="https://cheeto.github.io/page/2/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/page/2/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="Cheeto 的學習部落格">
 <meta property="og:locale" content="zh_TW">
@@ -57,7 +57,7 @@
 <meta property="article:tag" content="Cheeto&#39;s blog">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cheeto.github.io/page/2/">
+<link rel="canonical" href="https://hoongyuu.github.io/page/2/">
 
 
 <script id="page-configurations">
@@ -138,6 +138,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -169,10 +179,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -200,7 +210,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-16 14:52:27" itemprop="dateModified" datetime="2020-03-16T14:52:27+08:00">2020-03-16</time>
+                <time title="修改時間：2020-09-28 14:42:13" itemprop="dateModified" datetime="2020-09-28T14:42:13+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,30 +241,14 @@
 <li>seal - 封裝</li>
 <li>Freeze - 凍結</li>
 </ul>
-<h2 id="preventExtensions-防止擴充"><a href="#preventExtensions-防止擴充" class="headerlink" title="preventExtensions - 防止擴充"></a>preventExtensions - 防止擴充</h2><p><code>preventExtensions</code>用意是無法新增屬性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: 2,</span><br><span class="line">  c: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.preventExtensions(person);</span><br><span class="line">console.log(&#39;是否可被擴充&#39;, Object.isExtensible(person));</span><br><span class="line">console.log(&#39;person a 的屬性特徵&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整屬性</span><br><span class="line">person.a &#x3D; &#39;a&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 新增屬性</span><br><span class="line">person.d &#x3D; &#39;d&#39;;  &#x2F;&#x2F; 無效，因為防止擴充無法新增屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 巢狀屬性調整</span><br><span class="line">person.c.a &#x3D; &#39;ca&#39;; &#x2F;&#x2F; 有效，因為防止擴充只能限制第一層</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整特徵</span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">  configurable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 刪除</span><br><span class="line">delete person.b;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 結果</span><br><span class="line">console.log(&#39;person 物件&#39;, person);</span><br><span class="line">console.log(&#39;person a 屬性特徵(嘗試修改後)&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-1.jpg?alt=media&token=cae38dad-00dc-4327-a2df-98cd40e5411f" alt="物件擴充的修改與調整-1"></p>
-<p>我們可以看到 <code>preventExtensions</code> 主要的功能就是防止擴充，但是它的作用只能在指定物件的第一層屬性。因為物件是傳址的，所以只能對當下的屬性作動。</p>
-<p>所以我們去刪除屬性、調整屬性都是被允許的。</p>
-<h2 id="seal-封裝"><a href="#seal-封裝" class="headerlink" title="seal - 封裝"></a>seal - 封裝</h2><p><code>seal</code> ： 讓指定物件的屬性無法新增、刪除，也無法重新配置特徵，但是可以調整屬性值。</p>
-<ul>
-<li>預設會讓物件加上 <code>preventExtensions</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.seal(person);</span><br><span class="line">console.log(&#39;是否可被擴充&#39;, Object.isExtensible(person));</span><br><span class="line">console.log(&#39;是否被 封裝 &#39;, Object.isSealed(person));</span><br><span class="line">console.log(&#39;person a 的屬性特徵&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整屬性</span><br><span class="line">person.a &#x3D; &#39;a&#39;;  &#x2F;&#x2F; 有效，seal可以調整屬性值</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 新增屬性</span><br><span class="line">person.d &#x3D; &#39;d&#39;;  &#x2F;&#x2F; 無效，seal 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 巢狀屬性調整</span><br><span class="line">person.c.a &#x3D; &#39;ca&#39;; &#x2F;&#x2F; 有效，因為 seal 只能限制第一層</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整特徵</span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">	writable: false  &#x2F;&#x2F; 無效，seal 無法重新配置特徵</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 刪除</span><br><span class="line">delete person.b; &#x2F;&#x2F; 無效， seal 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 結果</span><br><span class="line">console.log(&#39;person 物件&#39;, person);</span><br><span class="line">console.log(&#39;person a 屬性特徵(嘗試修改後)&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-2.jpg?alt=media&token=59839c23-9cad-4eb3-9185-ebcb917ffe0c" alt="物件擴充的修改與調整-2"></p>
-<p>可以看到<code>seal</code>不能被新增、刪除屬性，也無法重新配置特徵，但是可以被調整屬性值。</p>
-<p><code>seal</code> 跟 <code>preventExtensions</code> 一樣只能限制到第一層的屬性。主要是因為物件是傳址的，所以只能對當下的屬性作動。</p>
-<h2 id="freeze"><a href="#freeze" class="headerlink" title="freeze"></a>freeze</h2><ul>
-<li>物件會加上 <code>seal</code>，且無法調整值。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: 2,</span><br><span class="line">  c: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.freeze(person);</span><br><span class="line">console.log(&#39;是否可被擴充&#39;, Object.isExtensible(person));</span><br><span class="line">console.log(&#39;是否被 封裝 &#39;, Object.isSealed(person));</span><br><span class="line">console.log(&#39;是否被 凍結 &#39;, Object.isFrozen(person));</span><br><span class="line">console.log(&#39;person a 的屬性特徵&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 調整屬性</span><br><span class="line">person.a &#x3D; &#39;a&#39;;  &#x2F;&#x2F; 無效， freeze 無法調整值</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 新增屬性</span><br><span class="line">person.d &#x3D; &#39;d&#39;;  &#x2F;&#x2F; 無效，freeze 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 巢狀屬性調整</span><br><span class="line">person.c.a &#x3D; &#39;ca&#39;; &#x2F;&#x2F; 有效，因為 freeze 只能限制第一層</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 刪除</span><br><span class="line">delete person.b; &#x2F;&#x2F; 無效， freeze 無法新增、刪除屬性</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 結果</span><br><span class="line">console.log(&#39;person 物件&#39;, person);</span><br><span class="line">console.log(&#39;person a 屬性特徵(嘗試修改後)&#39;, Object.getOwnPropertyDescriptor(person, &#39;a&#39;));</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-3.jpg?alt=media&token=3669ec70-f01c-4bb6-b0df-04d46c9394bf" alt="物件擴充的修改與調整-3"></p>
-<p><code>freeze</code> 有 <code>seal</code> 的所有功能，但是它又多了一個<strong>不能調整值</strong>的功能。</p>
-<p>還有另外一點，它在調整屬性特徵時 <code>console.log</code> 會跳錯。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -273,10 +267,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -304,7 +298,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-16 14:51:32" itemprop="dateModified" datetime="2020-03-16T14:51:32+08:00">2020-03-16</time>
+                <time title="修改時間：2020-09-28 14:40:25" itemprop="dateModified" datetime="2020-09-28T14:40:25+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -329,34 +323,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="屬性特徵是什麼？"><a href="#屬性特徵是什麼？" class="headerlink" title="屬性特徵是什麼？"></a>屬性特徵是什麼？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Object.defineProperty</span><br><span class="line">&#x2F;&#x2F; 屬性，調整屬性特徵</span><br><span class="line">&#x2F;&#x2F; 1. 值、 2. 可否寫入、 3. 可否被刪除、 4. 可否被列舉</span><br><span class="line">&#x2F;&#x2F; Object.defineProperty(物件, &#39;屬性&#39;, &#39;參數&#39;);</span><br><span class="line"></span><br><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="屬性特徵是什麼？"><a href="#屬性特徵是什麼？" class="headerlink" title="屬性特徵是什麼？"></a>屬性特徵是什麼？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Object.defineProperty</span><br><span class="line">&#x2F;&#x2F; 屬性，調整屬性特徵</span><br><span class="line">&#x2F;&#x2F; 1. 值、 2. 可否寫入、 3. 可否被刪除、 (物件, &#39;屬性&#39;, &#39;參數&#39;);</span><br><span class="line">4. 可否被列舉</span><br><span class="line">&#x2F;&#x2F; Object.defineProperty</span><br><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
 
 <p>這邊可以看到 <code>person[&#39;a&#39;]</code> 的值已經被改寫了。</p>
-<p>如果我們把 <code>writable</code> 改成 false 呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;a&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 值</span><br><span class="line">    value: 4,</span><br><span class="line">    &#x2F;&#x2F; 2. 可否寫入</span><br><span class="line">    writable: false, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 3. 可否被刪除</span><br><span class="line">    configurable: true, &#x2F;&#x2F;預設為 true</span><br><span class="line">    &#x2F;&#x2F; 4. 可否被列舉</span><br><span class="line">    enumerable: true &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">person[&#39;a&#39;] &#x3D; 10;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 4, b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這邊可以發現如果我們把 <code>writable</code> 改成 <code>false</code> 就能夠讓屬性不能夠被寫入。</p>
-<p>再來我們測試 <code>configurable</code> 吧 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &#39;b&#39;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 可否被刪除</span><br><span class="line">    configurable: false, &#x2F;&#x2F;預設為 true</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">delete person[&#39;a&#39;];</span><br><span class="line">delete person[&#39;b&#39;];</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;b: 2, c: 3&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這邊可以發現我們把 <code>configurable</code> 改成 <code>false</code> 之後就能夠讓屬性無法被刪除了。</p>
-<p>那<strong>可否被列舉</strong>是什麼意思呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(person, &quot;c&quot;, &#123;</span><br><span class="line">	enumerable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">for (var key in person) &#123;</span><br><span class="line">	console.log(&quot;列舉&quot;, key);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-1.jpg?alt=media&token=f2741b9f-4cf6-4995-8537-de2f62b4e540" alt="屬性特徵是什麼-1"></p>
-<p>這邊可以看到我把 <code>c</code> 設定為 <code>enumerable: false</code> 之後它就無法被列舉了！</p>
-<br>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">	a: 1,</span><br><span class="line">	b: 2,</span><br><span class="line">	c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 淺層保護</span><br><span class="line">Object.defineProperty(person, &#39;d&#39;, &#123;</span><br><span class="line">	value: &#123;&#125;,</span><br><span class="line">	writable: false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(person);</span><br><span class="line">person[&#39;d&#39;][&#39;name&#39;] &#x3D; &#39;cheeto&#39;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC-2.jpg?alt=media&token=e1ff53dc-1416-4dc2-9181-7a5c2cb54867" alt="屬性特徵是什麼-2"></p>
-<p>這邊如果輸入 <code>person[&#39;d&#39;] = 6</code> 的話的確它是沒有辦法被寫入的，但是因為<strong>物件是傳址的特性</strong>，所以它裡面的屬性是可以被新增和修改的。</p>
-<p>所以 <code>Object.defineProperty</code> 只能做到淺層保護的作用。切記切記</p>
-<h3 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties"></a>Object.defineProperties</h3><p>這個語法可以大量定義我們要定義的屬性特徵，我們來看看吧 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: 2,</span><br><span class="line">    c: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(person); &#x2F;&#x2F; &#123;a: 1, b: 2, c: 3&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperties(person, &#123;</span><br><span class="line">    a: &#123;</span><br><span class="line">        value: 5,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;,</span><br><span class="line">    b: &#123;</span><br><span class="line">        value: 6,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;,</span><br><span class="line">    c: &#123;</span><br><span class="line">        value: 10,</span><br><span class="line">        writable: false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">person[&#39;a&#39;] &#x3D; 15; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line">person[&#39;b&#39;] &#x3D; 20; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line">person[&#39;c&#39;] &#x3D; 30; &#x2F;&#x2F; 因為 writable: false 所以不能被寫入</span><br><span class="line"></span><br><span class="line">console.log(person);  &#x2F;&#x2F; &#123;a: 5, b: 6, c: 10&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這個語法跟 <code>Object.defineProperty</code> 其實差不多，但是它可以一次輸入大量的屬性去定義。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -375,10 +352,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -406,7 +383,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-14 14:33:19" itemprop="dateModified" datetime="2020-03-14T14:33:19+08:00">2020-03-14</time>
+                <time title="修改時間：2020-09-28 14:42:24" itemprop="dateModified" datetime="2020-09-28T14:42:24+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -434,25 +411,14 @@
           <h1 id="原型鍊、建構函式整體結構概念"><a href="#原型鍊、建構函式整體結構概念" class="headerlink" title="原型鍊、建構函式整體結構概念"></a>原型鍊、建構函式整體結構概念</h1><p>原型鍊是實體可以繼承原型，而原型又可以繼承在它之上的原型，直到最頂層級(null)為止，而<code>null</code>也是原型鍊的最後一個鏈結。</p>
 <p>就像下面這張圖 ↓</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5-1.jpg?alt=media&token=33666420-9e14-4595-89c4-90e96d6f1382" alt="原型鍊、建構函式整體結構概念-1"></p>
-<br>
-
-
-<ul>
-<li>建構函式會連接到 <code>constructor</code> </li>
-<li><code>__proto__</code> 可以向上尋找原型</li>
-</ul>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5-2.jpg?alt=media&token=56b911ca-a91c-49af-9987-8925ff93a59f" alt="原型鍊、建構函式整體結構概念-2"></p>
-<p>我們可以使用程式碼來驗證看看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function Animal(family) &#123;</span><br><span class="line">	this[&#39;kingdom&#39;] &#x3D; &#39;動物界&#39;;</span><br><span class="line">	this[&#39;family&#39;] &#x3D; this.family || &#39;人科&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Animal.prototype.move &#x3D; function name(params) &#123;</span><br><span class="line">	console.log(this[&#39;name&#39;] + &#39; 移動&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	&#x2F;&#x2F; 利用 call 指定 this 能夠指向每一個實體</span><br><span class="line">	Animal.call(this, &#39;犬科&#39;);</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color || &#39;黑色&#39;;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size || &#39;小&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dog.prototype &#x3D; Object.create(Animal.prototype);</span><br><span class="line">Dog.prototype.constructor &#x3D; &#39;Dog&#39;;</span><br><span class="line">Dog.prototype.bark &#x3D; function (e) &#123;</span><br><span class="line">	console.log(this[&#39;name&#39;] + &#39; 吠叫&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 驗證原型鍊結構</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Dog[&#39;prototype&#39;]); &#x2F;&#x2F;true</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;][&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Animal[&#39;prototype&#39;]);  &#x2F;&#x2F;true</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;][&#39;__proto__&#39;][&#39;constructor&#39;] &#x3D;&#x3D;&#x3D; Animal); &#x2F;&#x2F;true</span><br><span class="line">console.log(Bibi[&#39;__proto__&#39;][&#39;__proto__&#39;][&#39;__proto__&#39;][&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; null); &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
-
-<p>上方程式碼就能夠驗證上面那張圖所描述的，<code>__proto__</code> 可以向上尋找原型，而 <code>__proto__</code> 跟上面第一層原型的 <code>prototype</code> 是完全相等的。</p>
-<br>
-
-<p>接下來我們可以驗證看看函式的繼承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(Bibi[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; flase</span><br><span class="line">console.log(Dog[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; true</span><br><span class="line">console.log(Animal[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; true</span><br><span class="line">console.log(Object[&#39;__proto__&#39;] &#x3D;&#x3D;&#x3D; Function[&#39;prototype&#39;]); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
-
-<p>這邊可以看到只要是函式，都會繼承函式的原型。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -471,10 +437,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -502,7 +468,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-14 14:32:18" itemprop="dateModified" datetime="2020-03-14T14:32:18+08:00">2020-03-14</time>
+                <time title="修改時間：2020-09-28 14:42:46" itemprop="dateModified" datetime="2020-09-28T14:42:46+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -531,22 +497,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; [];</span><br><span class="line">&#x2F;&#x2F; Object &gt; Array &gt; a(實體)</span><br><span class="line"></span><br><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">console.log(Bibi);</span><br><span class="line">&#x2F;&#x2F; Object &gt; Dog &gt; Bibi(實體)</span><br></pre></td></tr></table></figure>
 
 <p>如果我們想要在<code>Dog</code>前面新增一個層級<code>Object &gt; Animal &gt; Dog</code>要怎麼做呢？</p>
-<h2 id="Object-create-如何運用？"><a href="#Object-create-如何運用？" class="headerlink" title="Object.create() 如何運用？"></a>Object.create() 如何運用？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var Bibi &#x3D; &#123;</span><br><span class="line">    name: &#39;比比&#39;,</span><br><span class="line">    color: &#39;棕色&#39;,</span><br><span class="line">    size: &#39;小&#39;,</span><br><span class="line">    bark: function()&#123;</span><br><span class="line">        console.log(this.name + &#39; 吠叫&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pupu &#x3D; Object.create(Bibi);</span><br><span class="line">pupu.name &#x3D; &#39;噗噗&#39;;</span><br><span class="line">console.log(pupu);</span><br><span class="line">console.log(pupu.bark());</span><br></pre></td></tr></table></figure>
-<p>會出現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF.jpg?alt=media&token=aba659ce-72f1-4a41-81cf-799ea34699a4" alt="使用 Object.create 建立多層繼承"></p>
-<p>這邊可以發現 <code>pupu</code> 完全繼承了 <code>Bibi</code> 的所有屬性及方法。</p>
-<h3 id="我們在創造多層的原型鍊時，就會使用到-Object-create-的這個方法。"><a href="#我們在創造多層的原型鍊時，就會使用到-Object-create-的這個方法。" class="headerlink" title="我們在創造多層的原型鍊時，就會使用到 Object.create 的這個方法。"></a>我們在創造多層的原型鍊時，就會使用到 <code>Object.create</code> 的這個方法。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function Animal(family) &#123;</span><br><span class="line">	this.kingdom &#x3D; &#39;動物界&#39;;</span><br><span class="line">	this.family &#x3D; family || &#39;人科&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Animal.prototype.move &#x3D; function (e) &#123;</span><br><span class="line">    console.log(this.name + &#39; 移動&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用 Object.create() 讓 Dog 繼承在 Animal 身上</span><br><span class="line">Dog.prototype &#x3D; Object.create(Animal.prototype);</span><br><span class="line">Dog.prototype.bark &#x3D; function (e) &#123;</span><br><span class="line">    console.log(this.name + &#39; 吠叫&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">console.log(Bibi);</span><br><span class="line">Bibi.bark();</span><br><span class="line">Bibi.move();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF-1.jpg?alt=media&token=a898312d-b2d5-4dd5-9012-24da5fb208f7" alt="使用 Object.create 建立多層繼承-1"></p>
-<p>這邊還缺少了分類的部分，如果查詢 <code>Bibi</code> 的 <code>family</code> 會發現是 <code>undefined</code>，所以現在我們來新增一下科別！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function Animal(family) &#123;</span><br><span class="line">	this.kingdom &#x3D; &#39;動物界&#39;;</span><br><span class="line">	this.family &#x3D; family || &#39;人科&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Animal.prototype.move &#x3D; function (e) &#123;</span><br><span class="line">    console.log(this.name + &#39; 移動&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">    &#x2F;&#x2F; 利用 call 指定 this 能夠指向每一個實體</span><br><span class="line">    Animal.call(this, &#39;犬科&#39;);</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用 Object.create() 讓 Dog 繼承在 Animal 身上</span><br><span class="line">Dog.prototype &#x3D; Object.create(Animal.prototype);</span><br><span class="line">Dog.prototype.bark &#x3D; function (e) &#123;</span><br><span class="line">    console.log(this.name + &#39; 吠叫&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">console.log(Bibi);</span><br><span class="line">Bibi.bark();</span><br><span class="line">Bibi.move();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF-2.jpg?alt=media&token=6f15bd04-c7cd-46ba-b990-86b408054839" alt="使用 Object.create 建立多層繼承-2"></p>
-<p>這樣的原型鍊繼承其實還是沒有很完整喔！我們會發現<code>Dog</code>少了<code>constructor</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">function Animal(family) &#123;</span><br><span class="line">	this.kingdom &#x3D; &#39;動物界&#39;;</span><br><span class="line">	this.family &#x3D; family || &#39;人科&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Animal.prototype.move &#x3D; function (e) &#123;</span><br><span class="line">    console.log(this.name + &#39; 移動&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">    &#x2F;&#x2F; 利用 call 指定 this 能夠指向每一個實體</span><br><span class="line">    Animal.call(this, &#39;犬科&#39;);</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用 Object.create() 讓 Dog 繼承在 Animal 身上</span><br><span class="line">Dog.prototype &#x3D; Object.create(Animal.prototype);</span><br><span class="line">&#x2F;&#x2F; 這裡使用 prototype 把 constructor 補上就沒問題囉</span><br><span class="line">Dog.prototype.constructor &#x3D; Dog;</span><br><span class="line">Dog.prototype.bark &#x3D; function (e) &#123;</span><br><span class="line">    console.log(this.name + &#39; 吠叫&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">console.log(Bibi);</span><br><span class="line">Bibi.bark();</span><br><span class="line">Bibi.move();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF-3.jpg?alt=media&token=aaa248d0-4c75-431a-a55d-5d78d94e5b99" alt="使用 Object.create 建立多層繼承-3"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%20Object.create%20%E5%BB%BA%E7%AB%8B%E5%A4%9A%E5%B1%A4%E7%B9%BC%E6%89%BF/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -565,10 +523,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -596,7 +554,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-14 14:31:23" itemprop="dateModified" datetime="2020-03-14T14:31:23+08:00">2020-03-14</time>
+                <time title="修改時間：2020-09-28 14:42:35" itemprop="dateModified" datetime="2020-09-28T14:42:35+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -628,22 +586,14 @@
 
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF-1.jpg?alt=media&token=b3e6c7bc-c6c5-4fec-8440-34f59cdc384f" alt="原始型別的包裹物件與原型的關聯-1"></p>
 <p>雖然利用了包裹物件會讓純值變成物件型別，但是我們可以利用這個方法來看原型裡面的所有屬性及方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var b &#x3D; new String(&#39;bcde&#39;);</span><br><span class="line"></span><br><span class="line">String.prototype.lastText &#x3D; function (e) &#123;</span><br><span class="line">  return this[this.length -1];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(b.lastText()); &#x2F;&#x2F; e</span><br></pre></td></tr></table></figure>
-
-<p>可以看到我們在原型上面新增一個方法，下面的實體都能夠共用。</p>
-<br>
-
-<p>接下來我們試試看 <code>Number</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Number.prototype.secondPower &#x3D; function (e) &#123;</span><br><span class="line">  return this * this ;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var num &#x3D; 5;</span><br><span class="line">console.log(num.secondPower());  &#x2F;&#x2F; 25</span><br></pre></td></tr></table></figure>
-
-<p>這邊也能夠看到原型能夠共用。</p>
-<br>
-
-<p>再來看下一個範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Date.prototype.getFullDate &#x3D; function (e) &#123;</span><br><span class="line">	var dd &#x3D; String(this.getDate());</span><br><span class="line">	var mm &#x3D; String(this.getMonth() +1);</span><br><span class="line">	var yyyy &#x3D; String(this.getFullYear());</span><br><span class="line">  </span><br><span class="line">	var today &#x3D; yyyy + &#39;&#x2F;&#39; + mm + &#39;&#x2F;&#39; + dd;</span><br><span class="line">	return today</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var date &#x3D; new Date();</span><br><span class="line">console.log(date.getFullDate()); &#x2F;&#x2F; 2020&#x2F;3&#x2F;12 ((符合現在日期</span><br></pre></td></tr></table></figure>
-
-<p>這個章節的重點就是純值其實也能使用<strong>它的原型</strong>的屬性及方法。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E7%9A%84%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E8%88%87%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%9C%E8%81%AF/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -662,10 +612,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -693,7 +643,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-14 14:30:27" itemprop="dateModified" datetime="2020-03-14T14:30:27+08:00">2020-03-14</time>
+                <time title="修改時間：2020-09-28 14:42:40" itemprop="dateModified" datetime="2020-09-28T14:42:40+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -721,14 +671,14 @@
           <h1 id="使用建構式自定義原型"><a href="#使用建構式自定義原型" class="headerlink" title="使用建構式自定義原型"></a>使用建構式自定義原型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">console.log(Bibi);</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B-1.jpg?alt=media&token=62a17874-1da6-44db-a2d4-55330f108ba7" alt="使用建構式自定義原型-1"></p>
-<p>透過 <code>new</code> 的運算子每次都會產生一個新的物件。</p>
-<p>在上圖可以看到後面用 <code>new</code> 建構出來的 <code>Bibi</code> 原型是指向 <code>Dog</code> 的。</p>
-<h2 id="新增一個原型的方法"><a href="#新增一個原型的方法" class="headerlink" title="新增一個原型的方法"></a>新增一個原型的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">var Pupu &#x3D; new Dog(&#39;噗噗&#39;, &#39;白色&#39;, &#39;大&#39;);</span><br><span class="line"></span><br><span class="line">Dog.prototype.bark &#x3D; function () &#123;</span><br><span class="line">	console.log(this.name + &#39; 吠叫&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(Bibi.bark());  &#x2F;&#x2F; 比比 吠叫</span><br><span class="line">console.log(Pupu.bark());  &#x2F;&#x2F; 噗噗 吠叫</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B-2.jpg?alt=media&token=c765fd31-7e56-4276-81c5-fa55d5ae8aa9" alt="使用建構式自定義原型-2"></p>
-<p>這邊可以看到<code>Dog</code>作為原型，能夠讓實體共用原型的屬性及方法，所以我們在<code>Dog</code>裡面新增一個方法就能夠讓下面的實體共用囉！</p>
-<p>這樣的好處是能夠減少記憶體的消耗，因為原型的方法能夠讓下面的實體共用。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -747,10 +697,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -778,7 +728,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-14 14:29:32" itemprop="dateModified" datetime="2020-03-14T14:29:32+08:00">2020-03-14</time>
+                <time title="修改時間：2020-09-28 14:42:54" itemprop="dateModified" datetime="2020-09-28T14:42:54+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -813,31 +763,14 @@
 <li>原型可共用方法及屬性</li>
 </ul>
 <p>當我們嘗試在某個物件找一個它本身並不存在的屬性時，它會往上(原型物件)找尋，直到找到最頂層級時，都會找到<code>Object.prototype</code>才會停止。</p>
-<h2 id="JS當中原型跟實體都是物件，而兩者都有屬性及方法"><a href="#JS當中原型跟實體都是物件，而兩者都有屬性及方法" class="headerlink" title="JS當中原型跟實體都是物件，而兩者都有屬性及方法"></a>JS當中原型跟實體都是物件，而兩者都有屬性及方法</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%BD%A2%E9%8D%8A-%E6%A6%82%E5%BF%B5.jpg?alt=media&token=4a3ff0d0-1342-4c44-8429-e37af5a739bd" alt="原形鍊-概念"></p>
-<p>這邊可以看到實體可以繼承原型的屬性及方法，實體也能夠自定義自己的屬性及方法。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%BD%A2%E9%8D%8A-%E5%9C%96%E8%A7%A3.jpg?alt=media&token=4869693b-8321-4314-9aed-ea84607e5bab" alt="原形鍊-圖解"></p>
-<p>這邊可以看到原型找不到屬性或方法時會往它的原型去尋找，假設它沒有找到的話，它會繼續往上面的原型去找，直到找到最頂層級。</p>
-<p>原型的方法都能夠用<strong>點運算子呼叫出來</strong>。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%BD%A2%E9%8D%8A-%E5%9C%96%E8%A7%A32.jpg?alt=media&token=aa20acda-dbc0-41a7-b822-dfbaa0139dcd" alt="原形鍊-圖解2"></p>
-<p>如果一個原型新增了兩個實體的話，那這兩個實體都會繼承原型的屬性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; [1, 2, 3];</span><br><span class="line">console.log(a, a[1], a.length);</span><br><span class="line">    </span><br><span class="line">a.forEach( (i) &#x3D;&gt; &#123;console.log(i)&#125; )</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%BD%A2%E9%8D%8A-%E5%8E%9F%E5%9E%8B%E8%AA%AA%E6%98%8E.jpg?alt=media&token=e5fe60e0-9033-4028-a56d-1873edfb90eb" alt="原形鍊-原型說明"></p>
-<p>這邊可以看到 <code>a</code> 的原型是 <code>array</code>。</p>
-<p>而只要是<strong>實體都能夠繼承原型的屬性及方法</strong>，這邊也能夠看到 <code>a</code> 能夠使用 <code>array</code> 的 <code>forEach()</code> 這個方法。</p>
-<br>
-
-<p>這邊我們用 <code>__proto__</code> 來新增原型的方法。</p>
-<blockquote>
-<p>這個原型的方法非正規，這邊只是示範用</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; [1, 2, 3];</span><br><span class="line"></span><br><span class="line">a.__proto__.getLast &#x3D; function (e) &#123;</span><br><span class="line">    &#x2F;&#x2F;傳入該陣列最後一個值</span><br><span class="line">    return this[this.length -1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b &#x3D; [4, 5, 6];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;原型共用特性</span><br><span class="line">console.log(a.getLast());  &#x2F;&#x2F; 3</span><br><span class="line">console.log(b.getLast());  &#x2F;&#x2F; 6</span><br></pre></td></tr></table></figure>
-
-<p>這邊如果輸入 <code>a</code> 跟 <code>b</code> 可以發現這點</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%BD%A2%E9%8D%8A-%E5%8E%9F%E5%9E%8B%E8%AA%AA%E6%98%8E2.jpg?alt=media&token=31134655-5845-4700-a889-a485dc31dfe8" alt="原形鍊-原型說明2"></p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%BD%A2%E9%8D%8A-%E5%8E%9F%E5%9E%8B%E8%AA%AA%E6%98%8E3.jpg?alt=media&token=662ad252-35c3-4bfd-b2ec-5d347016d433" alt="原形鍊-原型說明3"></p>
-<p>它們同樣都繼承了 <code>array</code> 的 <code>getLast()</code> 這個方法，所以都能夠共用 <code>getLast()</code> 這個方法。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -856,10 +789,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -887,7 +820,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-12 18:46:40" itemprop="dateModified" datetime="2020-03-12T18:46:40+08:00">2020-03-12</time>
+                <time title="修改時間：2020-09-28 14:43:00" itemprop="dateModified" datetime="2020-09-28T14:43:00+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -920,92 +853,14 @@
 <p><code>this</code>的實際指向跟我們如何去呼叫函式是有很大的關聯性的！</p>
 <p><code>this</code>指的並不是函式本身，而是指向<strong>目前呼叫函式或方法的擁有者(owner)物件</strong>。所以函式需要了解函式的幾種調用方式，就能一併了解<code>this</code>在這些情況下的不同。</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%BD%B1%E9%9F%BF%E5%87%BD%E5%BC%8F%20this%20%E7%9A%84%E8%AA%BF%E7%94%A8%E6%96%B9%E6%B3%95.jpg?alt=media&token=412fd868-72e1-44bc-b8ba-d8408447c684" alt="影響函式this的調用方式"></p>
-<h2 id="this-物件的方式調用-最常見"><a href="#this-物件的方式調用-最常見" class="headerlink" title="this: 物件的方式調用(最常見)"></a>this: 物件的方式調用(最常見)</h2><ul>
-<li>this 與函式如何宣告<strong>沒有關聯性</strong>，僅與呼叫方式有關</li>
-<li>物件方法調用時，僅需要關注是在哪一個物件下呼叫</li>
-</ul>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E7%9A%84%E7%94%A8%E9%80%94.jpg?alt=media&token=faaa2adc-6ab5-45f7-b3f2-3782119860fd" alt="this的用途"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function callName(e) &#123;</span><br><span class="line">    console.log(this, this.myName);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    myName: &#39;小明家&#39;,</span><br><span class="line">    callName: callName,</span><br><span class="line">    Ming: &#123;</span><br><span class="line">        myName: &#39;小明&#39;,</span><br><span class="line">        callName: callName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">family.callName();</span><br><span class="line">family.Ming.callName();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F.jpg?alt=media&token=9e5acc26-1087-4072-85dc-a851b39ad0b4" alt="this 的常用方式"></p>
-<p>物件方法調用時，僅需要關注是在哪一個物件下呼叫。<br>所以<code>family.callName();</code>的<code>this</code>就是指向<code>family</code>；而<code>family.Ming.callName();</code>的<code>this</code>就是指向<code>family.Ming</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function callName(e) &#123;</span><br><span class="line">    console.log(this, this.myName);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    myName: &#39;小明家&#39;,</span><br><span class="line">    callName: function()&#123;</span><br><span class="line">        console.log(this.myName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var callName &#x3D; family.callName;</span><br><span class="line">callName();  &#x2F;&#x2F; 真心鎮大冒險</span><br></pre></td></tr></table></figure>
-
-<p><code>this</code> 與函式如何宣告<strong>沒有關聯性</strong>，僅與呼叫方式有關。</p>
-<p>所以我們只要管它是如何被呼叫出來的就好，而 <code>callName()</code> 是在全域裡面被執行出來的，所以它的<code>this</code> 就會指向 <code>window</code>。</p>
-<h2 id="this-簡易呼叫-simple-call"><a href="#this-簡易呼叫-simple-call" class="headerlink" title="this: 簡易呼叫(simple call)"></a>this: 簡易呼叫(simple call)</h2><ul>
-<li>盡可能不要使用 simple call 的 <code>this</code></li>
-</ul>
-<p><strong>簡易呼叫的 <code>this</code> 都會指向 window</strong><br><strong>簡易呼叫的 <code>this</code> 都會指向 window</strong><br><strong>簡易呼叫的 <code>this</code> 都會指向 window</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function callName()&#123;</span><br><span class="line">    console.log(this.myName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callName();  &#x2F;&#x2F; 真心鎮大冒險</span><br></pre></td></tr></table></figure>
-
-<p>原因是因為我們在全域呼叫函式，所以函式的 <code>this</code> 會指向 <code>window</code>，所以會指到全域變數的 myName。</p>
-<p>而這種直接在全域下呼叫的方式就算是「簡易呼叫」的一種。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; IIFE 立即函式</span><br><span class="line">(function ()&#123;</span><br><span class="line">    console.log(this.myName); &#x2F;&#x2F;真心鎮大冒險</span><br><span class="line">    function callSomeone()&#123;</span><br><span class="line">        console.log(this.myName);</span><br><span class="line">    &#125;</span><br><span class="line">    callSomeone(); &#x2F;&#x2F;真心鎮大冒險</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
-
-<p>this 不會看你的呼叫位置，而是依據呼叫方式而定的。</p>
-<h3 id="簡易呼叫-閉包"><a href="#簡易呼叫-閉包" class="headerlink" title="簡易呼叫(閉包)"></a>簡易呼叫(閉包)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function easyCard(base) &#123;</span><br><span class="line">    var money &#x3D; base;</span><br><span class="line">    var name &#x3D; &#39;悠遊卡&#39;;</span><br><span class="line">    return function (update) &#123;</span><br><span class="line">        money &#x3D; money + update;</span><br><span class="line">        console.log(this.myName, money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var MingEasyCard &#x3D; easyCard(100);</span><br><span class="line">MingEasyCard(10);  &#x2F;&#x2F; 真心鎮大冒險 110</span><br></pre></td></tr></table></figure>
-
-<p>這邊也可以看到它跟前面的例子一樣都是在全域下直接呼叫，所以它的<code>this</code>就是指向 window。</p>
-<h3 id="簡易呼叫-callback"><a href="#簡易呼叫-callback" class="headerlink" title="簡易呼叫(callback)"></a>簡易呼叫(callback)</h3><p>所謂的「Callback function」其實就是「把函式當作另一個函式的參數，透過另一個函式來呼叫它」。</p>
-<p>以<code>callback function</code> 的方式被呼叫，所以算是「簡易呼叫」。所以 <code>this</code> 會指向 window。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">function myEasyCard(callback) &#123;</span><br><span class="line">    var money &#x3D; 100</span><br><span class="line">    return callback(money)</span><br><span class="line">&#125;</span><br><span class="line">myEasyCard(function (money) &#123;</span><br><span class="line">    console.log(this.myName, money + 100)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fcallback%E7%AF%84%E4%BE%8B.jpg?alt=media&token=2b15683c-8378-43d7-920b-01b239a26dbf" alt="callback範例"></p>
-<br>
-
-<p>再來下一個範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var myName &#x3D; &#39;真心鎮大冒險&#39;;</span><br><span class="line"></span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    myName: &#39;小明家&#39;,</span><br><span class="line">    callName: function () &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            console.log(this.myName);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">family.callName();  &#x2F;&#x2F;真心鎮大冒險</span><br></pre></td></tr></table></figure>
-<p><code>this</code> 不會看你是在那裡執行，而是看你是如何去執行它。因為<code>setTimeout</code>的()內是一個<code>callback function</code>，所以它是以<code>callback function</code> 的方式被呼叫，所以算是「簡易呼叫」。</p>
-<br>
-
-<p>如果想要把 <code>this</code> 指向 <code>family</code> 的話，解決方法如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">myName: &#39;小明家&#39;,</span><br><span class="line">callName: function () &#123;</span><br><span class="line">    var self &#x3D; this; &#x2F;&#x2F; vm, that</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">      console.log(self.myName);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">family.callName(); &#x2F;&#x2F;小明家</span><br></pre></td></tr></table></figure>
-<h2 id="this：-call-apply-bind"><a href="#this：-call-apply-bind" class="headerlink" title="this： call, apply, bind"></a>this： call, apply, bind</h2><h3 id="call"><a href="#call" class="headerlink" title="call"></a>call</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn(&#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fcall.jpg?alt=media&token=c6d6b156-5f64-4a2f-a5a9-29054464481c" alt="call"></p>
-<p><code>call</code>的語法是能夠把 <code>family</code> 傳入 <code>this</code> 當中，這樣就能指定自己要的<code>this</code></p>
-<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.apply(family, [&#39;小明&#39;, &#39;杰倫&#39;]);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fapply6.jpg?alt=media&token=d8dbb732-8310-4052-9b50-4c840262f9da" alt="apply"></p>
-<p><code>apply</code>的語法其實跟<code>call</code>滿相近的，但是它後面的參數必須用陣列的方式設定。</p>
-<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind</code>的語法跟<code>call</code>是一樣的方式，但是兩者的不同在於說：「<code>bind</code>不會被立刻地執行」</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.bind(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br></pre></td></tr></table></figure>
-
-<p>這裡如果執行的話只會出現 <code>fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</code> 的結果，而<code>bind</code>的執行結果不會出現。</p>
-<p>因為「<code>bind</code>不會被立刻地執行」</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">var fn2 &#x3D; fn.bind(family, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn2();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fapply6.jpg?alt=media&token=d8dbb732-8310-4052-9b50-4c840262f9da" alt="apply"></p>
-<h3 id="call-apply-bind-進階觀念"><a href="#call-apply-bind-進階觀念" class="headerlink" title="call, apply, bind 進階觀念"></a>call, apply, bind 進階觀念</h3><p>以<code>call</code>, <code>apply</code>, <code>bind</code>呼叫函式時，<strong>可以綁定<code>this</code>是什麼。<code>this</code>會是傳進該函式的第一個參數。</strong></p>
-<p><code>call</code>, <code>apply</code>, <code>bind</code><strong>在非嚴格的模式下，<code>null</code>, <code>undefined</code>會被置換成全域變數</strong>，而原生型態的值將會被物件包裹呈現</p>
-<p>如果把<code>this</code>傳入純值的話，會用物件包裹的方式呈現。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var fn &#x3D; function (para1, para2) &#123;</span><br><span class="line">    console.log(this, para1, para2);</span><br><span class="line">&#125;;</span><br><span class="line">fn.call(1, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.call(&#39;文字&#39;, &#39;小明&#39;, &#39;杰倫&#39;);</span><br><span class="line">fn.call(true, &#39;小明&#39;, &#39;杰倫&#39;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fthis%E9%80%B2%E9%9A%8E%E8%A7%80%E5%BF%B5.jpg?alt=media&token=6c1e2b67-148b-4c02-a6fa-b13b9dc24e04" alt="this進階觀念"></p>
-<h2 id="嚴格模式-Strict-Mode"><a href="#嚴格模式-Strict-Mode" class="headerlink" title="嚴格模式(Strict Mode)"></a>嚴格模式(Strict Mode)</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%9A%B4%E6%A0%BC%E6%A8%A1%E5%BC%8F.JPG?alt=media&token=a8478f9a-7845-4d7a-b030-66e3f404e77e" alt="嚴格模式"></p>
-<ul>
-<li>在嚴格模式下未定義的變數不能直接的賦予值</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function () &#123;</span><br><span class="line">    &#39;use strict&#39;;</span><br><span class="line">    auntie &#x3D; &#39;漂亮阿姨&#39;;</span><br><span class="line">    &#x2F;&#x2F; Uncaught ReferenceError: auntie is not defined</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>嚴格模式對<code>this</code>的影響</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function callStrict(para1, para2) &#123;</span><br><span class="line">    &#39;use strict&#39;;</span><br><span class="line">    console.log(this, typeof this, para1, para2);</span><br><span class="line">&#125;</span><br><span class="line">callStrict.call(1, &#39;小明&#39;, &#39;杰倫&#39;)</span><br><span class="line">callStrict.call(undefined, &#39;小明&#39;, &#39;杰倫&#39;)</span><br><span class="line">callStrict(&#39;小明&#39;, &#39;杰倫&#39;)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%9A%B4%E6%A0%BC%E6%A8%A1%E5%BC%8Fthis.jpg?alt=media&token=8748a537-c086-46fa-980e-0a57083ed509" alt="嚴格模式this"></p>
-<p>simple call的<code>this</code>沒有設定的話預設會是<code>undefined</code>，但是在非嚴格模式的時候會被轉成<code>object</code>，然而在嚴格模式下它並不會轉化，依舊會維持本來的<code>undefined</code>，所以<strong>盡可能不要使用簡易呼叫的<code>this</code></strong>！！！</p>
-<h2 id="this-DOM"><a href="#this-DOM" class="headerlink" title="this: DOM"></a>this: DOM</h2><p>DOM跟<code>this</code>綁定會讓<code>this</code>指向觸發事件的元素(HTML element)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick&#x3D;&quot;console.dir(this)&quot;&gt;按鈕&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FthisDOM%E7%AF%84%E4%BE%8B%E4%B8%80.jpg?alt=media&token=6cafe677-d0a5-4e10-81de-c07e480219bf" alt="thisDOM範例一"></p>
-<p>這裡<code>onclick</code>事件裡的<code>this</code>，就是指向<code>button</code>的元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var fn &#x3D; function () &#123;</span><br><span class="line">    console.dir(this);</span><br><span class="line">    this.style.backgroundColor &#x3D; &#39;orange&#39;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var els &#x3D; document.querySelectorAll(&#39;li&#39;);</span><br><span class="line"></span><br><span class="line">for (let i &#x3D; 0; i &lt; els.length; i++) &#123;</span><br><span class="line">    els[i].addEventListener(&#39;click&#39;, fn, false);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FthisDOM%E7%AF%84%E4%BE%8B%E4%BA%8C.jpg?alt=media&token=9924ff20-5694-4a0c-882c-6201f32ff393" alt="thisDOM範例二"></p>
-<p>DOM的事件監聽會讓<code>this</code>指向觸發事件的元素(HTML element)。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1024,10 +879,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -1047,10 +902,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-10 16:57:12 / 修改時間：16:57:56" itemprop="dateCreated datePublished" datetime="2020-03-10T16:57:12+08:00">2020-03-10</time>
+              <time title="創建時間：2020-03-10 16:57:12" itemprop="dateCreated datePublished" datetime="2020-03-10T16:57:12+08:00">2020-03-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:04" itemprop="dateModified" datetime="2020-09-28T14:43:04+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -1077,28 +938,14 @@
           <h1 id="閉包"><a href="#閉包" class="headerlink" title="閉包"></a>閉包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function storeMoney() &#123;</span><br><span class="line">    var money &#x3D; 500;</span><br><span class="line">    return function (price) &#123;</span><br><span class="line">        money &#x3D; money + price;</span><br><span class="line">        return money</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var mingMoney &#x3D; storeMoney();</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 550</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 600</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 650</span><br></pre></td></tr></table></figure>
 
 <p>這邊可以發現 <code>mingMoney</code> 的值有繼續被增加，原因是實際上釋放記憶體的條件是「當變數無法被引用時就會釋放記憶體」，而現在這個函式被綁定在全域變數上，所以它能夠不斷的呼叫，所以記憶體並不會被釋放。</p>
-<br>
-
-<p>再來看下一個範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function storeMoney() &#123;</span><br><span class="line">    var money &#x3D; 500;</span><br><span class="line">    return function (price) &#123;</span><br><span class="line">        money &#x3D; money + price;</span><br><span class="line">        return money</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var mingMoney &#x3D; storeMoney();</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 550</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 600</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 650</span><br><span class="line"></span><br><span class="line">var jayMoney &#x3D; storeMoney();</span><br><span class="line">console.log(jayMoney(1000)); &#x2F;&#x2F; 1500</span><br><span class="line">console.log(jayMoney(1000)); &#x2F;&#x2F; 2500</span><br><span class="line">console.log(jayMoney(1000)); &#x2F;&#x2F; 3500</span><br></pre></td></tr></table></figure>
-
-<p>這裡兩個變數各自呼叫了函式，所以它們會有各自的回傳結果。</p>
-<p>也可以想成每次回傳都生成一個新的位址。</p>
-<h2 id="閉包申論"><a href="#閉包申論" class="headerlink" title="閉包申論"></a>閉包申論</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function arrFunction(e) &#123;</span><br><span class="line">    var arr &#x3D; [];</span><br><span class="line">    for (var i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">        arr.push(function (e) &#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(&#39;i &#x3D; &#39;+ i);</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; arrFunction();</span><br><span class="line">fn[0]();  </span><br><span class="line">fn[1]();  </span><br><span class="line">fn[2]();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E9%96%89%E5%8C%85%E7%94%B3%E8%AB%96.jpg?alt=media&token=1dfc3b52-18c3-4b2a-a201-3ae5842f8925" alt="閉包申論"></p>
-<p>會造成全部都出現 3 是因為 <code>var</code> 的作用域是在 <code>function</code> 內，所以它會汙染到 <code>for</code> 外面的 <code>i</code> 。</p>
-<p>解決方法很簡單 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function arrFunction(e) &#123;</span><br><span class="line">    var arr &#x3D; [];</span><br><span class="line">    for (let i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">        arr.push(function (e) &#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;console.log(&#39;i &#x3D; &#39;+ i); &#x2F;&#x2F; 如果有這層程式碼會報錯，因為找不到 i 變數</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var fn &#x3D; arrFunction();</span><br><span class="line">fn[0]();  &#x2F;&#x2F; 0</span><br><span class="line">fn[1]();  &#x2F;&#x2F; 1</span><br><span class="line">fn[2]();  &#x2F;&#x2F; 2</span><br></pre></td></tr></table></figure>
-
-<p>因為 <code>let</code> 的作用域是限制在 <code>{}</code>，所以在 <code>for</code> 就已經把它限制住了。</p>
-<h2 id="閉包工廠"><a href="#閉包工廠" class="headerlink" title="閉包工廠"></a>閉包工廠</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function storeMoney(initValue) &#123;</span><br><span class="line">    var money &#x3D; initValue || 500;</span><br><span class="line">    return function (price) &#123;</span><br><span class="line">        money &#x3D; money + price;</span><br><span class="line">        return money</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var mingMoney &#x3D; storeMoney(100); &#x2F;&#x2F; 起始 100</span><br><span class="line">console.log(mingMoney(500));  &#x2F;&#x2F; 增加 500</span><br></pre></td></tr></table></figure>
-
-<p>這裡利用了 <code>var money = initValue || 500;</code> 來做出預設值。</p>
-<h2 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function storeMoney(initValue) &#123;</span><br><span class="line">    var money &#x3D; initValue || 500;</span><br><span class="line">    return &#123;</span><br><span class="line">        increase: function (price) &#123;</span><br><span class="line">            money +&#x3D; price;</span><br><span class="line">        &#125;,</span><br><span class="line">        decrease: function (price) &#123;</span><br><span class="line">            money -&#x3D; price;</span><br><span class="line">        &#125;,</span><br><span class="line">        nowMoney: function (price) &#123;</span><br><span class="line">            return money;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var mingMoney &#x3D; storeMoney(100); &#x2F;&#x2F; 起始 100</span><br><span class="line">mingMoney.increase(100);    &#x2F;&#x2F; 起始 100 + 100 &#x3D; 200</span><br><span class="line">mingMoney.increase(100);    &#x2F;&#x2F; 200 + 100 &#x3D; 300</span><br><span class="line">mingMoney.decrease(50);    &#x2F;&#x2F; 300 - 50 &#x3D; 250</span><br><span class="line">mingMoney.decrease(25);    &#x2F;&#x2F; 250 - 25 &#x3D; 225</span><br><span class="line">console.log(mingMoney.nowMoney()); &#x2F;&#x2F; 最後會顯示 225</span><br></pre></td></tr></table></figure>
-
-<p>這是可以在回傳的時候加入一個物件，利用物件去做加減的運算。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1117,10 +964,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/09/2020-03-09-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8F%83%E6%95%B8/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/09/2020-03-09-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8F%83%E6%95%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -1148,7 +995,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-10 16:57:09" itemprop="dateModified" datetime="2020-03-10T16:57:09+08:00">2020-03-10</time>
+                <time title="修改時間：2020-09-28 14:43:11" itemprop="dateModified" datetime="2020-09-28T14:43:11+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1178,36 +1025,14 @@
 <p>會呈現 ↓</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8F%83%E6%95%B8%E8%A6%86%E8%93%8B%E8%A7%80%E5%BF%B5.jpg?alt=media&token=8d4db6c2-8da5-4e21-b1d8-d4875d8366f4" alt="參數覆蓋觀念"></p>
 <p>所以說用宣告的方式其實沒辦法覆蓋掉的，如果想要覆蓋掉就直接定義一個新的值給 <code>a</code>。</p>
-<br>
-
-<p>下面還有另一個例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function callName(a)&#123;</span><br><span class="line">    console.log(&#39;第一個：&#39; +a);</span><br><span class="line">    </span><br><span class="line">    function a()&#123;&#125;;    </span><br><span class="line">    var a;</span><br><span class="line">    console.log(&#39;第二個：&#39; +a);</span><br><span class="line">    a &#x3D; &#39;杰倫&#39;;</span><br><span class="line">    console.log(&#39;第三個：&#39; +a);</span><br><span class="line">&#125;;</span><br><span class="line">callName(&#39;小明&#39;);</span><br></pre></td></tr></table></figure>
-
-<p>會呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8F%83%E6%95%B8%E8%A6%86%E8%93%8B%E8%A7%80%E5%BF%B52.jpg?alt=media&token=f424c988-01dd-435e-aae0-afb2ca1cfb34" alt="參數覆蓋觀念2"></p>
-<p>原因是因為函式會提升，但是本來定義的小明這個值是在函式的參數上面，而<code>function a</code>是在程式碼片段創造的，所以<code>function a</code>是會把小明這個值覆蓋掉的。</p>
-<h2 id="物件參數"><a href="#物件參數" class="headerlink" title="物件參數"></a>物件參數</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function callObject(obj) &#123;</span><br><span class="line">    obj.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">&#125;;</span><br><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">callObject(family);</span><br><span class="line">console.log(family); &#x2F;&#x2F; 杰倫家</span><br></pre></td></tr></table></figure>
-
-<p>在函式參數當中如果是物件的話，還是會維持原本傳址的特性，所以 <code>family</code> 才會跟著被變動了。</p>
-<h2 id="callback-function"><a href="#callback-function" class="headerlink" title="callback function"></a>callback function</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function functionB(fn) &#123;</span><br><span class="line">    fn(&#39;小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">functionB(function (a) &#123;</span><br><span class="line">    console.log(a); &#x2F;&#x2F; 小明</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FcallBackFunction.jpg?alt=media&token=534e988b-1b4a-4e8f-8b47-123536002eb0" alt="callBackFunction"></p>
-<ul>
-<li>洋紅色: functionB 執行時將函式作為參數傳入 fn，並在 functionB 內執行</li>
-<li>綠色: fn 的小明作為參數傳遞給 functionB 執行時的函式</li>
-</ul>
-<br>
-
-<p>這邊換一個範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function callSomeone(name, a) &#123;</span><br><span class="line">    console.log(name + &#39;你好&#39; + a);</span><br><span class="line">&#125;;</span><br><span class="line">function functionB(fn) &#123;</span><br><span class="line">    fn(&#39;小明&#39;, 1);</span><br><span class="line">&#125;;</span><br><span class="line">functionB(callSomeone); &#x2F;&#x2F; 小明你好 1</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Arguments"><a href="#Arguments" class="headerlink" title="Arguments"></a>Arguments</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function callArg(a)&#123;</span><br><span class="line">    console.log(a, argument)</span><br><span class="line">&#125;;</span><br><span class="line">callArg(1, 2, 3, &#39;4&#39;)</span><br></pre></td></tr></table></figure>
-
-<p>回傳呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Farguments.jpg?alt=media&token=0622aef4-32c2-44c8-923b-9da533b71983" alt="Arguments"></p>
-<p>arguments 是一個類陣列，它可以拿來做 for 迴圈，但是不能拿來做 <code>forEach</code> 之類的功能。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/09/2020-03-09-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8F%83%E6%95%B8/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1284,6 +1109,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -1297,15 +1124,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -1335,7 +1177,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -1361,7 +1203,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

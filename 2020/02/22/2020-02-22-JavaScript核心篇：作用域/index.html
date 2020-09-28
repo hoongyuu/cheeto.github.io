@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -46,23 +46,23 @@
   };
 </script>
 
-  <meta name="description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。 123456789let value &#x3D; 1function num1()&amp;#123;    console.log(val">
+  <meta name="description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript核心篇：作用域">
-<meta property="og:url" content="https://cheeto.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/index.html">
 <meta property="og:site_name" content="Cheeto">
-<meta property="og:description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。 123456789let value &#x3D; 1function num1()&amp;#123;    console.log(val">
+<meta property="og:description" content="JavaScript 作用域JavaScript是採用語法作用域，屬於靜態作用域的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。  如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd">
 <meta property="article:published_time" content="2020-02-22T11:10:58.000Z">
-<meta property="article:modified_time" content="2020-03-04T06:04:01.911Z">
+<meta property="article:modified_time" content="2020-09-28T06:45:23.836Z">
 <meta property="article:author" content="Cheeto">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="JS核心">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd">
 
-<link rel="canonical" href="https://cheeto.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
 
 
 <script id="page-configurations">
@@ -143,6 +143,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -174,10 +184,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -204,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-04 14:04:01" itemprop="dateModified" datetime="2020-03-04T14:04:01+08:00">2020-03-04</time>
+                <time title="修改時間：2020-09-28 14:45:23" itemprop="dateModified" datetime="2020-09-28T14:45:23+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,6 +242,8 @@
         <h1 id="JavaScript-作用域"><a href="#JavaScript-作用域" class="headerlink" title="JavaScript 作用域"></a>JavaScript 作用域</h1><p>JavaScript是採用<strong>語法作用域</strong>，屬於<strong>靜態作用域</strong>的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd" alt="作用域"></p>
 <p>如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let value &#x3D; 1</span><br><span class="line">function num1()&#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F; 1</span><br><span class="line">&#125;</span><br><span class="line">function num2()&#123;</span><br><span class="line">    let value &#x3D; 2;</span><br><span class="line">    num1();</span><br><span class="line">&#125;</span><br><span class="line">num2();  &#x2F;&#x2F; console.log 顯示 1</span><br></pre></td></tr></table></figure>
 
 <p>以上方為例，num1 找 value 時會往外層全域尋找，但是有一點非常的重要，就是它尋找的時候不會跟執行環境有任何的關聯性，因為JavaScript是語法作用域，在程式碼撰寫的時候就已經確定了它的作用域。num2 裡面的 value 作用域就只有在 num2 的函式裡面，所以不會影響到外面全域變數的 value 。</p>
@@ -332,6 +344,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -345,15 +359,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -383,7 +412,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -409,7 +438,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

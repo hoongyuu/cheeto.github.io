@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,7 +49,7 @@
   <meta name="description" content="Cheeto 的學習部落格">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cheeto">
-<meta property="og:url" content="https://cheeto.github.io/page/5/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/page/5/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="Cheeto 的學習部落格">
 <meta property="og:locale" content="zh_TW">
@@ -57,7 +57,7 @@
 <meta property="article:tag" content="Cheeto&#39;s blog">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cheeto.github.io/page/5/">
+<link rel="canonical" href="https://hoongyuu.github.io/page/5/">
 
 
 <script id="page-configurations">
@@ -138,6 +138,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -169,10 +179,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -200,7 +210,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-03 19:46:44" itemprop="dateModified" datetime="2020-03-03T19:46:44+08:00">2020-03-03</time>
+                <time title="修改時間：2020-09-28 14:45:28" itemprop="dateModified" datetime="2020-09-28T14:45:28+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,35 +238,14 @@
           <h1 id="JavaScript：-var、-let-const-差異"><a href="#JavaScript：-var、-let-const-差異" class="headerlink" title="JavaScript： var、( let , const ) 差異"></a>JavaScript： var、( let , const ) 差異</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在ES6之前，JavaScript要宣告變數的時候，會使用到 var 宣告變數，<br>但是到了ES6之後，建議盡量都用 ( let , const ) 來做宣告，不要再用 var 了。</p>
 <p>因為 var 有一個缺點，那就是它很容易汙染到全域變數。 如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 15;</span><br><span class="line"></span><br><span class="line">console.log(a);  &#x2F;&#x2F; 15</span><br><span class="line">&#x2F;&#x2F;用 var 的話會讓 a 直接跑到 window 下面變成全域變數</span><br><span class="line">console.log(window.a);  &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="var、-let-const-差異在哪？"><a href="#var、-let-const-差異在哪？" class="headerlink" title="var、( let , const ) 差異在哪？"></a>var、( let , const ) 差異在哪？</h2><p>我們開發時應該盡量避免汙染到全域變數，所以ES6因為這個原因發明了 「let」、「const」，來改善這個問題，那它們之間的差異在哪裡呢？ 讓我們繼續看下去。</p>
-<h3 id="let-const-是以-來做區隔的，而-var-是以-function-來做區隔。"><a href="#let-const-是以-來做區隔的，而-var-是以-function-來做區隔。" class="headerlink" title="let / const 是以 {} 來做區隔的，而 var 是以 function 來做區隔。"></a>let / const 是以 <strong><code>{}</code></strong> 來做區隔的，而 var 是以 function 來做區隔。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2 三個值沒有問題，但是重點來了！</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
-
-<p>發現問題點了嗎？ 在for迴圈裏面用 var 宣告的 i (變數) 已經污染到全域變數了！</p>
-<p>遇到這樣的問題的話，let 其實就很好解決了，因為 let 是用 <strong><code>{}</code></strong> 來做區隔的，所以它並不會汙染到全域變數。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">  console.log(i)</span><br><span class="line">&#125;    &#x2F;&#x2F;  0 &#x2F; 1 &#x2F; 2</span><br><span class="line"></span><br><span class="line">console.log(i) &#x2F;&#x2F; Uncaught ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
-
-<p>如果用 let 宣告的話會出現 i is not defined 這樣的結果。</p>
-<br>
-
-
-<h3 id="let-const-沒有變數提升的這個特性，var-有變數提升的特性。"><a href="#let-const-沒有變數提升的這個特性，var-有變數提升的特性。" class="headerlink" title="let / const 沒有變數提升的這個特性，var 有變數提升的特性。"></a>let / const 沒有變數提升的這個特性，var 有變數提升的特性。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); &#x2F;&#x2F; Cannot access &#39;c&#39; before initialization</span><br><span class="line">let a &#x3D; 15;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 15 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-<p>使用 let 宣告的話並不會有變數提升的特性，所以在宣告之前它並不能讀取出來。</p>
-<p>相反的是 var 可以，因為 var 有變數提升的特性所以它其實是變成這樣。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">console.log(b); &#x2F;&#x2F; undefined</span><br><span class="line">var b &#x3D; 15;</span><br><span class="line">console.log(b); &#x2F;&#x2F; 15</span><br></pre></td></tr></table></figure>
-
-<p>變數提升的特性會讓 b 宣告出現在最上方，但是它的「值」會在原地立正站好，並沒有那麼的聽話呀！！</p>
-<br>
-
-<h3 id="let-const-不能再同一個區塊重複命名！！！"><a href="#let-const-不能再同一個區塊重複命名！！！" class="headerlink" title="let / const 不能再同一個區塊重複命名！！！"></a>let / const 不能再同一個區塊重複命名！！！</h3><p>var 在同一個區塊上重複宣告也沒有關係，但是 let / const 是沒有辦法的。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 5;</span><br><span class="line">var a &#x3D; 10;</span><br><span class="line">console.log(a); &#x2F;&#x2F; 10</span><br><span class="line"></span><br><span class="line">let b &#x3D; 5;</span><br><span class="line">let b &#x3D; 10; &#x2F;&#x2F; Identifier &#39;c&#39; has already been declared</span><br></pre></td></tr></table></figure>
-
-<p>在用 let 再一次宣告的時候，會先跳出 ‘c’ has already been declared 這樣的錯誤，理所當然就沒辦法 console 了。</p>
-<hr>
-<p>最後要建議所有人：不管是 var 或者 let / const，在使用變數前都要先宣告，養成良好的 coding 習慣才是第一關鍵！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/20/2020-02-20-JavaScript%EF%BC%9A%20var%E3%80%81(%20let%20,%20const%20)%20%E5%B7%AE%E7%95%B0/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -275,10 +264,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -306,7 +295,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:45:16" itemprop="dateModified" datetime="2020-03-01T16:45:16+08:00">2020-03-01</time>
+                <time title="修改時間：2020-09-28 14:45:34" itemprop="dateModified" datetime="2020-09-28T14:45:34+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -334,16 +323,14 @@
           <h1 id="CSS：base、新增子模組"><a href="#CSS：base、新增子模組" class="headerlink" title="CSS：base、新增子模組"></a>CSS：base、新增子模組</h1><h2 id="CSS：base-基底"><a href="#CSS：base-基底" class="headerlink" title="CSS：base(基底)"></a>CSS：base(基底)</h2><p>在做一個專案之前，可以觀察設計稿當中究竟有哪些共通的元素，那就可以在開發之前就建立一個基本的樣式，例如說文字的顏色，文字的間距等等…<br>那在做一個專案之前是不是能夠把這些共通的元素先設定起來？</p>
 <p><font color=#ffc000><strong>base</strong></font> 就是這樣的一個概念，base就是建立一個網站的基本樣式，如果今天你的網站標題都是 <code>#555</code> 的顏色，那就可以先把<strong>h1~h5</strong>都設定<code>#555</code>的字體顏色。</p>
 <p>雖然說base這樣的基本樣式沒辦法所有的元素都共用，但只要能滿足80%以上就能夠讓程式碼更加的簡潔了！</p>
-<h2 id="模組化概念-新增子模組"><a href="#模組化概念-新增子模組" class="headerlink" title="模組化概念 - 新增子模組"></a>模組化概念 - 新增子模組</h2><p>這個概念跟base有異曲同工之妙，在做專案的時候可能會有兩個按鈕大小都相同，可能只有顏色或是文字不同 (如下)</p>
-<p><a href="https://codepen.io/Chee7o/pen/MWYMEjQ" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn-submit&quot;&gt;</span><br><span class="line">  送出</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button class&#x3D;&quot;btn-reset&quot;&gt;</span><br><span class="line">  重置</span><br><span class="line">&lt;&#x2F;button&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  background-color: #666;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其實<code>.btn-submit .btn-reset</code>的程式碼當中有許多重複的屬性，就是因為如此所以有開發者想出了模組化的概念。<br>先建立一個<code>.btn</code>的基礎樣式，再利用新增子模組來改變他們不同的屬性。(如下)</p>
-<p><a href="https://codepen.io/Chee7o/pen/dyPBVWb" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;html</span><br><span class="line">&lt;button class&#x3D;&quot;btn btn-submit&quot;&gt;</span><br><span class="line">    送出</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;btn btn-reset&quot;&gt;</span><br><span class="line">    重置</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;css</span><br><span class="line">.btn&#123;</span><br><span class="line">  padding: 10px 15px;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.btn-submit&#123;</span><br><span class="line">  padding: 10px 30px;</span><br><span class="line">  background-color: #fc0;</span><br><span class="line">&#125;</span><br><span class="line">.btn-reset&#123;</span><br><span class="line">  background-color: #666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如上方CSS所示，藉由<code>.btn</code>來建立一個基礎樣式，那<code>.btn-submit .btn-reset</code>只要輸入他們兩個屬性上的差別就可以了，方便管理也能達到code的簡潔。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/15/2020-02-15-CSS%EF%BC%9Abase%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%90%E6%A8%A1%E7%B5%84/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -362,10 +349,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -393,7 +380,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:30:55" itemprop="dateModified" datetime="2020-03-01T16:30:55+08:00">2020-03-01</time>
+                <time title="修改時間：2020-09-28 14:45:40" itemprop="dateModified" datetime="2020-09-28T14:45:40+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -421,18 +408,14 @@
           <h1 id="變數-Variable"><a href="#變數-Variable" class="headerlink" title="變數 Variable"></a>變數 Variable</h1><p>在 scss 裡面可以使用到變數，在你時常會撰寫到的程式碼上面，可以使用到變數的功能。</p>
 <p>變數的語法是這樣： $變數名稱: 值;    (如下)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;變數設定語法</span><br><span class="line">$title-color: #666;</span><br><span class="line">$content-color: #888;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;套用變數</span><br><span class="line">.header&#123;</span><br><span class="line">  h2&#123; </span><br><span class="line">    color: $title-color;  </span><br><span class="line">  &#125;</span><br><span class="line">  p&#123;  </span><br><span class="line">    color: $content-color;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;編譯結果</span><br><span class="line">.header h2&#123;  </span><br><span class="line">  color: #666; </span><br><span class="line">&#125;</span><br><span class="line">.header p&#123;  </span><br><span class="line">  color: #888;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="常用變數"><a href="#常用變數" class="headerlink" title="常用變數"></a>常用變數</h2><p>在製作專案拿到設計稿時，可以先觀察這份設計稿有沒有什麼共通的地方，例如：字型、文字顏色等..</p>
-<p>常用的變數設定：</p>
-<p>$title-color: #444;  //預設標題顏色<br>$text-color: pink;  //預設文字顏色<br>$link-color: #000;  //文字連結樣式，多則就再加紹數字<br>$link-color-hover: #fff;  //滑鼠拖曳過後的樣式顏色<br>$font-size: 13px;  //全域字型大小，可以增加尺寸 EX: $font-size-l $font-size-m $font-size-s<br>$line-height: 1.8;  //全域行距<br>$container-width: 960px;  // 網站整體寬度<br>$font-style： Microsoft JhengHei;  //全域字型</p>
-<br>
-
-<h2 id="明亮度"><a href="#明亮度" class="headerlink" title="明亮度"></a>明亮度</h2><p>在 scss 當中可以使用 darken、lighten 來讓顏色加深或變淺。</p>
-<p><a href="https://codepen.io/Chee7o/pen/YzPoxwj" target="_blank" rel="noopener">Demo 範例</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;lighten語法</span><br><span class="line">------</span><br><span class="line">lighten(色碼,%數)</span><br><span class="line">darken(色碼,%數)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;範例</span><br><span class="line">------</span><br><span class="line">.box1&#123;</span><br><span class="line">  background-color: lighten(色碼,%數);</span><br><span class="line">&#125;</span><br><span class="line">.box3&#123;</span><br><span class="line">  background-color: darken(色碼,%數);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/31/2020-01-31-SCSS%EF%BC%9A%E8%AE%8A%E6%95%B8/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -451,10 +434,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -482,7 +465,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-08-27 16:16:30" itemprop="dateModified" datetime="2020-08-27T16:16:30+08:00">2020-08-27</time>
+                <time title="修改時間：2020-09-28 14:45:49" itemprop="dateModified" datetime="2020-09-28T14:45:49+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -512,26 +495,14 @@
 <p><a href="https://codepen.io/Chee7o/pen/zYGwrQG" target="_blank" rel="noopener">Demo</a></p>
 <p>首先我們可以先做出像這樣的圖片</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0" alt="初始照片"></p>
-<p>在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Funchecked.jpg?alt=media&token=5448e757-9c4c-483e-bf7d-c939c70ece0d" alt="unchecked"></p>
-<p>我們能夠加入一個 checkbox ， 利用 label 把 icon 裝進去，再利用 label 去指向上面的 checkbox 來達到我們的互動效果！ 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch:checked ~ .agent-callMe &#123;</span><br><span class="line">    margin-bottom: -111px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上方程式碼的意思是：當 <code>#agent-callMe-switch</code> 被選取時，<code>.agent-callMe</code> 應該有什麼樣的樣式。</p>
-<p>選取完之後就會像下方這樣</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fchecked.jpg?alt=media&token=9ed59946-5837-41f2-bb24-e423cc58585c" alt="checked"></p>
-<p>它選取時就能夠利用 <code>margin-bottom: -111px;</code> 把下方收起來，這裡就利用到了 checked 來做到了平常要利用程式才能做到的互動效果，太方便囉！</p>
-<p>但是這樣還沒有做完呢！因為上面的 checkbox 還在，這樣根本不算一個能看的畫面！接下來我們就是要把 checked 隱藏起來。 如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    opacity: 0;</span><br><span class="line">    z-index: -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>首先利用絕對定位讓 checkbox 不占空間，然後利用 <code>opacity</code> 讓它完全透明化，接著我們能夠利用 <code>z-index</code> 的效果確保我們不會點到它，因為 <code>opacity</code> 的效果只能夠讓它完全的透明，但其實還能夠點的到。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#agent-callMe-switch &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>也能夠利用 <code>visibility: hidden;</code> 來做到這個效果，這個效果跟 <code>opacity</code> 的差別就是能不能被點到，利用 <code>visibility</code> 就不用再另為加上 <code>z-index</code>。</p>
-<p>結果就會像這樣 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2F%E9%9A%B1%E8%97%8Fcheck%E5%AE%8C%E7%95%A2.jpg?alt=media&token=d7e80bf9-f875-46e7-8fa8-7e5213c042d3" alt="finish"></p>
-<p>文章就到這邊完畢啦！感謝</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/27/2020-01-27-CSS%EF%BC%9Achecked%E6%87%89%E7%94%A8/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -550,10 +521,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/22/2020-01-22-CSS%EF%BC%9A%E9%81%B8%E5%8F%96%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/22/2020-01-22-CSS%EF%BC%9A%E9%81%B8%E5%8F%96%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -581,7 +552,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-01 16:29:30" itemprop="dateModified" datetime="2020-03-01T16:29:30+08:00">2020-03-01</time>
+                <time title="修改時間：2020-09-28 14:46:05" itemprop="dateModified" datetime="2020-09-28T14:46:05+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -614,34 +585,14 @@
 <p>實用技巧如下</p>
 <p>html</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;li&gt;選單一&lt;&#x2F;li&gt;</span><br><span class="line">	&lt;li&gt;選單二&lt;&#x2F;li&gt;</span><br><span class="line">	&lt;li&gt;選單三&lt;&#x2F;li&gt;</span><br><span class="line">	&lt;li&gt;選單四&lt;&#x2F;li&gt;	</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;</span><br><span class="line">	margin: 100px;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">li &#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	padding: 10px;</span><br><span class="line">&#125;</span><br><span class="line">li + li&#123;</span><br><span class="line">	border-left: 1px solid #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<p>結果如下</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E5%A6%B9%E5%A6%B9%E9%81%B8%E5%8F%96%E5%99%A8.jpg?alt=media&token=557fcb9c-d911-479d-85e9-1f981d99887e" alt="親代選取器圖片"></p>
-<br/>
-
-<p>這樣就可以解決很多不想要左右邊有框線，或是左右邊有 margin 之類的問題了！</p>
-<br/>
-
-<h2 id="『-』選取器-1"><a href="#『-』選取器-1" class="headerlink" title="『~』選取器"></a>『~』選取器</h2><br/>
-
-
-<p>『~』選取器可以選取對象 A 同層後方的所有 B 選取器，舉例如下</p>
-<p>html</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;標題&lt;&#x2F;h1&gt;</span><br><span class="line">&lt;p&gt;段落1&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;段落2&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;段落3&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p&gt;段落4&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
-
-<p>css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1 ~ p &#123;</span><br><span class="line">	color: #ff0000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://codepen.io/Chee7o/pen/oNgmZXv" target="_blank" rel="noopener">codePen範例</a></p>
-<p>結果如下</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E3%80%8E~%E3%80%8F%E9%81%B8%E5%8F%96%E5%99%A8.jpg?alt=media&token=1b4a0c45-6b04-44aa-acb6-7f31fab66e4b" alt="~選取器"></p>
-<p>可以選取所有 h1 後面的 p 段落！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/22/2020-01-22-CSS%EF%BC%9A%E9%81%B8%E5%8F%96%E5%99%A8/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -660,10 +611,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -691,7 +642,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-08-27 16:13:44" itemprop="dateModified" datetime="2020-08-27T16:13:44+08:00">2020-08-27</time>
+                <time title="修改時間：2020-09-28 14:45:54" itemprop="dateModified" datetime="2020-09-28T14:45:54+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -721,40 +672,14 @@
 <p>this可以選取自己點選、選取的元素</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  $(&#39;.menu li&#39;).click(function(event) &#123;</span><br><span class="line">    &#x2F;* Act on the event *&#x2F;</span><br><span class="line">    $(this).addClass(&#39;active&#39;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>假設 menu li 裡面有很多個 li，上方程式碼的意思是你點選了 .menu li 的話，<br>你點選的那個li就會增加active這個class。</p>
-<br/>
-
-<h2 id="parent-操控父元素"><a href="#parent-操控父元素" class="headerlink" title="parent() 操控父元素"></a>parent() 操控父元素</h2><br/>
-
-<p>parent() 是能夠在現在指定的元素裡面往它的上面一層找。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul &gt;</span><br><span class="line">  &lt;li&gt;&lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; value&#x3D;&quot;加入購物車&quot;&gt;吹風機&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果指定的是.btn的話，那就可以利用parent()去操控父元素(li)。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.btn&#39;).click(function(e)) &#123;</span><br><span class="line">  $(this).parent().addClass(&#39;active&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>這段程式碼意思是點選.btn的時候，你點選的那個.btn就會往它的父元素(li)去增加一個active的class。</p>
-<br/>
-
-<h2 id="siblings-操控自身之外的同層元素"><a href="#siblings-操控自身之外的同層元素" class="headerlink" title="siblings() 操控自身之外的同層元素"></a>siblings() 操控自身之外的同層元素</h2><br/>
-
-<p>siblings() 可以選取自己之外的所有同層元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class&#x3D;&quot;menu&quot;&gt;</span><br><span class="line">  &lt;li&gt;選單1&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單2&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單3&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單4&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單5&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;li&gt;選單6&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例子，我指定 選單3 的話，那用 siblings()就能夠選取除了 選單3 以外的所有li。</p>
-<p>如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.menu li&#39;).click(function(event) &#123;</span><br><span class="line">  $(this).addClass(&#39;active&#39;).siblings().removeClass(&#39;active&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例，我點選 選單3 之後，我加入了一個active的Class，接著我利用siblings()選取 選單3 之外的所有li，移除了它們的active的Class。</p>
-<br/>
-
-<h2 id="find-操控子元素"><a href="#find-操控子元素" class="headerlink" title="find() 操控子元素"></a>find() 操控子元素</h2><br/>
-
-<p>find() 是能夠在現在指定的元素裡面往它的下面一層找。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul &gt;</span><br><span class="line">  &lt;li&gt;&lt;input type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; value&#x3D;&quot;加入購物車&quot;&gt;吹風機&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例，我如果點選到li的區塊，利用find()也能夠選取到裡面的.btn。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;li&#39;).click(function(event) &#123;</span><br><span class="line">  $(this).find(&#39;.btn&#39;).addClass(&#39;active&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以上方程式碼為例，如果指令了li的區塊，他會往下一層尋找.btn的元素，如果有他會增加一個active的class。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/22/2020-01-22-jQuery%EF%BC%9A%E6%93%8D%E6%8E%A7%E7%B6%B2%E9%A0%81%E5%85%83%E7%B4%A0/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -773,10 +698,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/21/2020-01-21-jQuery%EF%BC%9Aon%20%E8%88%87%20click%20%E5%B7%AE%E5%88%A5/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/21/2020-01-21-jQuery%EF%BC%9Aon%20%E8%88%87%20click%20%E5%B7%AE%E5%88%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -796,10 +721,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-01-21 15:44:51 / 修改時間：16:13:19" itemprop="dateCreated datePublished" datetime="2020-01-21T15:44:51+08:00">2020-01-21</time>
+              <time title="創建時間：2020-01-21 15:44:51" itemprop="dateCreated datePublished" datetime="2020-01-21T15:44:51+08:00">2020-01-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:46:14" itemprop="dateModified" datetime="2020-09-28T14:46:14+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -823,32 +754,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="on與click的差別"><a href="#on與click的差別" class="headerlink" title="on與click的差別"></a>on與click的差別</h1><br/>
-
-<p>在jQuery當中，時常會使用到 on、click 這兩種方式來操控你要的DOM，那兩者差別在哪？</p>
-<h2 id="click"><a href="#click" class="headerlink" title="click"></a>click</h2><p>click只會對現在html裡面你指定的元素有效。</p>
-<p>假設html環境如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;wrap&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;box1&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;box2&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js環境如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.alertBtn&#39;).click(function (e) &#123; </span><br><span class="line">  e.preventDefault();</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br></pre></td></tr></table></figure>
-
-<p>以這個假設的環境來說的話，因為click的事件是在.box1新增button之前所設定，所以如果點擊 <font color=#CCCCFF><strong>jQuery通知</strong></font> 這個按鈕就不會執行alert。<br>但是如果把 <font color=#CCCCFF><strong>jQuery通知</strong></font> 放到click事件之前 (如下)，那 <font color=#CCCCFF><strong>jQuery通知</strong></font> 就能夠執行alert。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br><span class="line"></span><br><span class="line">$(&#39;.alertBtn&#39;).click(function (e) &#123; </span><br><span class="line">  e.preventDefault();</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<h2 id="on"><a href="#on" class="headerlink" title="on"></a>on</h2><br/>
-
-<p>on就像是監聽，他可以隨時監控你的行為，就算是後來才用jQuery、JS新增的標籤它都會隨時保持關注。</p>
-<p>所以你不管是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.wrap&#39;).on(&#39;click&#39;, &#39;.alertBtn&#39;, function () &#123;</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br></pre></td></tr></table></figure>
-
-<p>或者是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.box1&#39;).html(&#39;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;jQuery通知&quot; class&#x3D;&quot;alertBtn&quot;&gt;&#39;);</span><br><span class="line"></span><br><span class="line">$(&#39;.wrap&#39;).on(&#39;click&#39;, &#39;.alertBtn&#39;, function () &#123;</span><br><span class="line">  alert(&#39;通知出現&#39;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>順序不管是怎麼放它都有辦法監聽到，而且on所佔的記憶體還比click還少唷！</p>
-
+          <h1 id="on與click的差別"><a href="#on與click的差別" class="headerlink" title="on與click的差別"></a>on與click的差別</h1><p>在jQuery當中，時常會使用到 on、click 這兩種方式來操控你要的DOM，那兩者差別在哪？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/21/2020-01-21-jQuery%EF%BC%9Aon%20%E8%88%87%20click%20%E5%B7%AE%E5%88%A5/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -867,10 +781,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -898,7 +812,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-08-27 16:14:45" itemprop="dateModified" datetime="2020-08-27T16:14:45+08:00">2020-08-27</time>
+                <time title="修改時間：2020-09-28 14:46:21" itemprop="dateModified" datetime="2020-09-28T14:46:21+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -932,12 +846,14 @@
 <br/>
 
 <p>這個效果是讓滑鼠hover到box的時候，讓title滑動出來的 transition 特效。</p>
-<p>CSS如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">      position: relative;</span><br><span class="line">      margin: 0 auto;</span><br><span class="line">      width: 350px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      border: 2px solid #ccc;</span><br><span class="line">      overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .box:hover .title &#123;</span><br><span class="line">      left: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .title &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      left: -45px;</span><br><span class="line">      height: 100%;</span><br><span class="line">      background-color: brown;</span><br><span class="line">      color: rgb(233, 233, 233);</span><br><span class="line">      padding: 0 12px;</span><br><span class="line">      -webkit-writing-mode: vertical-lr;</span><br><span class="line">      writing-mode: vertical-lr;</span><br><span class="line">      text-align: center;</span><br><span class="line">      font-weight: bold;</span><br><span class="line">      letter-spacing: 2px;</span><br><span class="line">      transition: all 1.5s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>這段程式碼是利用<strong>絕對定位</strong>把.title轉移到.box之外的位置，再利用<strong>overflow</strong>可以隱藏超出區塊外內容的特性，先把.title區塊隱藏到.box之外，然後利用hover讓滑鼠滑到.box的時候.title會出現。</p>
-<p>接著利用transition讓他產生動畫，這樣就能產生滑動的效果了！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/20/2020-01-20-CSS%EF%BC%9Aoverflow%20%E6%90%AD%E9%85%8D%20css%20transition/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -956,10 +872,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -987,7 +903,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-08-27 16:14:27" itemprop="dateModified" datetime="2020-08-27T16:14:27+08:00">2020-08-27</time>
+                <time title="修改時間：2020-09-28 14:46:30" itemprop="dateModified" datetime="2020-09-28T14:46:30+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1012,9 +928,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="利用toggleClass搭配CSS做效果優化網站效能！"><a href="#利用toggleClass搭配CSS做效果優化網站效能！" class="headerlink" title="利用toggleClass搭配CSS做效果優化網站效能！"></a>利用toggleClass搭配CSS做效果優化網站效能！</h1><br/>
-
-<p>jQuery雖然本來就可以直接用fadeToggle、slideToggle等.. 做效果，但是這樣的形式沒辦法讓網頁效能保持得很好，這時候就可以試試看用jQuery的toggleClass搭配CSS做一些效果吧！</p>
+          <h1 id="利用toggleClass搭配CSS做效果優化網站效能！"><a href="#利用toggleClass搭配CSS做效果優化網站效能！" class="headerlink" title="利用toggleClass搭配CSS做效果優化網站效能！"></a>利用toggleClass搭配CSS做效果優化網站效能！</h1><p>jQuery雖然本來就可以直接用fadeToggle、slideToggle等.. 做效果，但是這樣的形式沒辦法讓網頁效能保持得很好，這時候就可以試試看用jQuery的toggleClass搭配CSS做一些效果吧！</p>
 <br/>
 
 <h2 id="toggleClass-開關效果"><a href="#toggleClass-開關效果" class="headerlink" title="toggleClass 開關效果"></a>toggleClass 開關效果</h2><br/>
@@ -1023,45 +937,14 @@
 <br/>
 
 <p>toggleClass是可以在class裡面增加、刪除一個class，如果裡面有這個class就會刪除，反之增加。<br><br/></p>
-<p>Html、CSS 程式碼範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;開關&quot; class&#x3D;&quot;btn&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class&#x3D;&quot;text&quot;&gt;</span><br><span class="line">    內容...</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>CSS如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  width: 60px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  border: 2px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.text&#123;</span><br><span class="line">  display: none;</span><br><span class="line">  width: 500px;</span><br><span class="line">&#125;</span><br><span class="line">.text.active&#123;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上方這段程式碼我有一個開關的按鈕，還有一個.text的區塊，假如一開始我預設.text是 display: none 的狀態下，要如何利用jQuery搭配CSS來開啟他呢？</p>
-<br/>
-
-<p>那就可以利用jQuery的toggleClass功能。</p>
-<p>(如下)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function () &#123;</span><br><span class="line">  $(&#39;.btn&#39;).click(function (e) &#123; </span><br><span class="line">    e.preventDefault();</span><br><span class="line">    $(&#39;.text&#39;).toggleClass(&#39;active&#39;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>這段程式碼意思是按下btn的時候會執行toggleClass的動作，所以利用CSS選擇器的權重在.text裡面再新增一個.active的class就會把本來display:none變成display:block，這樣就能夠達到開關的效果了！</p>
-<blockquote>
-<p><a href="https://ithelp.ithome.com.tw/articles/10196454" target="_blank" rel="noopener">CSS權重觀念參考文章</a> </p>
-</blockquote>
-<BR/>
-
-<h2 id="淡進淡出"><a href="#淡進淡出" class="headerlink" title="淡進淡出"></a>淡進淡出</h2><BR/>
-
-<p><a href="https://codepen.io/Chee7o/pen/Jjoebwa" target="_blank" rel="noopener">codePen 淡進淡出參考</a></p>
-<BR/>
-
-<p>淡進淡出是 toggleClass 開關效果的延伸利用，但是用CSS淡進淡出卻沒辦法讓區塊消失。<br>所以會把display:none/block刪除，因為把display留著沒辦法做出transition的動畫效果，之後新增opacity屬性，再利用transition動畫化！</p>
-<p>只有CSS有差異。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  width: 60px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  border: 2px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.text&#123;</span><br><span class="line">  width: 500px;</span><br><span class="line">  opacity: 0;</span><br><span class="line">  transition: all .5s;</span><br><span class="line">&#125;</span><br><span class="line">.text.active&#123;</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br/>
-
-<h2 id="slide效果"><a href="#slide效果" class="headerlink" title="slide效果"></a>slide效果</h2><BR/>
-
-<p><a href="https://codepen.io/Chee7o/pen/XWJypmB" target="_blank" rel="noopener">codePen slide參考</a></p>
-<BR/>
-
-<p>slide效果是把整個區塊的height調整到0，然後利用overflow:hidden把區塊裡面的內容都隱藏起來，接著利用toggleClass把.active加入到.text裡面，讓整個區塊的高度回復，接著利用transition讓整個流程動畫化。</p>
-<p>只有CSS有差異。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.btn&#123;</span><br><span class="line">  width: 60px;</span><br><span class="line">  height: 40px;</span><br><span class="line">  border: 2px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.text&#123;</span><br><span class="line">  width: 500px;</span><br><span class="line">  height: 0;</span><br><span class="line">  transition: all .5s;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.text.active&#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/18/2020-01-18-jQuery%EF%BC%9A%E5%88%A9%E7%94%A8toggleClass%E6%90%AD%E9%85%8DCSS%E5%81%9A%E5%87%BA%E5%8B%95%E7%95%AB%E6%95%88%E6%9E%9C/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1080,10 +963,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/01/17/2020-01-17-Git%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -1393,6 +1276,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -1406,15 +1291,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -1444,7 +1344,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -1470,7 +1370,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>

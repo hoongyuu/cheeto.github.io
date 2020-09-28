@@ -19,9 +19,9 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://cheeto.github.io').hostname,
+    hostname: new URL('https://hoongyuu.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -49,7 +49,7 @@
   <meta name="description" content="Cheeto 的學習部落格">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cheeto">
-<meta property="og:url" content="https://cheeto.github.io/page/3/index.html">
+<meta property="og:url" content="https://hoongyuu.github.io/page/3/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="Cheeto 的學習部落格">
 <meta property="og:locale" content="zh_TW">
@@ -57,7 +57,7 @@
 <meta property="article:tag" content="Cheeto&#39;s blog">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cheeto.github.io/page/3/">
+<link rel="canonical" href="https://hoongyuu.github.io/page/3/">
 
 
 <script id="page-configurations">
@@ -138,6 +138,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
@@ -169,10 +179,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -200,7 +210,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-09 16:55:29" itemprop="dateModified" datetime="2020-03-09T16:55:29+08:00">2020-03-09</time>
+                <time title="修改時間：2020-09-28 14:43:20" itemprop="dateModified" datetime="2020-09-28T14:43:20+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,42 +242,14 @@
 </ol>
 <h2 id="語法"><a href="#語法" class="headerlink" title="語法"></a>語法</h2><p>一般的函式是這樣子寫的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>那立即函式的語法就像這樣 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">(function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-
-<p>如果我們再次把它叫出來會發生什麼事呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;());</span><br><span class="line">IIFE();</span><br></pre></td></tr></table></figure>
-
-<p>呈現結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F%E5%86%8D%E6%AC%A1%E5%AE%A3%E5%91%8A.jpg?alt=media&token=d2f596a5-2ae1-4793-92ac-cee20cc0fae9" alt="立即函式再次呼叫"></p>
-<p>因為立即函式<strong>無法在函式外被再次執行</strong></p>
-<br>
-
-<p>立即函式就算不給它名稱也能夠執行，大部分的立即函式都不需要名稱的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(function ()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;把函式內的括號放到外面也能夠執行</span><br><span class="line"></span><br><span class="line">(function ()&#123;</span><br><span class="line">    console.log(&#39;把函式內的括號放到外面也能夠執行&#39;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F%E5%90%8D%E7%A8%B1%E5%95%8F%E9%A1%8C.jpg?alt=media&token=089bb9fc-1e96-42d6-9dc0-90e5f09edc56" alt="立即函式名稱問題"></p>
-<h2 id="立即函式用途"><a href="#立即函式用途" class="headerlink" title="立即函式用途"></a>立即函式用途</h2><ol>
-<li>限制變數的作用域</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function ()&#123;</span><br><span class="line">    var Ming &#x3D; &#39;小明&#39;;</span><br><span class="line">    console.log(Ming); &#x2F;&#x2F;小明</span><br><span class="line">&#125;)();</span><br><span class="line">console.log(Ming); &#x2F;&#x2F;not defined</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>可以帶入參數</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function (where)&#123;</span><br><span class="line">    console.log(where)</span><br><span class="line">&#125;)(&#39;小明在此&#39;);  &#x2F;&#x2F; 回傳 &#39;小明在此&#39;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>return 後可以帶入變數</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var whereMing &#x3D; (function (where) &#123;</span><br><span class="line">    console.log(where)</span><br><span class="line">    return where;</span><br><span class="line">&#125;)(&#39;小明在此&#39;); &#x2F;&#x2F; 回傳 &#39;小明在此&#39;</span><br><span class="line"></span><br><span class="line">console.log(whereMing); &#x2F;&#x2F; 回傳 &#39;小明在此&#39;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>立即函式間的傳遞</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;&#125;;</span><br><span class="line">(function (b)&#123;</span><br><span class="line">    b.name &#x3D; &#39;小明&#39;;</span><br><span class="line">&#125;(a));</span><br><span class="line"></span><br><span class="line">(function (c)&#123;</span><br><span class="line">    console.log(c.name); &#x2F;&#x2F; 回傳 &#39;小明&#39;</span><br><span class="line">&#125;(a));</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -286,10 +268,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -317,7 +299,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-09 16:41:36" itemprop="dateModified" datetime="2020-03-09T16:41:36+08:00">2020-03-09</time>
+                <time title="修改時間：2020-09-28 14:43:31" itemprop="dateModified" datetime="2020-09-28T14:43:31+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -347,22 +329,14 @@
 <p>結果會呈現 ↓</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E7%B5%90%E6%A7%8B.jpg?alt=media&token=ee48e915-6932-4110-a850-8d8cc82f4569" alt="函式結構"></p>
 <p>function 有預設一個回傳的<strong>值</strong>，所以它能夠被當作表達式來用。</p>
-<br>
-
-<p>當我們使用 <code>function</code> 去宣告一個字詞的時候，這個字詞就會變成一段函式，它就能夠有下列三種特性。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F.jpg?alt=media&token=8b8a8324-d127-4eeb-8a2d-d15185c02c7c" alt="什麼是函式"></p>
-<p>函式的名稱是選用的，意思就是可以有名稱也可以沒有，有名稱的稱為「<strong>具名函式</strong>」；沒名稱的稱為「<strong>匿名函式</strong>」。</p>
-<h2 id="函式-陳述式、表達式"><a href="#函式-陳述式、表達式" class="headerlink" title="函式 ( 陳述式、表達式 )"></a>函式 ( 陳述式、表達式 )</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function functionA() &#123;</span><br><span class="line">    console.log(&#39;函式陳述式&#39;, &#39;具名函式&#39;);</span><br><span class="line">    console.log(functionA);</span><br><span class="line">&#125;</span><br><span class="line">functionA();</span><br><span class="line"></span><br><span class="line">var functionB &#x3D; function() &#123;</span><br><span class="line">	console.log(&#39;函式表達式&#39;, &#39;匿名函式&#39;);</span><br><span class="line">	console.log(functionB);</span><br><span class="line">&#125;</span><br><span class="line">functionB();</span><br></pre></td></tr></table></figure>
-
-<p>結果會呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F(%E9%99%B3%E8%BF%B0%E5%BC%8F%E3%80%81%E8%A1%A8%E9%81%94%E5%BC%8F).jpg?alt=media&token=a74c29eb-f405-4ddd-b26c-5bd9b854cd9e" alt="函式 ( 陳述式、表達式 )"></p>
-<h3 id="函式表達式也能用具名函式"><a href="#函式表達式也能用具名函式" class="headerlink" title="函式表達式也能用具名函式"></a>函式表達式也能用具名函式</h3><p>用函式表達式也能夠使用具名函式，但是只能在函式內被調用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var functionC &#x3D; function functionD() &#123;</span><br><span class="line">     console.log(functionC ,functionD);</span><br><span class="line">&#125;</span><br><span class="line">functionC();</span><br><span class="line">console.log(functionD); &#x2F;&#x2F; functionD is not defined</span><br></pre></td></tr></table></figure>
-
-<p>結果會呈現 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E8%A1%A8%E9%81%94%E5%BC%8F(%E5%85%B7%E5%90%8D%E5%87%BD%E5%BC%8F).jpg?alt=media&token=68368f28-92b7-4d51-90cd-08105eaf39de" alt="函式表達式(具名函式)"></p>
-<p>會 <code>not defined</code> 是因為，<strong>函式表達式(具名函式)只能在函式內被調用！！！</strong></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -381,10 +355,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -404,10 +378,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-06 18:33:22 / 修改時間：18:33:21" itemprop="dateCreated datePublished" datetime="2020-03-06T18:33:22+08:00">2020-03-06</time>
+              <time title="創建時間：2020-03-06 18:33:22" itemprop="dateCreated datePublished" datetime="2020-03-06T18:33:22+08:00">2020-03-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:44" itemprop="dateModified" datetime="2020-09-28T14:43:44+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -434,38 +414,14 @@
           <h1 id="淺層複製及深層複製"><a href="#淺層複製及深層複製" class="headerlink" title="淺層複製及深層複製"></a>淺層複製及深層複製</h1><h2 id="淺層複製-Shallow-Copy"><a href="#淺層複製-Shallow-Copy" class="headerlink" title="淺層複製 (Shallow Copy)"></a>淺層複製 (Shallow Copy)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  console.log(key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D.jpg?alt=media&token=30901fad-8369-4e1c-8cfd-e2af59d82567" alt="淺拷貝"></p>
-<p>這裡可以看到 <code>key</code> 的值其實就是 <code>family</code> 的第一層屬性。</p>
-<p>所以我們可以利用這種方式做到第一層的複製。 如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  newFamily[key] &#x3D; family[key];</span><br><span class="line">&#125;</span><br><span class="line">console.log(newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>這樣就可以利用 <code>key</code>  依序把第一層的屬性 <code>name</code>,<code>members</code> 取出來放到 <code>newFamily</code> 裡面。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D2.jpg?alt=media&token=9906bd33-c66b-4eb4-997d-f5ffc1abe901" alt="淺拷貝2"></p>
-<p>這裡 <code>family</code> 跟 <code>newFamily</code> 就不會是在同一個位址上，我們可以換一種方式來測試。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  newFamily[key] &#x3D; family[key];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newFamily.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">console.log(family);</span><br><span class="line">console.log(newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>會出現下面這樣的結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D3.jpg?alt=media&token=194a33ef-e39b-4f5c-9c8d-83f468438c92" alt="淺拷貝3"></p>
-<p>由此可知它們已經完全沒有關係了。((但是只限第一層喔！</p>
-<p>原因是為什麼呢？ 我們接著看下去 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  newFamily[key] &#x3D; family[key];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newFamily.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">newFamily.members.ming &#x3D; &#39;杰倫&#39;;</span><br><span class="line">console.log(family);</span><br><span class="line">console.log(newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>結果如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D4.jpg?alt=media&token=55bbec2d-e57b-443e-b6db-50cc15996892" alt="淺拷貝4"></p>
-<p>原因是 <code>newFamily</code> 宣告了新物件也把 <code>family</code> 第一層的屬性依序加進去，但是 <code>members</code> 本來就是一個物件了！所以你把 <code>members</code> 丟到 <code>newFamily</code> 其實也是把一個參考位址丟過去。(在 ‘取值&amp;取址’章節 有講到)</p>
-<p>這種方式就叫做「淺層複製」也能稱為「淺拷貝」。</p>
-<p>上面講的是基本原理，現在除了 <code>for in</code> 之外也有其他方法可以很快速的做出這樣的淺層複製，讓我們繼續看下去。</p>
-<p>第一種是利用 jQuery 的方式，語法如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newFamily &#x3D; jQuery.extend(&#123;&#125;, family);</span><br></pre></td></tr></table></figure>
-
-<p>第二種是新的 ES6 才有的語法 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newFamily &#x3D; Object.assign(&#123;&#125;, family);</span><br></pre></td></tr></table></figure>
-
-<p>上述的兩種方法都能夠做到淺層複製的效果喔！</p>
-<h2 id="深層複製-deep-copy"><a href="#深層複製-deep-copy" class="headerlink" title="深層複製 (deep copy)"></a>深層複製 (deep copy)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 深層複製語法 ↓</span><br><span class="line">var newFamily &#x3D; JSON.parse(JSON.stringify(family));</span><br><span class="line"></span><br><span class="line">newFamily.name &#x3D; &#39;杰倫家&#39;;</span><br><span class="line">newFamily.members.ming &#x3D; &#39;杰倫&#39;;</span><br><span class="line">console.log(family)</span><br><span class="line">console.log(newFamily);</span><br><span class="line">console.log(family &#x3D;&#x3D;&#x3D; newFamily);</span><br></pre></td></tr></table></figure>
-
-<p>原理是把 <code>family</code> 裡面的所有東西轉成字串之後，本身的記憶體參考位址會消失，然後再轉回物件的時候，又會再指向新的一個記憶體參考位址。</p>
-<p>所以利用著這個方式就可以做到「深層複製」也能稱為「深拷貝」。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -484,10 +440,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -507,10 +463,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-06 13:50:58 / 修改時間：13:49:10" itemprop="dateCreated datePublished" datetime="2020-03-06T13:50:58+08:00">2020-03-06</time>
+              <time title="創建時間：2020-03-06 13:50:58" itemprop="dateCreated datePublished" datetime="2020-03-06T13:50:58+08:00">2020-03-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:51" itemprop="dateModified" datetime="2020-09-28T14:43:51+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -538,20 +500,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;x: 1&#125;;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">a.y &#x3D; a &#x3D; &#123;x: 2&#125;;</span><br><span class="line">console.log(a.y);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
 
 <p>接下來就一步一步的來看看傳址的運作邏輯吧！</p>
-<h2 id="第一步驟"><a href="#第一步驟" class="headerlink" title="第一步驟"></a>第一步驟</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;x: 1&#125;;</span><br><span class="line">var b &#x3D; a;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E7%AC%AC%E4%B8%80%E6%AD%A5%E9%A9%9F.jpg?alt=media&token=31b2216e-0374-40f6-9d7c-d9d8a9623a1b" alt="傳址第一步驟"></p>
-<p>因為物件型別是傳址的特性，所以 <code>var b = a;</code> 時是指向同一個位址。</p>
-<h2 id="第二步驟"><a href="#第二步驟" class="headerlink" title="第二步驟"></a>第二步驟</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.y &#x3D; a &#x3D; &#123;x: 2&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E7%AC%AC%E4%BA%8C%E6%AD%A5%E9%A9%9F.jpg?alt=media&token=0ae02b66-c688-44ce-bfba-9d15bb6ee04d" alt="傳址第二步驟"></p>
-<p>雖然 =(等號) 的<a href="https://hoongyuu.github.io/cheeto.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/" target="_blank" rel="noopener">相依性</a>是由右至左，但<code>a.y = a = {x: 2};</code>是同時運行的，所以 <code>a.y</code> 和 <code>a</code> 都會指向同一個位址。</p>
-<h2 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a.y);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>這邊可以由第二步驟看到，由於 <code>a</code> 已經指向 <code>0x02</code> 的位址，裡面並沒有 <code>y</code> 這個屬性，所以會回傳 undefined。<br>而第二步驟時 <code>a.y = a = {x: 2};</code> 裡面的 <code>a.y = {x: 2};</code> 其實也可以等於 <code>b.y = {x: 2};</code>，因為它們在這時還是同一個參考位址。</p>
-<p>所以就會產生下列這樣的結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E9%81%8B%E4%BD%9C%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=d99fcb34-44a3-4352-8291-4bc7d87e5f7c" alt="物件運作測試"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -570,10 +526,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -593,10 +549,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-06 13:47:58 / 修改時間：13:48:11" itemprop="dateCreated datePublished" datetime="2020-03-06T13:47:58+08:00">2020-03-06</time>
+              <time title="創建時間：2020-03-06 13:47:58" itemprop="dateCreated datePublished" datetime="2020-03-06T13:47:58+08:00">2020-03-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:37" itemprop="dateModified" datetime="2020-09-28T14:43:37+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -629,25 +591,14 @@
 <p>這邊可以看到 <code>b = a</code> 但是<code>a</code>的值改變了之後<code>b</code>卻維持在原位，這是因為<strong>基本型別</strong>的傳遞是利用複製的，所以 <code>b = a</code> 的值是複製<code>a</code>的值而已。</p>
 <p>可以看作<code>a</code>、<code>b</code>兩個都是不同的個體。</p>
 <p>所以之後<code>a</code>不管做了什麼樣的更新，都跟<code>b</code>不會有任何的關係。這種方式稱為「<strong>傳值</strong>」。</p>
-<h2 id="傳址"><a href="#傳址" class="headerlink" title="傳址"></a>傳址</h2><p>所有的物件型別都是「傳址」。接下來就讓我們來看看什麼是傳址吧！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;,</span><br><span class="line">    money: 1000</span><br><span class="line">&#125;;</span><br><span class="line">var person2 &#x3D; person;</span><br><span class="line">person2.name &#x3D; &#39;杰倫&#39;;</span><br></pre></td></tr></table></figure>
-
-<p>會變成下面這樣 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=9d153fa4-67ae-4e91-bc8b-63fb2695b450" alt="傳址測試"></p>
-<p>為什麼會有這樣的變動呢？我們用下面這個圖片來解釋：</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%80.jpg?alt=media&token=d445d522-5b54-4013-8435-9dce192efb59" alt="傳址"></p>
-<p><code>var person2 = person</code> 的時候，<code>person</code> 其實是把記憶體參考位址傳給了 <code>person2</code>，因為它們都是同一個位址，所以就算 <code>person2</code> 把記憶體參考位址的東西變動了，在同一個位址的 <code>person</code> 也當然會跟著變動了。</p>
-<p>而這種方式就稱為「<strong>傳址</strong>」。</p>
-<br>
-
-<p>接下來我們看下一個範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;;</span><br><span class="line">var person2 &#x3D; person;</span><br><span class="line">person2 &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;</span><br><span class="line">console.log(person &#x3D;&#x3D; person2); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
-
-<p>讓我們用下圖解釋為什麼會這樣</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%82%B3%E5%9D%802.jpg?alt=media&token=4dc7d4d6-4b0e-46fd-90b5-0ae0cf8c40c5" alt="傳址2"></p>
-<p>這邊可以看到如果 <code>person2</code> 指向一個新的物件的話，它其實會傳入一個新的位址上。</p>
-<p>這時候 <code>person</code> 跟 <code>person2</code> 就不會有任何關聯了。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -666,10 +617,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -689,10 +640,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-05 20:03:40 / 修改時間：20:04:19" itemprop="dateCreated datePublished" datetime="2020-03-05T20:03:40+08:00">2020-03-05</time>
+              <time title="創建時間：2020-03-05 20:03:40" itemprop="dateCreated datePublished" datetime="2020-03-05T20:03:40+08:00">2020-03-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:44:18" itemprop="dateModified" datetime="2020-09-28T14:44:18+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -724,22 +681,14 @@
 
 <p>這邊會回傳這樣 ↓</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7.jpg?alt=media&token=83f55d92-3526-4f69-94fb-82505d0717ee" alt="未定義物件屬性"></p>
-<p>它會跳錯是因為你不能對一個未定義的屬性再增加一個屬性進去。</p>
-<p>如果我們想要解決這個問題可以這樣</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    ming: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">family.ming.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(family);</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.ming &#x3D; &#123;</span><br><span class="line">    name: &#39;小明&#39;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(family);</span><br></pre></td></tr></table></figure>
-
-<p>結果都會如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95.jpg?alt=media&token=f719539f-fac1-4ce2-8936-20665d88f229" alt="未定義物件解決"></p>
-<br>
-
-<p>如果我們對 name 進行設定的話呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.name.my &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(family.name); &#x2F;&#x2F; 小明家</span><br></pre></td></tr></table></figure>
-
-<p>這邊為什麼不能加呢？因為純值無法新增屬性！！！詳情請點<a href="https://hoongyuu.github.io/cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC" target="_blank" rel="noopener">這裡</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%9A%84%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E9%A0%90%E8%A8%AD%E5%80%BC/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -758,10 +707,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E8%AE%8A%E6%95%B8%E5%8F%8A%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E7%9A%84%E5%B7%AE%E7%95%B0/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E8%AE%8A%E6%95%B8%E5%8F%8A%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E7%9A%84%E5%B7%AE%E7%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -781,10 +730,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-05 16:44:58 / 修改時間：16:24:31" itemprop="dateCreated datePublished" datetime="2020-03-05T16:44:58+08:00">2020-03-05</time>
+              <time title="創建時間：2020-03-05 16:44:58" itemprop="dateCreated datePublished" datetime="2020-03-05T16:44:58+08:00">2020-03-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:57" itemprop="dateModified" datetime="2020-09-28T14:43:57+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -813,12 +768,14 @@
 <p>這邊執行 window 會發現 a、b 都在 window 裡面。</p>
 <p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E8%AE%8A%E6%95%B8%E8%88%87%E5%B1%AC%E6%80%A7%E5%B7%AE%E7%95%B0.jpg?alt=media&token=5425e25f-c9b8-4675-8a27-92259b5941bc" alt="變數與屬性差異"></p>
 <p>但是這兩種語法是有差別的，a 在 window 裡面它是變數，但是 b 則是屬性。那這兩者的差別又在於「<strong>變數無法被刪除，屬性可以</strong>」。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">b &#x3D; 2;</span><br><span class="line"></span><br><span class="line">delete a;</span><br><span class="line">delete b;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 看看 a, b 是否還存在</span><br><span class="line">console.log(a);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E8%AE%8A%E6%95%B8%E8%88%87%E5%B1%AC%E6%80%A7%E5%88%AA%E9%99%A4.jpg?alt=media&token=6bcf1f53-2157-4ce0-8946-7bb570336628" alt="變數與屬性刪除"></p>
-<p>在下方也可以看到兩者的差異</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E8%A3%9C%E5%85%85%E8%AE%8A%E6%95%B8%E8%88%87%E5%B1%AC%E6%80%A7.jpg?alt=media&token=2be297aa-b743-4b6a-8c14-138eb1bfa3f3" alt="補充"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E8%AE%8A%E6%95%B8%E5%8F%8A%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E7%9A%84%E5%B7%AE%E7%95%B0/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -837,10 +794,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -860,10 +817,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-05 15:44:58 / 修改時間：15:45:33" itemprop="dateCreated datePublished" datetime="2020-03-05T15:44:58+08:00">2020-03-05</time>
+              <time title="創建時間：2020-03-05 15:44:58" itemprop="dateCreated datePublished" datetime="2020-03-05T15:44:58+08:00">2020-03-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:44:03" itemprop="dateModified" datetime="2020-09-28T14:44:03+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -891,41 +854,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var newString &#x3D; &#39;小明家&#39;;</span><br><span class="line">newString.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(newString) &#x2F;&#x2F; 小明家</span><br></pre></td></tr></table></figure>
 
 <p>因純值無法新增屬性，所以 newString 還是會維持本來的字串，不會做任何的修改。</p>
-<br>
-
-<p>現在我們來看第二個範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newString &#x3D; new String(&#39;小明家&#39;);</span><br><span class="line">newString.name &#x3D; &#39;小明家&#39;;</span><br><span class="line"></span><br><span class="line">console.log(newString)</span><br></pre></td></tr></table></figure>
-
-<p>會顯示如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8C%85%E8%A3%B9%E7%89%A9%E4%BB%B6%E7%AF%84%E4%BE%8B.jpg?alt=media&token=c3b2b553-4def-4fb7-83ea-009261022054" alt="包裹物件範例"></p>
-<p>因為包裹物件本來就會讓值轉為物件，所以 newString 自然就變為物件型別了，物件型別當然就能夠新增屬性啦！</p>
-<br>
-
-<p>再來我們看到陣列的範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; [1, 2, 3];</span><br><span class="line">newArray.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.log(newArray);</span><br><span class="line">console.log(&#39;typeof newArray: &#39; + typeof newArray);</span><br></pre></td></tr></table></figure>
-
-<p>會顯示如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E9%99%A3%E5%88%97%E5%9E%8B%E5%88%A5.jpg?alt=media&token=ba15237d-5400-473c-b0bc-362ecc3ac601" alt="陣列型別"></p>
-<p>這樣應該就很清楚為什麼陣列可以新增屬性了吧！</p>
-<br>
-
-<p>最後讓我們看看 function(函式) 的範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function callName() &#123;</span><br><span class="line">    console.log(&#39;呼叫小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(typeof callName); &#x2F;&#x2F; function</span><br></pre></td></tr></table></figure>
-
-<p>這邊在 typeof 會出現 function 是因為函式其實算是物件型別下的一個子型別，所以 function 算是物件型別。</p>
-<p>接下來我們設定屬性看看 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function callName() &#123;</span><br><span class="line">    console.log(&#39;呼叫小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">callName.name &#x3D; &#39;小明&#39;;</span><br><span class="line">console.dir(callName)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><code>console.dir</code> 是能夠在 console 裡面展開函式的一個作法。</p>
-</blockquote>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5%E7%AF%84%E4%BE%8B1.jpg?alt=media&token=44691349-7261-4226-9c14-d7717acb91d1" alt="函式型別範例1"></p>
-<p>這邊會發現為什麼 <code>callName.name = &#39;小明&#39;;</code> 沒有作用，因為函式本身的 name 是無法被修改的，這邊的 name 其實就是函式本身的名稱。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function callName() &#123;</span><br><span class="line">    console.log(&#39;呼叫小明&#39;);</span><br><span class="line">&#125;</span><br><span class="line">callName.ming &#x3D; &#39;小明&#39;;</span><br><span class="line">console.dir(callName)</span><br></pre></td></tr></table></figure>
-
-<p>所以如果不是設定 name 為屬性的話，就可以順利的新增一個屬性了。 如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5%E7%AF%84%E4%BE%8B2.jpg?alt=media&token=4475ebc9-2171-4bf5-bd58-c30cf8476146" alt="函式型別範例2"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E8%88%87%E7%B4%94%E5%80%BC/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -944,10 +880,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E7%B5%90%E6%A7%8B%20&%20%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC%E3%80%81%E5%88%AA%E9%99%A4%E3%80%81%E6%96%B0%E5%A2%9E/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E7%B5%90%E6%A7%8B%20&%20%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC%E3%80%81%E5%88%AA%E9%99%A4%E3%80%81%E6%96%B0%E5%A2%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -967,10 +903,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-05 14:56:58 / 修改時間：16:30:15" itemprop="dateCreated datePublished" datetime="2020-03-05T14:56:58+08:00">2020-03-05</time>
+              <time title="創建時間：2020-03-05 14:56:58" itemprop="dateCreated datePublished" datetime="2020-03-05T14:56:58+08:00">2020-03-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:44:07" itemprop="dateModified" datetime="2020-09-28T14:44:07+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -997,36 +939,14 @@
           <h1 id="物件結構"><a href="#物件結構" class="headerlink" title="物件結構"></a>物件結構</h1><p>建立物件有兩種方式，一種是物件實字；另一種則是物件建構式。<br>要設定物件的話裡面固定會有屬性跟值，屬性的名稱都會是字串不會是其他型別，值裡面可以是<strong>字串</strong>、<strong>數字</strong>、<strong>物件</strong>、<strong>函式</strong>。</p>
 <h2 id="物件實字"><a href="#物件實字" class="headerlink" title="物件實字"></a>物件實字</h2><p>物件實字語法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    callFamily: function()&#123;</span><br><span class="line">        console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="物件建構式"><a href="#物件建構式" class="headerlink" title="物件建構式"></a>物件建構式</h2><p>物件建構式語法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; new Object();</span><br><span class="line">family.name &#x3D; &#39;小明家&#39;;</span><br><span class="line">family.money &#x3D; 1000;</span><br><span class="line">family.members &#x3D; &#123;</span><br><span class="line">    mom: &#39;老媽&#39;,</span><br><span class="line">    dad: &#39;老爸&#39;</span><br><span class="line">&#125;;</span><br><span class="line">family.callFamily &#x3D; function()&#123;</span><br><span class="line">    console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="物件取值"><a href="#物件取值" class="headerlink" title="物件取值"></a>物件取值</h2><p>物件的取值有兩種方法，一種是用 .(點) 的方式，另一種是用 [](中括號) 的方式。</p>
-<p>.(點) 取值語法如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC(%E9%BB%9E).jpg?alt=media&token=ab41c454-e8af-4092-bdef-5159c6687f27" alt="物件取值(點)"></p>
-<br>
-
-<p>[](中括號) 取值語法如下 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC(%E4%B8%AD%E6%8B%AC%E8%99%9F).jpg?alt=media&token=ae18e953-a55f-4032-94f0-c25e43258418" alt="物件取值[]\(中括號)"></p>
-<h3 id="兩種取值的差異"><a href="#兩種取值的差異" class="headerlink" title="兩種取值的差異"></a>兩種取值的差異</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#39;1&#39;: 1,</span><br><span class="line">    callFamily: function()&#123;</span><br><span class="line">        console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>在上方程式碼如果要取出 ‘1’ 裡面的值的話，用 .(點) 是沒有辦法取出值的</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8F%96%E5%80%BC%E5%B7%AE%E7%95%B0.jpg?alt=media&token=1664460a-7089-4783-944b-0ca12070cc03" alt="兩種取值的差異"></p>
-<p>另外 [](中括號) 可以設定變數後取值。 如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#39;1&#39;: 1,</span><br><span class="line">    callFamily: function()&#123;</span><br><span class="line">        console.log(&#39;聯絡小明家&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var a &#x3D; &#39;name&#39;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E8%AE%8A%E6%95%B8%E5%8F%96%E5%80%BC.jpg?alt=media&token=ebe0d3b1-7ff0-46ac-b067-57eb91d0edc6" alt="物件變數取值"></p>
-<h3 id="物件新增"><a href="#物件新增" class="headerlink" title="物件新增"></a>物件新增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 物件新增語法如下 ↓ </span><br><span class="line"></span><br><span class="line">family.dog &#x3D; &#39;小白&#39;;</span><br><span class="line">family[&#39;cat&#39;] &#x3D; &#39;點點&#39;;</span><br></pre></td></tr></table></figure>
-
-<p>用兩種方法都可以新增物件，這時候執行 family 會出現下面結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%96%B0%E5%A2%9E.jpg?alt=media&token=cf9fd679-3682-467a-85e6-a7c4a8aec524" alt="物件新增"></p>
-<p>這時候可以發現在後面依序新增了 dog 跟 cat 的屬性。</p>
-<h3 id="物件刪除"><a href="#物件刪除" class="headerlink" title="物件刪除"></a>物件刪除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name : &#39;小明家&#39;,</span><br><span class="line">    money: 1000,</span><br><span class="line">    members: &#123;</span><br><span class="line">        mom: &#39;老媽&#39;,</span><br><span class="line">        dad: &#39;老爸&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 物件刪除語法如下 ↓</span><br><span class="line"></span><br><span class="line">delete family.money;</span><br><span class="line">delete family[&#39;members&#39;];</span><br></pre></td></tr></table></figure>
-
-<p>用兩種方法都可以物件刪除，這時候執行 family 會出現下面結果 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E5%88%AA%E9%99%A4.jpg?alt=media&token=992c9b8a-64fa-4f23-a450-318c30a6eefb" alt="物件刪除"></p>
-<p>這時候可以發現 money 跟 members 的屬性都不見了，只剩下了 name 的屬性。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/2020-03-05-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E7%B5%90%E6%A7%8B%20&%20%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC%E3%80%81%E5%88%AA%E9%99%A4%E3%80%81%E6%96%B0%E5%A2%9E/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1045,10 +965,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90%20&%20%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90%20&%20%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -1068,10 +988,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-03-04 16:51:58 / 修改時間：16:53:18" itemprop="dateCreated datePublished" datetime="2020-03-04T16:51:58+08:00">2020-03-04</time>
+              <time title="創建時間：2020-03-04 16:51:58" itemprop="dateCreated datePublished" datetime="2020-03-04T16:51:58+08:00">2020-03-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:44:29" itemprop="dateModified" datetime="2020-09-28T14:44:29+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -1099,36 +1025,14 @@
 <blockquote>
 <p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_Operators#%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90" target="_blank" rel="noopener">圖片取自 MDN</a></p>
 </blockquote>
-<h2 id="amp-amp-並且"><a href="#amp-amp-並且" class="headerlink" title="&amp;&amp; (並且)"></a>&amp;&amp; (並且)</h2><ul>
-<li>當第一個值為 falsy(假值)，就會直接回傳並且不會讀取第二個值。</li>
-<li>當第一個值為 truthy(真值)，無論第二個值是 truthy(真值) 或是 falsy(假值)，都會回傳第二個值。</li>
-</ul>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%26%26%E5%9B%9E%E5%82%B3%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=4f2195f2-8ec9-4549-a2cd-db6472d41121" alt="&amp;&amp;回傳測試"></p>
-<h2 id="或者"><a href="#或者" class="headerlink" title="|| (或者)"></a>|| (或者)</h2><ul>
-<li>當第一個值為 truthy(真值)，就會直接回傳並且不會讀取第二個值。</li>
-<li>當第一個值為 falsy(假值)，無論第二個值是 truthy(真值) 或是 falsy(假值)，都會回傳第二個值。</li>
-</ul>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FOR%E5%9B%9E%E5%82%B3%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=cf2cbf79-14d2-42cc-9b5e-08600069000f" alt="||回傳測試"></p>
-<h2 id="not"><a href="#not" class="headerlink" title="! (not)"></a>! (not)</h2><p>! 就是否定的意思，只要 truthy(真值) 就會回傳 false，falsy(假值) 則會回傳 true</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fnot%E6%B8%AC%E8%A9%A6.jpg?alt=media&token=8cd0d59f-606f-4bd3-8827-cb7e24fad8c6" alt="!回傳測試"></p>
-<h2 id="函式預設值"><a href="#函式預設值" class="headerlink" title="函式預設值"></a>函式預設值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var originCash &#x3D; 500;</span><br><span class="line">function updateEasyCard(cash)&#123; </span><br><span class="line">    console.log(cash);</span><br><span class="line">    var currentCash &#x3D; originCash + cash;</span><br><span class="line">    console.log(&#39;我有&#39; + currentCash + &#39;元&#39;);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard();</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC01.jpg?alt=media&token=853ddb32-dbb3-47bc-8804-1162b1547d9e" alt="函式預設值"></p>
-<p>因為 <code>updateEasyCard();</code> 沒有定義給它一個數字，所以會是 undefined ，而 undefined 如果跟數字相加則會回傳 NaN。</p>
-<br>
-
-<p>這時候我們就可以用到剛剛學到的邏輯運算子了！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var originCash &#x3D; 500;</span><br><span class="line"></span><br><span class="line">function updateEasyCard(cash) &#123;</span><br><span class="line">    cash &#x3D; cash || 500;</span><br><span class="line">    console.log(cash);</span><br><span class="line">    var currentCash &#x3D; originCash + cash;</span><br><span class="line">    console.log(&#39;我有&#39; + currentCash + &#39;元&#39;);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard();</span><br></pre></td></tr></table></figure>
-
-<p>記得上面的特性嗎？如果第一個為真值它會直接回傳，如果第一個值為假值就一定會回傳第二個值。所以這裡在沒有定義的時候會回傳 500。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC%2002.jpg?alt=media&token=f5fe251d-f700-438d-afd4-01a9db31094a" alt="函式預設值"></p>
-<br>
-
-<p>但是這裡就有一個問題了，我如果輸入 updateEasyCard(0); 的話，因為 0 本來就是假值，所以它還是會回傳 500 ，那這時候就要換一種方式了。 解決方式如下 ↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var originCash &#x3D; 500;</span><br><span class="line"></span><br><span class="line">function updateEasyCard(cash) &#123;</span><br><span class="line">    cash &#x3D; parseInt(cash);</span><br><span class="line">    cash &#x3D; (cash || cash &#x3D;&#x3D;&#x3D; 0) ? cash : 500;</span><br><span class="line">    var currentCash &#x3D; originCash + cash;</span><br><span class="line">    console.log(&#39;我有&#39; + currentCash + &#39;元&#39;);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard(0);</span><br></pre></td></tr></table></figure>
-
-<p>這時候如果 (cash || cash === 0) 其中有一個是 true 的時候，就會回傳 cash 的值，否則回傳 500 。 這樣就解決了剛剛的問題囉！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90%20&%20%E5%87%BD%E5%BC%8F%E9%A0%90%E8%A8%AD%E5%80%BC/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1205,6 +1109,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
   <p class="site-author-name" itemprop="name">Cheeto</p>
   <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
 </div>
@@ -1218,15 +1124,30 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分類</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">標籤</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
 
 
 
@@ -1256,7 +1177,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -1282,7 +1203,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
