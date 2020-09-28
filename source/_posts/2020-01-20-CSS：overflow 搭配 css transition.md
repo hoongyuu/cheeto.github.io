@@ -24,7 +24,7 @@ HTML環境設置：
 <br/>
 
 這個效果是讓滑鼠hover到box的時候，讓title滑動出來的 transition 特效。
-
+<!--more-->
 CSS如下
 
 ``` 

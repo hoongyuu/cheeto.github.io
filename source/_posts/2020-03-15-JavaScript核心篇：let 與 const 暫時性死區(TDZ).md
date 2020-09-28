@@ -17,6 +17,8 @@ categories:
 
 > 文件不會表明這與 `var` 的 `hoisting` 相同
 
+<!--more-->
+
 ```
 {
 console.log(Ming);

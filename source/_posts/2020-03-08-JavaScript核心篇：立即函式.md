@@ -25,6 +25,7 @@ function IIFE(){
     console.log('立即函式：簡稱 "IIFE"');
 }
 ```
+<!--more-->
 
 那立即函式的語法就像這樣 ↓
 

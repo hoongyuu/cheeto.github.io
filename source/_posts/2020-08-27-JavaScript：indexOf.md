@@ -20,6 +20,8 @@ console.log(name.indexOf('小淵')); // 回傳 2，因為是在索引位置 2 �
 console.log(name.indexOf('小昱')); // 回傳 -1，
 ```
 
+<!--more-->
+
 ## 搭配 `map` 在物件當中尋找元素索引位置
 
 這是利用 `map` 把物件的屬性逐筆取出來組成陣列，再利用 `indexOf` 來取得索引位置的技巧。

@@ -24,6 +24,8 @@ console.log(Bibi);
 
 ![使用建構式自定義原型-1](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B-1.jpg?alt=media&token=62a17874-1da6-44db-a2d4-55330f108ba7)
 
+<!--more-->
+
 透過 `new` 的運算子每次都會產生一個新的物件。
 
 在上圖可以看到後面用 `new` 建構出來的 `Bibi` 原型是指向 `Dog` 的。

@@ -16,6 +16,8 @@ JavaScript是採用**語法作用域**，屬於**靜態作用域**的，靜態�
 
 如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。
 
+<!--more-->
+
 ```
 let value = 1
 function num1(){

@@ -22,7 +22,7 @@ ASI規則：當語法併到上一行的時候會出現錯誤時，它會自動�
     }
     console.log(callName()); // undefined
 ```
-
+<!--more-->
 會因為 ASI 的規則變成下面這樣
 
 ```

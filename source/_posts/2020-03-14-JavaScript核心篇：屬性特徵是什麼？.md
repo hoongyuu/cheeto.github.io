@@ -14,9 +14,9 @@ categories:
 ```
 // Object.defineProperty
 // 屬性，調整屬性特徵
-// 1. 值、 2. 可否寫入、 3. 可否被刪除、 4. 可否被列舉
-// Object.defineProperty(物件, '屬性', '參數');
-
+// 1. 值、 2. 可否寫入、 3. 可否被刪除、 (物件, '屬性', '參數');
+4. 可否被列舉
+// Object.defineProperty
 var person = {
     a: 1,
     b: 2,
@@ -40,6 +40,8 @@ console.log(person);  // {a: 4, b: 2, c: 3}
 ```
 
 這邊可以看到 `person['a']` 的值已經被改寫了。
+
+<!--more-->
 
 如果我們把 `writable` 改成 false 呢？
 ```

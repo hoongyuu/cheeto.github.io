@@ -21,6 +21,7 @@ categories:
 
 ![影響函式this的調用方式](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%BD%B1%E9%9F%BF%E5%87%BD%E5%BC%8F%20this%20%E7%9A%84%E8%AA%BF%E7%94%A8%E6%96%B9%E6%B3%95.jpg?alt=media&token=412fd868-72e1-44bc-b8ba-d8408447c684)
 
+<!--more-->
 
 ## this: 物件的方式調用(最常見)
 

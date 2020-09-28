@@ -30,6 +30,8 @@ console.log(Bibi);
 
 如果我們想要在`Dog`前面新增一個層級`Object > Animal > Dog`要怎麼做呢？
 
+<!--more-->
+
 ## Object.create() 如何運用？
 
 ```

@@ -22,6 +22,8 @@ categories:
 
 ![Truthy Falsy](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy.jpg?alt=media&token=a1723750-2d5b-49f3-8ef7-8c007eb3c73f)
 
+<!--more-->
+
 以下列程式碼為例
 
 ```

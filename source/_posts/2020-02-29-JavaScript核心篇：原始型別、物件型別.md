@@ -27,6 +27,8 @@ JavaScript 主要分為 原始型別、物件型別 兩大類。
 * Bight 整體數值
 * Symbol
 
+<!--more-->
+
 ```
 var a, b, c, d;
 console.log(typeof a); // undefined

@@ -30,6 +30,8 @@ for (var key in family){
 
 ![淺拷貝](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D.jpg?alt=media&token=30901fad-8369-4e1c-8cfd-e2af59d82567)
 
+<!--more-->
+
 這裡可以看到 `key` 的值其實就是 `family` 的第一層屬性。
 
 所以我們可以利用這種方式做到第一層的複製。 如下 ↓

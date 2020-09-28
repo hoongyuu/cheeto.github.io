@@ -26,6 +26,8 @@ categories:
 
 因為 **if 是陳述式，所以它不會回傳值**。
 
+<!--more-->
+
 下列都是 JavaScript 的陳述式：
 
 1. 變數宣告

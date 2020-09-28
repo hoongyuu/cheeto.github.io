@@ -17,6 +17,7 @@ categories:
 * seal - 封裝
 * Freeze - 凍結
 
+<!--more-->
 
 ## preventExtensions - 防止擴充
 

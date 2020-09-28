@@ -23,6 +23,7 @@ categories:
 * concat
 * Array.from
 
+<!--more-->
 
 以下面的陣列為例子 ↓
 

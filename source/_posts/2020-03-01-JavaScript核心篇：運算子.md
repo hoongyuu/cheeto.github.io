@@ -15,6 +15,7 @@ categories:
 
 ![運算子](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E9%81%8B%E7%AE%97%E5%AD%90.jpg?alt=media&token=774d5f5a-db3b-4b9b-9f7a-e715d5e7154d)
 
+<!--more-->
 
 二元運算子最常見的就是下面這種運算子
 

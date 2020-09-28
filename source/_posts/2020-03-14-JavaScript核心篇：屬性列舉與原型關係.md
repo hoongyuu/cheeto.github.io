@@ -31,6 +31,8 @@ console.log(casper.hasOwnProperty('name'));
 
 `hasOwnProperty` 是對當前的物件去找屬性，不會去找原型的屬性，所以`hasOwnProperty('name')`這裡會顯示`false`。
 
+<!--more-->
+
 ```
 function Person(e) {};
 Person['prototype']['name'] = '人類';

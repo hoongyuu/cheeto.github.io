@@ -11,7 +11,6 @@ categories:
 
 # Getter 與 Setter，賦值運算不使用函式
 
-
 ## setter - 存值的方法
 
 ```
@@ -31,6 +30,7 @@ console.log(wallet['total']);  // 250
 
 這裡並不是用函式的方式來執行`setter`，而是用賦值的方式。
 
+<!--more-->
 <br>
 
 ## getter - 取得特定值的方法

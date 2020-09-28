@@ -21,6 +21,8 @@ console.log(newString) // 小明家
 
 因純值無法新增屬性，所以 newString 還是會維持本來的字串，不會做任何的修改。
 
+<!--more-->
+
 <br>
 
 現在我們來看第二個範例

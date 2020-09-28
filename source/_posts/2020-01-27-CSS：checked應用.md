@@ -19,6 +19,8 @@ CSS的:checked 表單狀態選取器，這個選取器是能夠選取 checkbox �
 
 ![初始照片](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Fcheck%E5%88%9D%E5%A7%8B.jpg?alt=media&token=ff6fd95a-3b7b-4f22-aec0-d5e4f5a6f6e0)
 
+<!--more-->
+
 在這個照片當中我希望能夠點擊下面的icon時，下面的選單能夠收合。
 
 ![unchecked](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/CSS%EF%BC%9Achecked%2Funchecked.jpg?alt=media&token=5448e757-9c4c-483e-bf7d-c939c70ece0d)

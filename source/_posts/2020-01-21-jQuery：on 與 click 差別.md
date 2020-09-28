@@ -9,10 +9,10 @@ categories:
 
 # on與click的差別
 
-<br/>
-
 在jQuery當中，時常會使用到 on、click 這兩種方式來操控你要的DOM，那兩者差別在哪？
 
+
+<!--more-->
 
 ## click
 

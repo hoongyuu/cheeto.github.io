@@ -34,6 +34,8 @@ family.ming.name = '小明';
 
 ![未定義物件屬性](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%9C%AA%E5%AE%9A%E7%BE%A9%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7.jpg?alt=media&token=83f55d92-3526-4f69-94fb-82505d0717ee)
 
+<!--more-->
+
 它會跳錯是因為你不能對一個未定義的屬性再增加一個屬性進去。
 
 如果我們想要解決這個問題可以這樣

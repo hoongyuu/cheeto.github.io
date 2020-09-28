@@ -10,8 +10,6 @@ categories:
 
 # 利用toggleClass搭配CSS做效果優化網站效能！
 
-<br/>
-
 jQuery雖然本來就可以直接用fadeToggle、slideToggle等.. 做效果，但是這樣的形式沒辦法讓網頁效能保持得很好，這時候就可以試試看用jQuery的toggleClass搭配CSS做一些效果吧！
 
 
@@ -27,6 +25,7 @@ jQuery雖然本來就可以直接用fadeToggle、slideToggle等.. 做效果，�
 
 toggleClass是可以在class裡面增加、刪除一個class，如果裡面有這個class就會刪除，反之增加。
 <br/>
+<!--more-->
 
 Html、CSS 程式碼範例：
 

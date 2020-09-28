@@ -19,6 +19,8 @@ categories:
 
 ![嚴格比較](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy%E5%9A%B4%E6%A0%BC%E6%AF%94%E8%BC%83.jpg?alt=media&token=eba46e48-5fd1-425e-aeab-cdc081700256)
 
+<!--more-->
+
 
 ```
 console.log(1 === '1'); // false  // '1'是字串

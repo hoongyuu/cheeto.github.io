@@ -25,7 +25,7 @@ categories:
     //用 var 的話會讓 a 直接跑到 window 下面變成全域變數
     console.log(window.a);  // 15
 ```
-
+<!--more-->
 
 ## var、( let , const ) 差異在哪？
 

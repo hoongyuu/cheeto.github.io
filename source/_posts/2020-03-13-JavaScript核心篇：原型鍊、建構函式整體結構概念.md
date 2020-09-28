@@ -17,6 +17,8 @@ categories:
 
 ![原型鍊、建構函式整體結構概念-1](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8E%9F%E5%9E%8B%E9%8D%8A%E3%80%81%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B%E6%A6%82%E5%BF%B5-1.jpg?alt=media&token=33666420-9e14-4595-89c4-90e96d6f1382)
 
+<!--more-->
+
 <br>
 
 

@@ -14,6 +14,8 @@ categories:
 ![MDN範例](https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fand%20or.jpg?alt=media&token=01509619-ecc9-4273-8abc-376130ac1431)
 
 > [圖片取自 MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_Operators#%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90)
+
+<!--more-->
  
 
 ## && (並且)

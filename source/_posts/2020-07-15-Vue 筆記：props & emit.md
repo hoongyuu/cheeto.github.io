@@ -18,6 +18,8 @@ props 是把資料從外層為內層傳遞的一個方法。
 
 ![](https://i.imgur.com/J4ec9Bz.png)
 
+<!--more-->
+
 ```
 // 利用"內層" :person 來把"外層" item 的資料帶入"內層元件"內 
 <div id="app">

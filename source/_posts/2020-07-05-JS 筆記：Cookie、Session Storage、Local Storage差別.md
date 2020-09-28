@@ -18,6 +18,8 @@ Cookie 是伺服器傳送到使用者瀏覽器的一個"小"資料空間，瀏�
 
 > [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
 
+<!--more-->
+
 HTTP 是一種無狀態協定，意思是伺服器不會保存任兩個請求間的任何資料。伺服器藉由 Cookie 來讓同一個用戶的各項操作產生連結。
 
 ![](https://docs.microsoft.com/zh-tw/aspnet/web-api/overview/advanced/http-cookies/_static/image1.png)
