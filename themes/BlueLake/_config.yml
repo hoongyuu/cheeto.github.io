@@ -16,9 +16,9 @@ menu:
   - page: archive
     directory: archives/
     icon: fa-archive
-  - page: about
-    directory: about/
-    icon: fa-user
+  # - page: about
+  #   directory: about/
+  #   icon: fa-user
   # - page: rss
   #   directory: atom.xml
   #   icon: fa-rss
@@ -68,7 +68,7 @@ baidusitemap:
   path: baidusitemap.xml
 
 #Local search
-local_search: true ## Use a javascript-based local search engine, true/false.
+local_search: false ## Use a javascript-based local search engine, true/false.
 
 #Copyright
 copyright: 
