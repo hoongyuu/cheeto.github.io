@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
-    root: '/cheeto.github.io/',
+    hostname: new URL('https://cheeto.github.io').hostname,
+    root: '/',
     scheme: 'Muse',
     version: '7.7.0',
     exturl: false,
@@ -49,7 +49,7 @@
   <meta name="description" content="物件擴充的修改與調整這個章節一共會教三個物件方法：  preventExtensions - 防止擴充 seal - 封裝 Freeze - 凍結  preventExtensions - 防止擴充preventExtensions用意是無法新增屬性。 123456789101112131415161718192021222324252627282930var person &#x3D; &amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript核心篇：物件擴充的修改與調整">
-<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/index.html">
+<meta property="og:url" content="https://cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="物件擴充的修改與調整這個章節一共會教三個物件方法：  preventExtensions - 防止擴充 seal - 封裝 Freeze - 凍結  preventExtensions - 防止擴充preventExtensions用意是無法新增屬性。 123456789101112131415161718192021222324252627282930var person &#x3D; &amp;#12">
 <meta property="og:locale" content="zh_TW">
@@ -64,7 +64,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4-1.jpg?alt=media&token=cae38dad-00dc-4327-a2df-98cd40e5411f">
 
-<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
+<link rel="canonical" href="https://cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
 
 
 <script id="page-configurations">
@@ -118,7 +118,7 @@
   <div class="site-meta">
 
     <div>
-      <a href="/cheeto.github.io/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Cheeto</span>
         <span class="logo-line-after"><i></i></span>
@@ -142,12 +142,12 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
 
   </li>
   </ul>
@@ -176,10 +176,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
+    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E6%93%B4%E5%85%85%E7%9A%84%E4%BF%AE%E6%94%B9%E8%88%87%E8%AA%BF%E6%95%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -214,7 +214,7 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">JavaScript核心篇</span>
                   </a>
                 </span>
@@ -269,8 +269,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
-              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
           </div>
 
         
@@ -279,11 +279,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/" rel="prev" title="JavaScript核心篇：屬性特徵是什麼？">
+    <a href="/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E7%89%B9%E5%BE%B5%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/" rel="prev" title="JavaScript核心篇：屬性特徵是什麼？">
       <i class="fa fa-chevron-left"></i> JavaScript核心篇：屬性特徵是什麼？
     </a></div>
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E5%88%97%E8%88%89%E8%88%87%E5%8E%9F%E5%9E%8B%E9%97%9C%E4%BF%82/" rel="next" title="JavaScript核心篇：屬性列舉與原型關係">
+    <a href="/2020/03/14/2020-03-14-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%B1%AC%E6%80%A7%E5%88%97%E8%88%89%E8%88%87%E5%8E%9F%E5%9E%8B%E9%97%9C%E4%BF%82/" rel="next" title="JavaScript核心篇：屬性列舉與原型關係">
       JavaScript核心篇：屬性列舉與原型關係 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -357,7 +357,7 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/cheeto.github.io/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">文章</span>
@@ -419,19 +419,19 @@
   </div>
 
   
-  <script src="/cheeto.github.io/lib/anime.min.js"></script>
-  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
-  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/cheeto.github.io/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/cheeto.github.io/js/motion.js"></script>
-
-
-<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/cheeto.github.io/js/next-boot.js"></script>
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
 
 

@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
-    root: '/cheeto.github.io/',
+    hostname: new URL('https://cheeto.github.io').hostname,
+    root: '/',
     scheme: 'Muse',
     version: '7.7.0',
     exturl: false,
@@ -49,7 +49,7 @@
   <meta name="description" content="提升(hoisting)在 JavaScript 當中 var 會有提升的效果出現，也可以說它是在創造階段就先把所有變數先宣告出來，接著再一一的賦予值進去。 舉例如下 123456789var name &#x3D; &#39;Cheeto&#39;;&#x2F;&#x2F;可以拆解成 ↓&#x2F;&#x2F; 創造階段var name;&#x2F;&#x2F; 執行階段name &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript核心篇：提升(hoisting)">
-<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/index.html">
+<meta property="og:url" content="https://cheeto.github.io/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="提升(hoisting)在 JavaScript 當中 var 會有提升的效果出現，也可以說它是在創造階段就先把所有變數先宣告出來，接著再一一的賦予值進去。 舉例如下 123456789var name &#x3D; &#39;Cheeto&#39;;&#x2F;&#x2F;可以拆解成 ↓&#x2F;&#x2F; 創造階段var name;&#x2F;&#x2F; 執行階段name &#x3D;">
 <meta property="og:locale" content="zh_TW">
@@ -60,7 +60,7 @@
 <meta property="article:tag" content="JS核心">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
+<link rel="canonical" href="https://cheeto.github.io/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
 
 
 <script id="page-configurations">
@@ -114,7 +114,7 @@
   <div class="site-meta">
 
     <div>
-      <a href="/cheeto.github.io/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Cheeto</span>
         <span class="logo-line-after"><i></i></span>
@@ -138,12 +138,12 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
 
   </li>
   </ul>
@@ -172,10 +172,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
+    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -210,7 +210,7 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">JavaScript核心篇</span>
                   </a>
                 </span>
@@ -247,8 +247,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
-              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
           </div>
 
         
@@ -257,11 +257,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="prev" title="JavaScript核心篇：作用域">
+    <a href="/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="prev" title="JavaScript核心篇：作用域">
       <i class="fa fa-chevron-left"></i> JavaScript核心篇：作用域
     </a></div>
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/02/24/2020-02-24-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E8%88%87%E5%90%8C%E6%AD%A5%E3%80%81%E9%9D%9E%E5%90%8C%E6%AD%A5/" rel="next" title="JavaScript核心篇：執行緒 與 同步、非同步">
+    <a href="/2020/02/24/2020-02-24-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E8%88%87%E5%90%8C%E6%AD%A5%E3%80%81%E9%9D%9E%E5%90%8C%E6%AD%A5/" rel="next" title="JavaScript核心篇：執行緒 與 同步、非同步">
       JavaScript核心篇：執行緒 與 同步、非同步 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -335,7 +335,7 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/cheeto.github.io/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">文章</span>
@@ -397,19 +397,19 @@
   </div>
 
   
-  <script src="/cheeto.github.io/lib/anime.min.js"></script>
-  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
-  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/cheeto.github.io/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/cheeto.github.io/js/motion.js"></script>
-
-
-<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/cheeto.github.io/js/next-boot.js"></script>
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
 
 

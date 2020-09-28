@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/cheeto.github.io/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/cheeto.github.io/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/cheeto.github.io/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/cheeto.github.io/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/cheeto.github.io/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/cheeto.github.io/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://github.com/hoongyuu/cheeto.github.io.git').hostname,
-    root: '/cheeto.github.io/',
+    hostname: new URL('https://cheeto.github.io').hostname,
+    root: '/',
     scheme: 'Muse',
     version: '7.7.0',
     exturl: false,
@@ -49,7 +49,7 @@
   <meta name="description" content="優先性及相依性優先性優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。 相依性相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。而當優先性相同時依據相依性的運算方向執行。 加減乘除優先性以 var a &#x3D; 2 * 2 + 2 * 3; 為例子  因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript核心篇：優先性、相依性">
-<meta property="og:url" content="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/index.html">
+<meta property="og:url" content="https://cheeto.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/index.html">
 <meta property="og:site_name" content="Cheeto">
 <meta property="og:description" content="優先性及相依性優先性優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。 相依性相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。而當優先性相同時依據相依性的運算方向執行。 加減乘除優先性以 var a &#x3D; 2 * 2 + 2 * 3; 為例子  因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +">
 <meta property="og:locale" content="zh_TW">
@@ -65,7 +65,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=f9bfa0e0-02a3-45fd-96dd-98691b64506a">
 
-<link rel="canonical" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
+<link rel="canonical" href="https://cheeto.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
 
 
 <script id="page-configurations">
@@ -119,7 +119,7 @@
   <div class="site-meta">
 
     <div>
-      <a href="/cheeto.github.io/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Cheeto</span>
         <span class="logo-line-after"><i></i></span>
@@ -143,12 +143,12 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/cheeto.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/cheeto.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
 
   </li>
   </ul>
@@ -177,10 +177,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://github.com/hoongyuu/cheeto.github.io.git/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
+    <link itemprop="mainEntityOfPage" href="https://cheeto.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/cheeto.github.io/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Cheeto">
       <meta itemprop="description" content="Cheeto 的學習部落格">
     </span>
@@ -215,7 +215,7 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/cheeto.github.io/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">JavaScript核心篇</span>
                   </a>
                 </span>
@@ -262,8 +262,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/cheeto.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
-              <a href="/cheeto.github.io/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
           </div>
 
         
@@ -272,11 +272,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/03/01/2020-03-01-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%81%8B%E7%AE%97%E5%AD%90/" rel="prev" title="JavaScript核心篇：運算子">
+    <a href="/2020/03/01/2020-03-01-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%81%8B%E7%AE%97%E5%AD%90/" rel="prev" title="JavaScript核心篇：運算子">
       <i class="fa fa-chevron-left"></i> JavaScript核心篇：運算子
     </a></div>
       <div class="post-nav-item">
-    <a href="/cheeto.github.io/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/" rel="next" title="JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型">
+    <a href="/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/" rel="next" title="JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型">
       JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -350,7 +350,7 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/cheeto.github.io/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">文章</span>
@@ -412,19 +412,19 @@
   </div>
 
   
-  <script src="/cheeto.github.io/lib/anime.min.js"></script>
-  <script src="/cheeto.github.io/lib/velocity/velocity.min.js"></script>
-  <script src="/cheeto.github.io/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/cheeto.github.io/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/cheeto.github.io/js/motion.js"></script>
-
-
-<script src="/cheeto.github.io/js/schemes/muse.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/cheeto.github.io/js/next-boot.js"></script>
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
 
 
