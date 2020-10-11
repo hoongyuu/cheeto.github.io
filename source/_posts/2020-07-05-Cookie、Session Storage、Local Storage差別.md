@@ -1,5 +1,5 @@
 ---
-title: JavaScript：Cookie、Session Storage、Local Storage差別
+title: Cookie、Session Storage、Local Storage差別
 date: 2020-07-05 22:38:34
 tags:
   - JavaScript
