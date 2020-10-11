@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hoongyuu.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Promisepromise 主要是用來解決非同步的行為，在未確認的時候會在一個 未確認狀態(pending) 的狀態，等到非同步的事件處理完成後才會進入 已確認的狀態(settled)。 已確認狀態分為：  已實現狀態(fulfilled)  已實現狀態會透過 resolve 這個參數來回傳一個結果，可以用 then 來做接收。  已否決狀態(rejected)  已否決狀態會透過 reject">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript核心篇：Promise">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/03/20/2020-03-15-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Alet%20%E8%88%87%20const%20%E6%9A%AB%E6%99%82%E6%80%A7%E6%AD%BB%E5%8D%80(TDZ)%20copy/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="Promisepromise 主要是用來解決非同步的行為，在未確認的時候會在一個 未確認狀態(pending) 的狀態，等到非同步的事件處理完成後才會進入 已確認的狀態(settled)。 已確認狀態分為：  已實現狀態(fulfilled)  已實現狀態會透過 resolve 這個參數來回傳一個結果，可以用 then 來做接收。  已否決狀態(rejected)  已否決狀態會透過 reject">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-1.jpg?alt=media&token=689a781b-9a57-4fe5-809c-e75dfdb38233">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-2.jpg?alt=media&token=7778b2a6-661f-4302-b152-47defb0e9bc2">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-3.jpg?alt=media&token=59554d5b-a9fb-45f5-ba1e-3345a434a447">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-4.jpg?alt=media&token=a8499902-bed5-4bc7-81ce-2b623ed726be">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FPromise%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-1.jpg?alt=media&token=8df8b40b-fc05-4c47-b3bd-e1ea629bf976">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FPromise%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-2.jpg?alt=media&token=bae809b4-64c4-4107-b280-7967b74c1f8e">
+<meta property="article:published_time" content="2020-03-20T09:40:22.000Z">
+<meta property="article:modified_time" content="2020-10-11T11:59:04.405Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="JS核心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-1.jpg?alt=media&token=689a781b-9a57-4fe5-809c-e75dfdb38233">
+
+<link rel="canonical" href="https://hoongyuu.github.io/2020/03/20/2020-03-15-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Alet%20%E8%88%87%20const%20%E6%9A%AB%E6%99%82%E6%80%A7%E6%AD%BB%E5%8D%80(TDZ)%20copy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript核心篇：Promise | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/20/2020-03-15-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Alet%20%E8%88%87%20const%20%E6%9A%AB%E6%99%82%E6%80%A7%E6%AD%BB%E5%8D%80(TDZ)%20copy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript核心篇：Promise
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-20 17:40:22" itemprop="dateCreated datePublished" datetime="2020-03-20T17:40:22+08:00">2020-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-11 19:59:04" itemprop="dateModified" datetime="2020-10-11T19:59:04+08:00">2020-10-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p><code>promise</code> 主要是用來解決非同步的行為，在未確認的時候會在一個 未確認狀態(pending) 的狀態，等到非同步的事件處理完成後才會進入 已確認的狀態(settled)。</p>
+<p>已確認狀態分為：</p>
+<ul>
+<li>已實現狀態(fulfilled)</li>
+</ul>
+<p>已實現狀態會透過 <code>resolve</code> 這個參數來回傳一個結果，可以用 <code>then</code> 來做接收。</p>
+<ul>
+<li>已否決狀態(rejected)</li>
+</ul>
+<p>已否決狀態會透過 <code>reject</code> 這個參數來回傳一個結果，可以用 <code>catch</code> 來做接收。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-1.jpg?alt=media&token=689a781b-9a57-4fe5-809c-e75dfdb38233" alt="promise-1"></p>
+<a id="more"></a>
+
+
+<p>語法可以跟過程可以參考 ↓ ↓ ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-2.jpg?alt=media&token=7778b2a6-661f-4302-b152-47defb0e9bc2" alt="promise-2"></p>
+<h2 id="創立自己的-promise"><a href="#創立自己的-promise" class="headerlink" title="創立自己的 promise"></a>創立自己的 promise</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const promiseFn &#x3D; (num) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      if (num) &#123;</span><br><span class="line">        resolve(&#39;success&#39;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&#39;fail&#39;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>以上方程式碼為例子，我們如果判斷 <code>num</code> 為真值時回傳 <code>resolve</code>；假值則回傳 <code>reject</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">promiseFn(1)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);  &#x2F;&#x2F; success</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果設定為 <code>promiseFn</code> 參數設定為 1 的話，那就會回傳 <code>resolve</code> 的值，所以會是 <strong>success</strong>。因為 1 在 JavaScript 裡是一個真值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">promiseFn(0)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);  &#x2F;&#x2F; fail</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果設定為 <code>promiseFn</code> 參數設定為 0 的話，那就會回傳 <code>reject</code> 的值，所以會是 <strong>fail</strong>。因為 0 在 JavaScript 裡是一個假值。</p>
+<h2 id="鏈接技巧"><a href="#鏈接技巧" class="headerlink" title="鏈接技巧"></a>鏈接技巧</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">const promiseFn &#x3D; (num) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      if (num) &#123;</span><br><span class="line">        resolve(&#96;success $&#123;num&#125;&#96;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&#39;fail&#39;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Promise Chain</span><br><span class="line">promiseFn(5)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    return promiseFn(6);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    return promiseFn(0);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    return promiseFn(7);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;Catch&#39;, res)</span><br><span class="line">    return promiseFn(5);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;Catch&#39;, res);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>回傳結果 ↓ ↓ ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-3.jpg?alt=media&token=59554d5b-a9fb-45f5-ba1e-3345a434a447" alt="promise-3"></p>
+<p>這邊可以看到 <code>promise</code> 可以用<strong>鏈結的方式一直回傳</strong>，<strong>BUT</strong> 如果在中間回傳的結果是 <code>reject</code> 的話它會直接跳到 <code>.catch</code>，但是 <code>.catch</code> 也是可以繼續用鏈結的方式回傳。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Fpromise-4.jpg?alt=media&token=a8499902-bed5-4bc7-81ce-2b623ed726be" alt="promise-4"></p>
+<h3 id="用-then-來做鏈接"><a href="#用-then-來做鏈接" class="headerlink" title="用 then 來做鏈接"></a>用 <code>then</code> 來做鏈接</h3><p>其實 <code>then</code> 也是可以拿來做鏈接的技巧，因為 <code>then</code> 其實也可以回傳 <code>reject</code> 的結果，讓我們往下看下去吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const promiseFn &#x3D; (num) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      if (num) &#123;</span><br><span class="line">        resolve(&#96;success $&#123;num&#125;&#96;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&#96;fail $&#123;num&#125;&#96;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Promise Chain</span><br><span class="line">promiseFn(1)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;, (rej) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(rej);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用 <code>then</code> 來做鏈接的方法就像這樣子，第一個會回傳 <code>resolve</code> 的結果，第二個則是回傳 <code>reject</code> 的結果。</p>
+<p>可以把這個想成 if 判斷式會比較好記，第一個是 <code>true</code> 後執行，下面那個是 <code>else</code>，這樣下次聯想就可以更快的想起來了。</p>
+<br>
+
+<p>這個方式也是可以做鏈接唷 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">promiseFn(0)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">    return promiseFn(1)</span><br><span class="line">  &#125;, (rej) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(rej)</span><br><span class="line">    return promiseFn(2)</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 回傳後再繼續接下去，跟前面的方法其實差不多</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;, (rej) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(rej)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>這樣就會依序回傳 <code>fail 0</code> 和 <code>success 2</code> 的結果了。</p>
+<h2 id="Promise-常用方法"><a href="#Promise-常用方法" class="headerlink" title="Promise 常用方法"></a>Promise 常用方法</h2><ul>
+<li><strong>Promise.all</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const promiseFn &#x3D; (num, time &#x3D; 500) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      if (num) &#123;</span><br><span class="line">        resolve(&#96;success $&#123;num&#125;&#96;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&#96;fail $&#123;num&#125;&#96;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, time);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Promise.all([</span><br><span class="line">  promiseFn(1, 500),</span><br><span class="line">  promiseFn(2, 1000),</span><br><span class="line">  promiseFn(3, 2000)</span><br><span class="line">])</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">    console.log(res[0]);</span><br><span class="line">    console.log(res[1]);</span><br><span class="line">    console.log(res[2]);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>回傳結果 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FPromise%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-1.jpg?alt=media&token=8df8b40b-fc05-4c47-b3bd-e1ea629bf976" alt="Promise 常用方法-1"></p>
+<p>用 <code>Promise.all</code> 可以一次發出多個請求，但是回傳是用陣列的方式回傳。</p>
+<p>如果回傳當中有一個是 <code>reject</code> 的話會出現這樣的結果 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const promiseFn &#x3D; (num, time &#x3D; 500) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      if (num) &#123;</span><br><span class="line">        resolve(&#96;success $&#123;num&#125;&#96;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&#96;fail $&#123;num&#125;&#96;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, time);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Promise.all([</span><br><span class="line">  promiseFn(1, 500),</span><br><span class="line">  promiseFn(0, 1000),</span><br><span class="line">  promiseFn(3, 2000)</span><br><span class="line">])</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res[0]);</span><br><span class="line">    console.log(res[1]);</span><br><span class="line">    console.log(res[2]);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上方程式碼只會回傳 <code>fail 0</code>。</p>
+<p>在用 <code>Promise.all</code> 要特別注意，只要有一個是回傳 <code>reject</code> 的話，它就不會執行 <code>resolve</code> 的回傳了，只會回傳 <code>reject</code> 的結果。</p>
+<ul>
+<li><strong>Promise.race</strong></li>
+</ul>
+<p><code>Promise.race</code> 只會回傳第一個完成的結果，不管結果是 <code>resolve</code> 或是 <code>reject</code> 它都只會回傳第一個完成的結果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const promiseFn &#x3D; (num, time &#x3D; 500) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      if (num) &#123;</span><br><span class="line">        resolve(&#96;success $&#123;num&#125;&#96;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&#96;fail $&#123;num&#125;&#96;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, time);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Promise.race</span><br><span class="line">Promise.race([</span><br><span class="line">  promiseFn(0, 500),</span><br><span class="line">  promiseFn(2, 300),</span><br><span class="line">  promiseFn(3, 1000),</span><br><span class="line">])</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上方程式碼只會回傳 <code>success 2</code>。</p>
+<p>因為 2 是第一個完成的結果，所以不會再執行其他的結果。</p>
+<p>不管裡面的結果是 <code>resolve</code> 或是 <code>reject</code> 它都只會回傳第一個完成的結果。<br>可以看到這段程式碼並沒有執行其他的任何結果，只會執行第一個完成的結果。</p>
+<h2 id="利用-Promise-讀取-Ajax"><a href="#利用-Promise-讀取-Ajax" class="headerlink" title="利用 Promise 讀取 Ajax"></a>利用 Promise 讀取 Ajax</h2><p>正常我們在讀取 <code>Ajax</code> 的時候都要寫得很長一段，但是利用 <code>Promise</code> 就能夠統一利用函式的方法來。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var url &#x3D; &#39;https:&#x2F;&#x2F;jsonplaceholder.typicode.com&#x2F;todos&#x2F;1&#39;;</span><br><span class="line"></span><br><span class="line">const getFn &#x3D; (url) &#x3D;&gt; &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    var req &#x3D; new XMLHttpRequest();</span><br><span class="line">    </span><br><span class="line">    req.open(&#39;GET&#39;, url);</span><br><span class="line"></span><br><span class="line">    req.onload &#x3D; function () &#123;</span><br><span class="line">      if (req.status &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">        resolve(req.response);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(req);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    req.send();</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">getFn(url)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;get&#39;, res);</span><br><span class="line">    return getFn(url);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then((res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;get2&#39;, res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((rej) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;err&#39;, rej)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>回傳結果 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2FPromise%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-2.jpg?alt=media&token=bae809b4-64c4-4107-b280-7967b74c1f8e" alt="Promise 常用方法-2"></p>
+<p>這樣當你需要利用 <code>Ajax</code> 的時候只要利用 <code>getFn()</code> 就能夠快速地做出請求了！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/JS%E6%A0%B8%E5%BF%83/" rel="tag"># JS核心</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/15/2020-03-15-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F/" rel="prev" title="JavaScript核心篇：箭頭函式">
+      <i class="fa fa-chevron-left"></i> JavaScript核心篇：箭頭函式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/05/2020-07-05-Cookie%E3%80%81Session%20Storage%E3%80%81Local%20Storage%E5%B7%AE%E5%88%A5/" rel="next" title="Cookie、Session Storage、Local Storage差別">
+      Cookie、Session Storage、Local Storage差別 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#創立自己的-promise"><span class="nav-number">1.1.</span> <span class="nav-text">創立自己的 promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鏈接技巧"><span class="nav-number">1.2.</span> <span class="nav-text">鏈接技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用-then-來做鏈接"><span class="nav-number">1.2.1.</span> <span class="nav-text">用 then 來做鏈接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-常用方法"><span class="nav-number">1.3.</span> <span class="nav-text">Promise 常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-Promise-讀取-Ajax"><span class="nav-number">1.4.</span> <span class="nav-text">利用 Promise 讀取 Ajax</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

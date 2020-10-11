@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hoongyuu.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="TypeScript 從零開始：函式型別 TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 從零開始：函式型別">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/09/23/2020-09-23-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="TypeScript 從零開始：函式型別 TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
+<meta property="article:published_time" content="2020-09-23T13:20:00.000Z">
+<meta property="article:modified_time" content="2020-10-11T11:51:32.372Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
+
+<link rel="canonical" href="https://hoongyuu.github.io/2020/09/23/2020-09-23-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>TypeScript 從零開始：函式型別 | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/23/2020-09-23-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%87%BD%E5%BC%8F%E5%9E%8B%E5%88%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TypeScript 從零開始：函式型別
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-23 21:20:00" itemprop="dateCreated datePublished" datetime="2020-09-23T21:20:00+08:00">2020-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-11 19:51:32" itemprop="dateModified" datetime="2020-10-11T19:51:32+08:00">2020-10-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TypeScript/" itemprop="url" rel="index">
+                    <span itemprop="name">TypeScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="TypeScript-從零開始：函式型別"><a href="#TypeScript-從零開始：函式型別" class="headerlink" title="TypeScript 從零開始：函式型別"></a>TypeScript 從零開始：函式型別</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d" alt=""></p>
+<p>TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 <strong>GitHub</strong> 上。</p>
+<blockquote>
+<p>學習資源參考 <a href="https://willh.gitbook.io/typescript-tutorial/" target="_blank" rel="noopener">TypeScript 新手指南</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="函式型別"><a href="#函式型別" class="headerlink" title="函式型別"></a>函式型別</h1><p>這個章節主要會介紹到<strong>函式表達式</strong>、<strong>函式陳述式</strong>在 TS 當中是如何定義。</p>
+<ul>
+<li>函式陳述式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">function func1(num1: number, num2: number): number &#123;</span><br><span class="line">  return num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(func1(2, 2));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">function func1(num1, num2) &#123;</span><br><span class="line">    return num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line">console.log(func1(2, 2));  &#x2F;&#x2F; 4</span><br></pre></td></tr></table></figure>
+
+<p>首先要說參數裡面可以定義型別，那 <code>func1(...): number</code> 後面的這個 <code>number</code> 就是定義回傳值的型別。</p>
+<ul>
+<li>函式表達式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前： 可以有兩種寫法</span><br><span class="line">const func1 &#x3D; (num1: number, num2: number): number &#x3D;&gt; num1 + num2;</span><br><span class="line">const func2: (num1: number, num2: number) &#x3D;&gt; number &#x3D; (num1, num2) &#x3D;&gt; num1 + num2;</span><br><span class="line"></span><br><span class="line">console.log(func1(2, 2));</span><br><span class="line">console.log(func2(4, 4));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var func1 &#x3D; function (num1, num2) &#123; return num1 + num2; &#125;;</span><br><span class="line">var func2 &#x3D; function (num1, num2) &#123; return num1 + num2; &#125;;</span><br><span class="line">console.log(func1(2, 2)); &#x2F;&#x2F; 4</span><br><span class="line">console.log(func2(4, 4)); &#x2F;&#x2F; 8</span><br></pre></td></tr></table></figure>
+
+<h2 id="可選參數"><a href="#可選參數" class="headerlink" title="可選參數"></a>可選參數</h2><p>如果定義兩個參數就必須使用兩個，不能只使用一個。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const func1 &#x3D; (num1: number, num2: number): number &#x3D;&gt; num1;</span><br><span class="line">console.log(func1(2));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 會報錯：An argument for &#39;num2&#39; was not provided.</span><br></pre></td></tr></table></figure>
+
+<p>那如果想要只用一個參數的話就可以設定<strong>可選參數</strong>啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">const func1 &#x3D; (num1: number, num2?: number) &#x3D;&gt; &#123;</span><br><span class="line">  if (num2) &#123;</span><br><span class="line">    return num1 + num2;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return num1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">func1(2)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var func1 &#x3D; function (num1, num2) &#123;</span><br><span class="line">    if (num2) &#123;</span><br><span class="line">        return num1 + num2;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        return num1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">func1(2); &#x2F;&#x2F; 2</span><br></pre></td></tr></table></figure>
+
+<p>這樣就知道可選參數如何設定了吧？</p>
+<h2 id="如何從-interface-中定義函式"><a href="#如何從-interface-中定義函式" class="headerlink" title="如何從 interface 中定義函式"></a>如何從 interface 中定義函式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">interface FuncTS &#123;</span><br><span class="line">  (num1: number, num2: number): number</span><br><span class="line">&#125;</span><br><span class="line">const func1: FuncTS &#x3D; (x, y) &#x3D;&gt; x + y;</span><br><span class="line">func1(5, 4);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var func1 &#x3D; function (x, y) &#123; return x + y; &#125;;</span><br><span class="line">func1(5, 4);</span><br></pre></td></tr></table></figure>
+
+<h2 id="預設參數"><a href="#預設參數" class="headerlink" title="預設參數"></a>預設參數</h2><p>在 ES6 之後有了預設參數，在 TS 當中當然也會有啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const animals &#x3D; (type: string &#x3D; &#39;狗&#39;, color: string &#x3D; &#39;黑色&#39;, size: string &#x3D; &#39;大型&#39;) &#x3D;&gt; &#123;</span><br><span class="line">  return &#96;這隻$&#123; type &#125;毛色是 $&#123; color &#125;，體型是 $&#123; size &#125;&#96;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">animals(&#39;小貓&#39;, &#39;灰色&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>方法就跟 ES6 一樣，只要在後面加一個 <code>=</code> 就搞定啦！</p>
+<h2 id="其餘參數"><a href="#其餘參數" class="headerlink" title="其餘參數"></a>其餘參數</h2><p>在 ES6 之後多了<code>...</code>運算子，那我們要如何在 TS 當中使用呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">function func1(name: string, ...nums: number[]) &#123;</span><br><span class="line">  console.log(name, nums)</span><br><span class="line">&#125;</span><br><span class="line">func1(&#39;Cheeto&#39;, 1, 2, 3, 4, 5)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">function func1(name) &#123;</span><br><span class="line">    var nums &#x3D; [];</span><br><span class="line">    for (var _i &#x3D; 1; _i &lt; arguments.length; _i++) &#123;</span><br><span class="line">        nums[_i - 1] &#x3D; arguments[_i];</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(name, nums);</span><br><span class="line">&#125;</span><br><span class="line">func1(&#39;Cheeto&#39;, 1, 2, 3, 4, 5); &#x2F;&#x2F; Cheeto [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+
+<p>在這邊有一個小重點必須牢記，<strong>其餘參數是陣列，所以在型別定義時必須是陣列唷！</strong></p>
+<h2 id="函式型別也能使用聯合型別"><a href="#函式型別也能使用聯合型別" class="headerlink" title="函式型別也能使用聯合型別"></a>函式型別也能使用聯合型別</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">function reverse(item: number | string): number | string &#123;</span><br><span class="line">  if (typeof item &#x3D;&#x3D;&#x3D; &#39;number&#39;) &#123;</span><br><span class="line">    return item.toString().split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return item.split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">reverse(&#39;Cheeto&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">function reverse(item) &#123;</span><br><span class="line">    if (typeof item &#x3D;&#x3D;&#x3D; &#39;number&#39;) &#123;</span><br><span class="line">        return item.toString().split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        return item.split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">reverse(&#39;Cheeto&#39;); &#x2F;&#x2F; 回傳 oteehC</span><br></pre></td></tr></table></figure>
+
+<p>又學到了一課 ^^~</p>
+<h2 id="型別斷言"><a href="#型別斷言" class="headerlink" title="型別斷言"></a>型別斷言</h2><p>當 TS 不能確定一個聯合型別的變數到底是哪個型別的時候，我們可以利用型別斷言告訴 TS。</p>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getLen(item: number | string): number &#123;</span><br><span class="line">  &#x2F;&#x2F; TS 沒辦法分辨參數是 number 還是 string，所以不能確定能不能取到 length，導致報錯</span><br><span class="line">  if (item.length) &#123;</span><br><span class="line">    return item.length</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return item.toString.length;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 會報錯：Property &#39;length&#39; does not exist on type &#39;number&#39;.</span><br></pre></td></tr></table></figure>
+
+<p>像這種時候就可以透過<strong>型別斷言</strong>來告訴 TS，我可以確定這個是 <code>string</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getLen(item: number | string): number &#123;</span><br><span class="line">  if ((&lt;string&gt;item).length) &#123;</span><br><span class="line">    return (&lt;string&gt;item).length;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return item.toString.length;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>意思就是只有 <code>string</code> 的型別能取到 <code>length</code>，所以你可以透過型別斷言來告訴 TS 我確定這個是 <code>string</code>。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/20/2020-09-20-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E9%99%A3%E5%88%97%E5%9E%8B%E5%88%A5/" rel="prev" title="TypeScript 從零開始：陣列型別">
+      <i class="fa fa-chevron-left"></i> TypeScript 從零開始：陣列型別
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/24/2020-09-24-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%AD%97%E4%B8%B2%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9E%8B%E5%88%A5/" rel="next" title="TypeScript 從零開始：字串字面量型別">
+      TypeScript 從零開始：字串字面量型別 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-從零開始：函式型別"><span class="nav-number">1.</span> <span class="nav-text">TypeScript 從零開始：函式型別</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函式型別"><span class="nav-number">2.</span> <span class="nav-text">函式型別</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可選參數"><span class="nav-number">2.1.</span> <span class="nav-text">可選參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何從-interface-中定義函式"><span class="nav-number">2.2.</span> <span class="nav-text">如何從 interface 中定義函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#預設參數"><span class="nav-number">2.3.</span> <span class="nav-text">預設參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其餘參數"><span class="nav-number">2.4.</span> <span class="nav-text">其餘參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函式型別也能使用聯合型別"><span class="nav-number">2.5.</span> <span class="nav-text">函式型別也能使用聯合型別</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#型別斷言"><span class="nav-number">2.6.</span> <span class="nav-text">型別斷言</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -193,7 +193,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/" class="post-title-link" itemprop="url">JavaScript核心篇：Truthy&Falsy</a>
+            <a href="/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript核心篇：使用建構式自定義原型</a>
         </h1>
 
         <div class="post-meta">
@@ -203,14 +203,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-03-04 13:57:58" itemprop="dateCreated datePublished" datetime="2020-03-04T13:57:58+08:00">2020-03-04</time>
+              <time title="創建時間：2020-03-13 14:30:22" itemprop="dateCreated datePublished" datetime="2020-03-13T14:30:22+08:00">2020-03-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:44:25" itemprop="dateModified" datetime="2020-09-28T14:44:25+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:42:40" itemprop="dateModified" datetime="2020-09-28T14:42:40+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,19 +235,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Truthy-Falsy"><a href="#Truthy-Falsy" class="headerlink" title="Truthy Falsy"></a>Truthy Falsy</h1><p>在 JavaScript 中，truthy(真值) 指的是在布林值判斷中，轉換後的值為真的值。我們也可以另外一個方向來理解「除了 falsy 以外的值都是 truthy」，那我們就可以來看看 falsy 的值有哪些了。如下</p>
-<ul>
-<li>0</li>
-<li>NaN</li>
-<li>‘’ (空字串)</li>
-<li>false</li>
-<li>null</li>
-<li>undefined</li>
-</ul>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy.jpg?alt=media&token=a1723750-2d5b-49f3-8ef7-8c007eb3c73f" alt="Truthy Falsy"></p>
+          <h1 id="使用建構式自定義原型"><a href="#使用建構式自定義原型" class="headerlink" title="使用建構式自定義原型"></a>使用建構式自定義原型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Dog(name, color, size) &#123;</span><br><span class="line">	this[&#39;name&#39;] &#x3D; name;</span><br><span class="line">	this[&#39;color&#39;] &#x3D; color;</span><br><span class="line">	this[&#39;size&#39;] &#x3D; size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var Bibi &#x3D; new Dog(&#39;比比&#39;, &#39;棕色&#39;, &#39;小&#39;);</span><br><span class="line">console.log(Bibi);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B-1.jpg?alt=media&token=62a17874-1da6-44db-a2d4-55330f108ba7" alt="使用建構式自定義原型-1"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/04/2020-03-04-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9ATruthy&Falsy/#more" rel="contents">
+              <a class="btn" href="/2020/03/13/2020-03-13-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%BB%BA%E6%A7%8B%E5%BC%8F%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%8E%9F%E5%9E%8B/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -271,7 +264,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -285,7 +278,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript核心篇：寬鬆相等、嚴格相等以及隱含轉型</a>
+            <a href="/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/" class="post-title-link" itemprop="url">JavaScript核心篇：原型在哪裡？</a>
         </h1>
 
         <div class="post-meta">
@@ -295,14 +288,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-03-03 13:07:58" itemprop="dateCreated datePublished" datetime="2020-03-03T13:07:58+08:00">2020-03-03</time>
+              <time title="創建時間：2020-03-12 18:47:22" itemprop="dateCreated datePublished" datetime="2020-03-12T18:47:22+08:00">2020-03-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:44:35" itemprop="dateModified" datetime="2020-09-28T14:44:35+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:42:54" itemprop="dateModified" datetime="2020-09-28T14:42:54+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,280 +320,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="寬鬆相等、嚴格相等以及隱含轉型"><a href="#寬鬆相等、嚴格相等以及隱含轉型" class="headerlink" title="寬鬆相等、嚴格相等以及隱含轉型"></a>寬鬆相等、嚴格相等以及隱含轉型</h1><blockquote>
-<p>「== 允許在比較中強制轉型，=== 不允許。」</p>
+          <h1 id="原型在哪裡？"><a href="#原型在哪裡？" class="headerlink" title="原型在哪裡？"></a>原型在哪裡？</h1><blockquote>
+<p>JavaScript 是一門物件導向的程式語言，因為沒有 Class，所以它的繼承方法是透過 「原型」(prototype) 來進行實作。</p>
 </blockquote>
-<h2 id="嚴格相等"><a href="#嚴格相等" class="headerlink" title="嚴格相等"></a>嚴格相等</h2><p>嚴格相等必須<strong>值</strong>、<strong>型別</strong>都要相同才會回傳 true。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2Ftruthy%26falsy%E5%9A%B4%E6%A0%BC%E6%AF%94%E8%BC%83.jpg?alt=media&token=eba46e48-5fd1-425e-aeab-cdc081700256" alt="嚴格比較"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/03/2020-03-03-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%AF%AC%E9%AC%86%E7%9B%B8%E7%AD%89%E3%80%81%E5%9A%B4%E6%A0%BC%E7%9B%B8%E7%AD%89%E4%BB%A5%E5%8F%8A%E9%9A%B1%E5%90%AB%E8%BD%89%E5%9E%8B/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Cheeto.jpg">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/" class="post-title-link" itemprop="url">JavaScript核心篇：優先性、相依性</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-03-02 21:02:58" itemprop="dateCreated datePublished" datetime="2020-03-02T21:02:58+08:00">2020-03-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:44:40" itemprop="dateModified" datetime="2020-09-28T14:44:40+08:00">2020-09-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript核心篇</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="優先性及相依性"><a href="#優先性及相依性" class="headerlink" title="優先性及相依性"></a>優先性及相依性</h1><h2 id="優先性"><a href="#優先性" class="headerlink" title="優先性"></a>優先性</h2><p>優先序較高的運算子會成為優先序較低的運算子的運算元。例:乘除的符號優先性大於加減，所以會先乘除後加減。</p>
-<h2 id="相依性"><a href="#相依性" class="headerlink" title="相依性"></a>相依性</h2><p>相依性決定運算方向。例:加減乘除都是由左至右、等號則是由右至左。<br><strong>而當優先性相同時依據相依性的運算方向執行。</strong></p>
-<h2 id="加減乘除優先性"><a href="#加減乘除優先性" class="headerlink" title="加減乘除優先性"></a>加減乘除優先性</h2><p>以 <code>var a = 2 * 2 + 2 * 3;</code> 為例子</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%84%AA%E5%85%88%E6%80%A7.jpg?alt=media&token=f9bfa0e0-02a3-45fd-96dd-98691b64506a" alt="加減乘除優先性"></p>
-<p>因為 *(乘號)的優先性大於 +(加號)，所以會先進行乘的動作，接著乘出來的數字就是 +(加號)的運算元，這也符合描述的優先性。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/02/2020-03-02-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%84%AA%E5%85%88%E6%80%A7%E3%80%81%E7%9B%B8%E4%BE%9D%E6%80%A7/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/01/2020-03-01-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%81%8B%E7%AE%97%E5%AD%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Cheeto.jpg">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/01/2020-03-01-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%81%8B%E7%AE%97%E5%AD%90/" class="post-title-link" itemprop="url">JavaScript核心篇：運算子</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-03-01 18:50:58" itemprop="dateCreated datePublished" datetime="2020-03-01T18:50:58+08:00">2020-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:44:47" itemprop="dateModified" datetime="2020-09-28T14:44:47+08:00">2020-09-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript核心篇</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="運算子"><a href="#運算子" class="headerlink" title="運算子"></a>運算子</h1><p>運算子一定會回傳一個結果，JavaScript 常見的運算子有二元運算子、一元運算子，以及一種特殊的 三元運算子，也就是 條件運算子。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E9%81%8B%E7%AE%97%E5%AD%90.jpg?alt=media&token=774d5f5a-db3b-4b9b-9f7a-e715d5e7154d" alt="運算子"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/01/2020-03-01-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%81%8B%E7%AE%97%E5%AD%90/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/29/2020-02-29-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E3%80%81%E7%89%A9%E4%BB%B6%E5%9E%8B%E5%88%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Cheeto.jpg">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/29/2020-02-29-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E3%80%81%E7%89%A9%E4%BB%B6%E5%9E%8B%E5%88%A5/" class="post-title-link" itemprop="url">JavaScript核心篇：原始型別、物件型別</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-02-29 19:40:58" itemprop="dateCreated datePublished" datetime="2020-02-29T19:40:58+08:00">2020-02-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:44:53" itemprop="dateModified" datetime="2020-09-28T14:44:53+08:00">2020-09-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript核心篇</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="原始型別、物件型別"><a href="#原始型別、物件型別" class="headerlink" title="原始型別、物件型別"></a>原始型別、物件型別</h1><p>JavaScript 主要分為 原始型別、物件型別 兩大類。</p>
-<h2 id="原始型別"><a href="#原始型別" class="headerlink" title="原始型別"></a>原始型別</h2><ul>
-<li>Boolean 布林</li>
-<li>Null 空值</li>
-<li>Undefined 未定義</li>
-<li>Number 數值</li>
-<li>String 字串</li>
-</ul>
-<p><strong>ES6</strong></p>
+<p>原形的特性</p>
 <ul>
-<li>Bight 整體數值</li>
-<li>Symbol</li>
+<li>一樣具有物件的特性</li>
+<li>向上查找</li>
+<li>原型可共用方法及屬性</li>
 </ul>
+<p>當我們嘗試在某個物件找一個它本身並不存在的屬性時，它會往上(原型物件)找尋，直到找到最頂層級時，都會找到<code>Object.prototype</code>才會停止。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/29/2020-02-29-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E5%9E%8B%E5%88%A5%E3%80%81%E7%89%A9%E4%BB%B6%E5%9E%8B%E5%88%A5/#more" rel="contents">
+              <a class="btn" href="/2020/03/12/2020-03-12-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E9%8D%8A%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -624,7 +356,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/27/2020-02-27-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9AASI%20(Automatic%20Semicolon%20Insertion)/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -638,7 +370,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/27/2020-02-27-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9AASI%20(Automatic%20Semicolon%20Insertion)/" class="post-title-link" itemprop="url">JavaScript核心篇：ASI (Automatic Semicolon Insertion)</a>
+            <a href="/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/" class="post-title-link" itemprop="url">JavaScript核心篇：this (合併整理)</a>
         </h1>
 
         <div class="post-meta">
@@ -648,14 +380,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-02-27 21:39:58" itemprop="dateCreated datePublished" datetime="2020-02-27T21:39:58+08:00">2020-02-27</time>
+              <time title="創建時間：2020-03-11 21:44:12" itemprop="dateCreated datePublished" datetime="2020-03-11T21:44:12+08:00">2020-03-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:45:02" itemprop="dateModified" datetime="2020-09-28T14:45:02+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:43:00" itemprop="dateModified" datetime="2020-09-28T14:43:00+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -680,12 +412,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="ASI-Automatic-Semicolon-Insertion"><a href="#ASI-Automatic-Semicolon-Insertion" class="headerlink" title="ASI (Automatic Semicolon Insertion)"></a>ASI (Automatic Semicolon Insertion)</h1><p>JavaScript 基本上在語句結尾時都要加上 ;(分號)，當語句沒有加入分號時，就會受到 ASI 的規則影響</p>
-<p>ASI規則：當語法併到上一行的時候會出現錯誤時，它會自動加上 ;(分號)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function callName()&#123;</span><br><span class="line">  return </span><br><span class="line">  &#39;叫我小明&#39;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(callName()); &#x2F;&#x2F; undefined</span><br></pre></td></tr></table></figure>
+          <h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><ul>
+<li>每個執行環境都有屬於自己的 this 關鍵字</li>
+<li>this 與函式如何宣告<strong>沒有關聯性</strong>，僅與呼叫方式有關</li>
+<li>嚴格模式下，簡易呼叫會有很大個改變</li>
+</ul>
+<p><code>this</code>的實際指向跟我們如何去呼叫函式是有很大的關聯性的！</p>
+<p><code>this</code>指的並不是函式本身，而是指向<strong>目前呼叫函式或方法的擁有者(owner)物件</strong>。所以函式需要了解函式的幾種調用方式，就能一併了解<code>this</code>在這些情況下的不同。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%BD%B1%E9%9F%BF%E5%87%BD%E5%BC%8F%20this%20%E7%9A%84%E8%AA%BF%E7%94%A8%E6%96%B9%E6%B3%95.jpg?alt=media&token=412fd868-72e1-44bc-b8ba-d8408447c684" alt="影響函式this的調用方式"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/27/2020-02-27-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9AASI%20(Automatic%20Semicolon%20Insertion)/#more" rel="contents">
+              <a class="btn" href="/2020/03/11/2020-03-11-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9Athis/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -709,7 +446,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/26/2020-02-26-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E3%80%81%E8%A1%A8%E9%81%94%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -723,7 +460,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/26/2020-02-26-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E3%80%81%E8%A1%A8%E9%81%94%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：陳述式(Statement)、表達式(Expression)</a>
+            <a href="/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/" class="post-title-link" itemprop="url">JavaScript核心篇：閉包</a>
         </h1>
 
         <div class="post-meta">
@@ -733,14 +470,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-02-26 21:37:58" itemprop="dateCreated datePublished" datetime="2020-02-26T21:37:58+08:00">2020-02-26</time>
+              <time title="創建時間：2020-03-10 16:57:12" itemprop="dateCreated datePublished" datetime="2020-03-10T16:57:12+08:00">2020-03-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:45:08" itemprop="dateModified" datetime="2020-09-28T14:45:08+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:43:04" itemprop="dateModified" datetime="2020-09-28T14:43:04+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -765,14 +502,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="陳述式-Statement"><a href="#陳述式-Statement" class="headerlink" title="陳述式 (Statement)"></a>陳述式 (Statement)</h2><p><strong>陳述式一定會做一些事情，但陳述式不會產生(回傳)數值</strong>。所以不能被放在 JS 內預期會產生數值的地方。</p>
-<p>什麼意思是不能被放在 JS 內預期會產生數值的地方呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; if()&#123;</span><br><span class="line">    var b &#x3D; 5</span><br><span class="line">    console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 回傳 Uncaught SyntaxError: Unexpected token &#39;if&#39;</span><br></pre></td></tr></table></figure>
+          <h1 id="閉包"><a href="#閉包" class="headerlink" title="閉包"></a>閉包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function storeMoney() &#123;</span><br><span class="line">    var money &#x3D; 500;</span><br><span class="line">    return function (price) &#123;</span><br><span class="line">        money &#x3D; money + price;</span><br><span class="line">        return money</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var mingMoney &#x3D; storeMoney();</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 550</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 600</span><br><span class="line">console.log(mingMoney(50)); &#x2F;&#x2F; 650</span><br></pre></td></tr></table></figure>
 
-<p>因為 <strong>if 是陳述式，所以它不會回傳值</strong>。</p>
+<p>這邊可以發現 <code>mingMoney</code> 的值有繼續被增加，原因是實際上釋放記憶體的條件是「當變數無法被引用時就會釋放記憶體」，而現在這個函式被綁定在全域變數上，所以它能夠不斷的呼叫，所以記憶體並不會被釋放。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/26/2020-02-26-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E3%80%81%E8%A1%A8%E9%81%94%E5%BC%8F/#more" rel="contents">
+              <a class="btn" href="/2020/03/10/2020-03-10-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E9%96%89%E5%8C%85/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -796,7 +531,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/24/2020-02-24-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E8%88%87%E5%90%8C%E6%AD%A5%E3%80%81%E9%9D%9E%E5%90%8C%E6%AD%A5/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/09/2020-03-09-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8F%83%E6%95%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -810,7 +545,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/24/2020-02-24-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E8%88%87%E5%90%8C%E6%AD%A5%E3%80%81%E9%9D%9E%E5%90%8C%E6%AD%A5/" class="post-title-link" itemprop="url">JavaScript核心篇：執行緒 與 同步、非同步</a>
+            <a href="/2020/03/09/2020-03-09-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8F%83%E6%95%B8/" class="post-title-link" itemprop="url">JavaScript核心篇：參數</a>
         </h1>
 
         <div class="post-meta">
@@ -820,14 +555,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-02-24 18:32:58" itemprop="dateCreated datePublished" datetime="2020-02-24T18:32:58+08:00">2020-02-24</time>
+              <time title="創建時間：2020-03-09 14:28:12" itemprop="dateCreated datePublished" datetime="2020-03-09T14:28:12+08:00">2020-03-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:45:12" itemprop="dateModified" datetime="2020-09-28T14:45:12+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:43:11" itemprop="dateModified" datetime="2020-09-28T14:43:11+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -852,12 +587,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="執行緒"><a href="#執行緒" class="headerlink" title="執行緒"></a>執行緒</h2><p>JavaScript 是一個單執行緒的程式，</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%96%AE%E5%9F%B7%E8%A1%8C%E7%B7%92%E7%90%86%E8%A7%A3.jpg?alt=media&token=846b63c1-c45d-464f-8dc6-ea44ffeefae1" alt="單執行緒"></p>
-<p>單執行緒是沒有辦法把任務一次全部執行，如上圖所示，它必須先完成 ‘吃早餐’ 接著 ‘打給漂亮阿姨’ 再來才是 ‘洗碗’。</p>
+          <h1 id="參數"><a href="#參數" class="headerlink" title="參數"></a>參數</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function callName(a)&#123;</span><br><span class="line">    console.log(&#39;第一個：&#39; +a);</span><br><span class="line">    </span><br><span class="line">    var a;</span><br><span class="line">    console.log(&#39;第二個：&#39; +a);</span><br><span class="line">    a &#x3D; &#39;杰倫&#39;;</span><br><span class="line">    console.log(&#39;第三個：&#39; +a);</span><br><span class="line">&#125;;</span><br><span class="line">callName(&#39;小明&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>會呈現 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%8F%83%E6%95%B8%E8%A6%86%E8%93%8B%E8%A7%80%E5%BF%B5.jpg?alt=media&token=8d4db6c2-8da5-4e21-b1d8-d4875d8366f4" alt="參數覆蓋觀念"></p>
+<p>所以說用宣告的方式其實沒辦法覆蓋掉的，如果想要覆蓋掉就直接定義一個新的值給 <code>a</code>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/24/2020-02-24-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%9F%B7%E8%A1%8C%E7%B7%92%E8%88%87%E5%90%8C%E6%AD%A5%E3%80%81%E9%9D%9E%E5%90%8C%E6%AD%A5/#more" rel="contents">
+              <a class="btn" href="/2020/03/09/2020-03-09-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%8F%83%E6%95%B8/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -881,7 +618,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -895,7 +632,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/" class="post-title-link" itemprop="url">JavaScript核心篇：提升(hoisting)</a>
+            <a href="/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：立即函式</a>
         </h1>
 
         <div class="post-meta">
@@ -905,14 +642,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-02-23 19:16:58" itemprop="dateCreated datePublished" datetime="2020-02-23T19:16:58+08:00">2020-02-23</time>
+              <time title="創建時間：2020-03-08 16:42:40" itemprop="dateCreated datePublished" datetime="2020-03-08T16:42:40+08:00">2020-03-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:45:16" itemprop="dateModified" datetime="2020-09-28T14:45:16+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:43:20" itemprop="dateModified" datetime="2020-09-28T14:43:20+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -937,11 +674,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="提升-hoisting"><a href="#提升-hoisting" class="headerlink" title="提升(hoisting)"></a>提升(hoisting)</h1><p>在 JavaScript 當中 var 會有提升的效果出現，也可以說它是在創造階段就先把所有變數先宣告出來，接著再一一的賦予值進去。 舉例如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &#39;Cheeto&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;可以拆解成 ↓</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 創造階段</span><br><span class="line">var name;</span><br><span class="line">&#x2F;&#x2F; 執行階段</span><br><span class="line">name &#x3D; &#39;Cheeto&#39;;</span><br></pre></td></tr></table></figure>
+          <h1 id="立即函式"><a href="#立即函式" class="headerlink" title="立即函式"></a>立即函式</h1><p>立即函式有幾個特點：</p>
+<ol>
+<li>立刻執行</li>
+<li>無法在函式外被再次執行</li>
+</ol>
+<h2 id="語法"><a href="#語法" class="headerlink" title="語法"></a>語法</h2><p>一般的函式是這樣子寫的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function IIFE()&#123;</span><br><span class="line">    console.log(&#39;立即函式：簡稱 &quot;IIFE&quot;&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/23/2020-02-23-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%8F%90%E5%8D%87(hoisting)/#more" rel="contents">
+              <a class="btn" href="/2020/03/08/2020-03-08-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%AB%8B%E5%8D%B3%E5%87%BD%E5%BC%8F/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -965,7 +707,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -979,7 +721,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="post-title-link" itemprop="url">JavaScript核心篇：作用域</a>
+            <a href="/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：什麼是函式？</a>
         </h1>
 
         <div class="post-meta">
@@ -989,14 +731,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-02-22 19:10:58" itemprop="dateCreated datePublished" datetime="2020-02-22T19:10:58+08:00">2020-02-22</time>
+              <time title="創建時間：2020-03-07 15:40:40" itemprop="dateCreated datePublished" datetime="2020-03-07T15:40:40+08:00">2020-03-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:45:23" itemprop="dateModified" datetime="2020-09-28T14:45:23+08:00">2020-09-28</time>
+                <time title="修改時間：2020-09-28 14:43:31" itemprop="dateModified" datetime="2020-09-28T14:43:31+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1021,12 +763,276 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="JavaScript-作用域"><a href="#JavaScript-作用域" class="headerlink" title="JavaScript 作用域"></a>JavaScript 作用域</h1><p>JavaScript是採用<strong>語法作用域</strong>，屬於<strong>靜態作用域</strong>的，靜態作用域是變數的作用域在語法解析的時候，就已經確定它的作用域了，確定完就無法再改變。</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E4%BD%9C%E7%94%A8%E5%9F%9F.jpg?alt=media&token=ba25abbc-e1e6-4424-b859-031a5e7dd9fd" alt="作用域"></p>
-<p>如果作用域裡找不到變數的時候，就會向外查找，找不到的時候就會報錯(not define)。</p>
+          <h1 id="什麼是函式"><a href="#什麼是函式" class="headerlink" title="什麼是函式"></a>什麼是函式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function afunction(parameter) &#123;</span><br><span class="line">    var localVariable &#x3D; &#39;區域變數&#39;;</span><br><span class="line">    console.log(this, localVariable); &#x2F;&#x2F; This、區域變數</span><br><span class="line"></span><br><span class="line">    return &#39;附加一段&#39; + parameter; &#x2F;&#x2F; 回傳、參數</span><br><span class="line">&#125;</span><br><span class="line">var data &#x3D; afunction(&#39;參數&#39;);&#x2F;&#x2F; 呼叫函式</span><br><span class="line">console.log(data);</span><br></pre></td></tr></table></figure>
+
+<p>結果會呈現 ↓</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E5%87%BD%E5%BC%8F%E7%B5%90%E6%A7%8B.jpg?alt=media&token=ee48e915-6932-4110-a850-8d8cc82f4569" alt="函式結構"></p>
+<p>function 有預設一個回傳的<strong>值</strong>，所以它能夠被當作表達式來用。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/22/2020-02-22-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F/#more" rel="contents">
+              <a class="btn" href="/2020/03/07/2020-03-07-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/" class="post-title-link" itemprop="url">JavaScript核心篇：淺層複製及深層複製</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-06 18:33:22" itemprop="dateCreated datePublished" datetime="2020-03-06T18:33:22+08:00">2020-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:44" itemprop="dateModified" datetime="2020-09-28T14:43:44+08:00">2020-09-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="淺層複製及深層複製"><a href="#淺層複製及深層複製" class="headerlink" title="淺層複製及深層複製"></a>淺層複製及深層複製</h1><h2 id="淺層複製-Shallow-Copy"><a href="#淺層複製-Shallow-Copy" class="headerlink" title="淺層複製 (Shallow Copy)"></a>淺層複製 (Shallow Copy)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var family &#x3D; &#123;</span><br><span class="line">    name: &#39;小明家&#39;,</span><br><span class="line">    members: &#123;</span><br><span class="line">      dad: &#39;老爸&#39;,</span><br><span class="line">      mom: &#39;老媽&#39;,</span><br><span class="line">      ming: &#39;小明&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var newFamily &#x3D; &#123;&#125;;</span><br><span class="line">for (var key in family)&#123;</span><br><span class="line">  console.log(key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/JS%EF%BC%9A%E6%A0%B8%E5%BF%83%E7%AF%87%2F%E6%B7%BA%E6%8B%B7%E8%B2%9D.jpg?alt=media&token=30901fad-8369-4e1c-8cfd-e2af59d82567" alt="淺拷貝"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E6%B7%BA%E5%B1%A4%E8%A4%87%E8%A3%BD%E5%8F%8A%E6%B7%B1%E5%B1%A4%E8%A4%87%E8%A3%BD/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">JavaScript核心篇：物件傳址觀念的實際運作模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-06 13:50:58" itemprop="dateCreated datePublished" datetime="2020-03-06T13:50:58+08:00">2020-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:51" itemprop="dateModified" datetime="2020-09-28T14:43:51+08:00">2020-09-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="物件傳址觀念的實際運作模式"><a href="#物件傳址觀念的實際運作模式" class="headerlink" title="物件傳址觀念的實際運作模式"></a>物件傳址觀念的實際運作模式</h1><p>在這篇章節來實做看看傳址的運作模式，由下面的程式碼為範例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;x: 1&#125;;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">a.y &#x3D; a &#x3D; &#123;x: 2&#125;;</span><br><span class="line">console.log(a.y);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>接下來就一步一步的來看看傳址的運作邏輯吧！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E7%89%A9%E4%BB%B6%E5%82%B3%E5%9D%80%E8%A7%80%E5%BF%B5%E7%9A%84%E5%AF%A6%E9%9A%9B%E9%81%8B%E4%BD%9C%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/" class="post-title-link" itemprop="url">JavaScript核心篇：傳值 & 傳址</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-03-06 13:47:58" itemprop="dateCreated datePublished" datetime="2020-03-06T13:47:58+08:00">2020-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-09-28 14:43:37" itemprop="dateModified" datetime="2020-09-28T14:43:37+08:00">2020-09-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript核心篇</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="傳值-amp-傳址"><a href="#傳值-amp-傳址" class="headerlink" title="傳值 &amp; 傳址"></a>傳值 &amp; 傳址</h1><blockquote>
+<p><a href="https://ithelp.ithome.com.tw/articles/10191057" target="_blank" rel="noopener">本章參考</a></p>
+</blockquote>
+<h2 id="傳值"><a href="#傳值" class="headerlink" title="傳值"></a>傳值</h2><p>所有的基本型別都是「傳值」。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 10;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line"></span><br><span class="line">a &#x3D; 100;</span><br><span class="line">console.log(a, b); &#x2F;&#x2F; 100, 10</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到 <code>b = a</code> 但是<code>a</code>的值改變了之後<code>b</code>卻維持在原位，這是因為<strong>基本型別</strong>的傳遞是利用複製的，所以 <code>b = a</code> 的值是複製<code>a</code>的值而已。</p>
+<p>可以看作<code>a</code>、<code>b</code>兩個都是不同的個體。</p>
+<p>所以之後<code>a</code>不管做了什麼樣的更新，都跟<code>b</code>不會有任何的關係。這種方式稱為「<strong>傳值</strong>」。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/06/2020-03-06-JavaScript%E6%A0%B8%E5%BF%83%E7%AF%87%EF%BC%9A%E5%82%B3%E5%80%BC%20&%20%E5%82%B3%E5%9D%80/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -1050,7 +1056,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1118,20 +1124,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

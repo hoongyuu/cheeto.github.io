@@ -46,21 +46,22 @@
   };
 </script>
 
-  <meta name="description" content="Vue 元件 元件資料與外層的資料是分別的。  為什麼需要元件？ 避免單一檔案過大 在很多檔案當中都可以拉出來重複使用、管理方便">
+  <meta name="description" content="TypeScript 從零開始：聯合型別 TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue：元件 (component)">
-<meta property="og:url" content="https://hoongyuu.github.io/2020/07/11/2020-07-11-Vue%E7%AD%86%E8%A8%98%EF%BC%9A%E5%85%83%E4%BB%B6(component)/index.html">
+<meta property="og:title" content="TypeScript 從零開始：聯合型別">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/09/14/2020-09-14-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E8%81%AF%E5%90%88%E5%9E%8B%E5%88%A5/index.html">
 <meta property="og:site_name" content="Cheeto">
-<meta property="og:description" content="Vue 元件 元件資料與外層的資料是分別的。  為什麼需要元件？ 避免單一檔案過大 在很多檔案當中都可以拉出來重複使用、管理方便">
+<meta property="og:description" content="TypeScript 從零開始：聯合型別 TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-07-11T07:33:34.000Z">
-<meta property="article:modified_time" content="2020-09-28T06:41:40.278Z">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
+<meta property="article:published_time" content="2020-09-14T10:23:00.000Z">
+<meta property="article:modified_time" content="2020-10-11T11:47:27.234Z">
 <meta property="article:author" content="Cheeto">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="TypeScript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
 
-<link rel="canonical" href="https://hoongyuu.github.io/2020/07/11/2020-07-11-Vue%E7%AD%86%E8%A8%98%EF%BC%9A%E5%85%83%E4%BB%B6(component)/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/09/14/2020-09-14-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E8%81%AF%E5%90%88%E5%9E%8B%E5%88%A5/">
 
 
 <script id="page-configurations">
@@ -72,7 +73,7 @@
   };
 </script>
 
-  <title>Vue：元件 (component) | Cheeto</title>
+  <title>TypeScript 從零開始：聯合型別 | Cheeto</title>
   
 
 
@@ -182,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/07/11/2020-07-11-Vue%E7%AD%86%E8%A8%98%EF%BC%9A%E5%85%83%E4%BB%B6(component)/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/14/2020-09-14-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E8%81%AF%E5%90%88%E5%9E%8B%E5%88%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -195,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue：元件 (component)
+          TypeScript 從零開始：聯合型別
         </h1>
 
         <div class="post-meta">
@@ -205,14 +206,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-07-11 15:33:34" itemprop="dateCreated datePublished" datetime="2020-07-11T15:33:34+08:00">2020-07-11</time>
+              <time title="創建時間：2020-09-14 18:23:00" itemprop="dateCreated datePublished" datetime="2020-09-14T18:23:00+08:00">2020-09-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:41:40" itemprop="dateModified" datetime="2020-09-28T14:41:40+08:00">2020-09-28</time>
+                <time title="修改時間：2020-10-11 19:47:27" itemprop="dateModified" datetime="2020-10-11T19:47:27+08:00">2020-10-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,8 +221,8 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
+                  <a href="/categories/TypeScript/" itemprop="url" rel="index">
+                    <span itemprop="name">TypeScript</span>
                   </a>
                 </span>
             </span>
@@ -237,25 +238,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Vue-元件"><a href="#Vue-元件" class="headerlink" title="Vue 元件"></a>Vue 元件</h1><ul>
-<li>元件資料與外層的資料是分別的。</li>
-</ul>
-<h2 id="為什麼需要元件？"><a href="#為什麼需要元件？" class="headerlink" title="為什麼需要元件？"></a>為什麼需要元件？</h2><ul>
-<li>避免單一檔案過大</li>
-<li>在很多檔案當中都可以拉出來重複使用、管理方便</li>
-</ul>
+        <h1 id="TypeScript-從零開始：聯合型別"><a href="#TypeScript-從零開始：聯合型別" class="headerlink" title="TypeScript 從零開始：聯合型別"></a>TypeScript 從零開始：聯合型別</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d" alt=""></p>
+<p>TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 <strong>GitHub</strong> 上。</p>
+<blockquote>
+<p>學習資源參考 <a href="https://willh.gitbook.io/typescript-tutorial/" target="_blank" rel="noopener">TypeScript 新手指南</a></p>
+</blockquote>
 <a id="more"></a>
 
-<h2 id="元件定義方式"><a href="#元件定義方式" class="headerlink" title="元件定義方式"></a>元件定義方式</h2><h3 id="全域註冊"><a href="#全域註冊" class="headerlink" title="全域註冊"></a>全域註冊</h3><p>全域註冊： 不管有沒有使用到這個元件，只要用到全域註冊它都會直接載入，因此全域註冊會把沒用到的組件也一起載進來，會拖累載入速度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 全域註冊</span><br><span class="line">&lt;div id&#x3D;”app”&gt;</span><br><span class="line">    &lt;global-component&gt;&lt;&#x2F;global-component&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(&quot;global-component&quot;, &#123;</span><br><span class="line">  template: &#96;&lt;div&gt;&#123;&#123;text&#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line">  data()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">      text:&#39;我是全域註冊&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">  el: &quot;#app&quot;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="聯合型別"><a href="#聯合型別" class="headerlink" title="聯合型別"></a>聯合型別</h1><p>在 TS 當中也是可以賦予多個型別，這樣也有容錯的空間。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let myName: string | number | boolean &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">myName &#x3D; 9487;</span><br><span class="line">myName &#x3D; false;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var myName &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">myName &#x3D; 9487;</span><br><span class="line">myName &#x3D; false;</span><br></pre></td></tr></table></figure>
 
-<h3 id="區域註冊"><a href="#區域註冊" class="headerlink" title="區域註冊"></a>區域註冊</h3><p>因為全域註冊的缺點，想當然爾就會出現解決的方案啦！</p>
-<p>區域註冊：針對特定的實體設計就能夠用區域註冊，註冊在需要它的組件當中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;區域註冊</span><br><span class="line">&lt;div id&#x3D;”app”&gt;</span><br><span class="line">    &lt;gloval-component&gt;&lt;&#x2F;gloval-component&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">  el: &quot;#app&quot;,</span><br><span class="line">  components:&#123;</span><br><span class="line">    &#39;gloval-component&#39; :&#123;</span><br><span class="line">       template: &#96;&lt;div&gt;&#123;&#123;text&#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line">       data()&#123;</span><br><span class="line">         return &#123;</span><br><span class="line">          text:&#39;我是局部註冊&#39;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>在每一個型別之間透過 <code>|</code> 來間隔，那就可以做到多個型別的判定。</p>
+<h2 id="利用到-function"><a href="#利用到-function" class="headerlink" title="利用到 function"></a>利用到 <code>function</code></h2><p>TS 把你想得到的都想到了，當然也能夠在 <code>function</code> 的參數當中進行判別啦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">function wallet(money: number | string) &#123;</span><br><span class="line">  console.log(money)</span><br><span class="line">&#125;</span><br><span class="line">wallet(9487); &#x2F;&#x2F; 9487 </span><br><span class="line">wallet(&#39;Cheeto&#39;);  &#x2F;&#x2F; Cheeto</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">function wallet(money) &#123;</span><br><span class="line">    console.log(money);</span><br><span class="line">&#125;</span><br><span class="line">wallet(9487); &#x2F;&#x2F; 9487</span><br><span class="line">wallet(&#39;Cheeto&#39;); &#x2F;&#x2F; Cheeto</span><br></pre></td></tr></table></figure>
 
+<p>像上方這樣就能夠在<strong>參數</strong>當中進行聯合型別判定。</p>
 
-<h2 id="元件資料傳遞"><a href="#元件資料傳遞" class="headerlink" title="元件資料傳遞"></a>元件資料傳遞</h2><p>進入元件後所有 data 都必須用 function return。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果元件的資料不用 function 回傳會讀取不到資料喔！</span><br><span class="line">Vue.component(&#39;名稱&#39;, &#123;</span><br><span class="line">    template: &#96;&lt;div&gt;&#123;&#123;text&#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data: &#123;</span><br><span class="line">                text: &#39;&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -264,8 +262,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
           </div>
 
         
@@ -274,12 +271,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/05/2020-07-05-JS%20%E7%AD%86%E8%A8%98%EF%BC%9ACookie%E3%80%81Session%20Storage%E3%80%81Local%20Storage%E5%B7%AE%E5%88%A5/" rel="prev" title="JavaScript：Cookie、Session Storage、Local Storage差別">
-      <i class="fa fa-chevron-left"></i> JavaScript：Cookie、Session Storage、Local Storage差別
+    <a href="/2020/09/12/2020-09-12-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E4%BB%BB%E6%84%8F%E5%80%BC%E3%80%81%E9%A0%90%E8%A8%AD%E5%9E%8B%E5%88%A5%E5%88%A4%E5%AE%9A/" rel="prev" title="TypeScript 從零開始：任意值、預設型別判定">
+      <i class="fa fa-chevron-left"></i> TypeScript 從零開始：任意值、預設型別判定
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/" rel="next" title="Vue：props & emit">
-      Vue：props & emit <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/" rel="next" title="JavaScript： class ( 類別 )">
+      JavaScript： class ( 類別 ) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -340,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-元件"><span class="nav-number">1.</span> <span class="nav-text">Vue 元件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#為什麼需要元件？"><span class="nav-number">1.1.</span> <span class="nav-text">為什麼需要元件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元件定義方式"><span class="nav-number">1.2.</span> <span class="nav-text">元件定義方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全域註冊"><span class="nav-number">1.2.1.</span> <span class="nav-text">全域註冊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#區域註冊"><span class="nav-number">1.2.2.</span> <span class="nav-text">區域註冊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元件資料傳遞"><span class="nav-number">1.3.</span> <span class="nav-text">元件資料傳遞</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-從零開始：聯合型別"><span class="nav-number">1.</span> <span class="nav-text">TypeScript 從零開始：聯合型別</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#聯合型別"><span class="nav-number">2.</span> <span class="nav-text">聯合型別</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用到-function"><span class="nav-number">2.1.</span> <span class="nav-text">利用到 function</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,20 +353,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

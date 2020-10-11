@@ -46,25 +46,22 @@
   };
 </script>
 
-  <meta name="description" content="propsprops 是把資料從外層為內層傳遞的一個方法。 props 是單向數據流單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。">
+  <meta name="description" content="TypeScript 從零開始：元組 ( Tuple ) TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue：props &amp; emit">
-<meta property="og:url" content="https://hoongyuu.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/index.html">
+<meta property="og:title" content="TypeScript 從零開始：元組 ( Tuple )">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/09/24/2020-09-24-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%85%83%E7%B5%84%20(%20Tuple%20)/index.html">
 <meta property="og:site_name" content="Cheeto">
-<meta property="og:description" content="propsprops 是把資料從外層為內層傳遞的一個方法。 props 是單向數據流單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。">
+<meta property="og:description" content="TypeScript 從零開始：元組 ( Tuple ) TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/J4ec9Bz.png">
-<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Fprops.jpg?alt=media&token=73e364d4-347b-4587-b927-7d178e07b3ca">
-<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Femit.jpg?alt=media&token=9b37b125-a0fb-49b0-8358-044317ec0501">
-<meta property="article:published_time" content="2020-07-15T07:38:34.000Z">
-<meta property="article:modified_time" content="2020-09-28T06:47:00.994Z">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
+<meta property="article:published_time" content="2020-09-24T10:20:00.000Z">
+<meta property="article:modified_time" content="2020-10-11T11:54:19.531Z">
 <meta property="article:author" content="Cheeto">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="TypeScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/J4ec9Bz.png">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
 
-<link rel="canonical" href="https://hoongyuu.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/">
+<link rel="canonical" href="https://hoongyuu.github.io/2020/09/24/2020-09-24-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%85%83%E7%B5%84%20(%20Tuple%20)/">
 
 
 <script id="page-configurations">
@@ -76,7 +73,7 @@
   };
 </script>
 
-  <title>Vue：props & emit | Cheeto</title>
+  <title>TypeScript 從零開始：元組 ( Tuple ) | Cheeto</title>
   
 
 
@@ -186,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/07/15/2020-07-15-Vue%20%E7%AD%86%E8%A8%98%EF%BC%9Aprops%20&%20emit/">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/24/2020-09-24-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%85%83%E7%B5%84%20(%20Tuple%20)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Cheeto.jpg">
@@ -199,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue：props & emit
+          TypeScript 從零開始：元組 ( Tuple )
         </h1>
 
         <div class="post-meta">
@@ -209,14 +206,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2020-07-15 15:38:34" itemprop="dateCreated datePublished" datetime="2020-07-15T15:38:34+08:00">2020-07-15</time>
+              <time title="創建時間：2020-09-24 18:20:00" itemprop="dateCreated datePublished" datetime="2020-09-24T18:20:00+08:00">2020-09-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-09-28 14:47:00" itemprop="dateModified" datetime="2020-09-28T14:47:00+08:00">2020-09-28</time>
+                <time title="修改時間：2020-10-11 19:54:19" itemprop="dateModified" datetime="2020-10-11T19:54:19+08:00">2020-10-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,8 +221,8 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
+                  <a href="/categories/TypeScript/" itemprop="url" rel="index">
+                    <span itemprop="name">TypeScript</span>
                   </a>
                 </span>
             </span>
@@ -241,20 +238,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="props"><a href="#props" class="headerlink" title="props"></a>props</h1><p>props 是把資料從外層為內層傳遞的一個方法。</p>
-<h2 id="props-是單向數據流"><a href="#props-是單向數據流" class="headerlink" title="props 是單向數據流"></a>props 是單向數據流</h2><p>單向數據流的意思是，只能單向的從外部傳入’資料’，而不能從內部元件傳出’資料’。如果你想要這麼做的話可以使用 ‘emit’ 來向外推送資料。</p>
-<p><img src="https://i.imgur.com/J4ec9Bz.png" alt=""></p>
+        <h1 id="TypeScript-從零開始：元組-Tuple"><a href="#TypeScript-從零開始：元組-Tuple" class="headerlink" title="TypeScript 從零開始：元組 ( Tuple )"></a>TypeScript 從零開始：元組 ( Tuple )</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d" alt=""></p>
+<p>TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 <strong>GitHub</strong> 上。</p>
+<blockquote>
+<p>學習資源參考 <a href="https://willh.gitbook.io/typescript-tutorial/" target="_blank" rel="noopener">TypeScript 新手指南</a></p>
+</blockquote>
 <a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 利用&quot;內層&quot; :person 來把&quot;外層&quot; item 的資料帶入&quot;內層元件&quot;內 </span><br><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;global-component v-for&#x3D;&quot;(item, i) in nameData&quot; :person&#x3D;&quot;item&quot; :key&#x3D;&quot;i&quot;&gt;&lt;&#x2F;global-component&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.component(&quot;global-component&quot;, &#123;</span><br><span class="line">    &#x2F;&#x2F; 利用 props 建立 &#39;person&#39; 來接收外層的資料</span><br><span class="line">    props: [&#39;person&#39;],</span><br><span class="line">    template: &#96;&lt;div&gt; &#123;&#123; person.name &#125;&#125; &lt;&#x2F;div&gt;&#96;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &quot;#app&quot;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      nameData: [</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;小明&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;杰倫&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;漂亮阿姨&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: &quot;老媽&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="元組-Tuple"><a href="#元組-Tuple" class="headerlink" title="元組 ( Tuple )"></a>元組 ( Tuple )</h1><p>元組可以想成是一個嚴格的陣列，預先設定型別判定的陣列。</p>
+<br>
 
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Fprops.jpg?alt=media&token=73e364d4-347b-4587-b927-7d178e07b3ca" alt=""></p>
-<h2 id="props-型別"><a href="#props-型別" class="headerlink" title="props 型別"></a>props 型別</h2><p>props 可以利用型別來偵錯，也能夠預設值。</p>
-<p><a href="https://codepen.io/Chee7o/pen/NWxzYzK?editors=1010" target="_blank" rel="noopener">codePen</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;prop-type :cash&#x3D;&quot;cash&quot;&gt;&lt;&#x2F;prop-type&gt;</span><br><span class="line">  &#123;&#123; typeof(cash)&#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">Vue.component(&#39;prop-type&#39;, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    cash: &#123;</span><br><span class="line">    &#x2F;&#x2F;若型別不是 Number 則會跳錯</span><br><span class="line">      type: Number,</span><br><span class="line">    &#x2F;&#x2F;若 cash 為 undefined 則觸發預設值</span><br><span class="line">      default: 500</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &#96;&lt;input type&#x3D;&quot;number&quot; v-model&#x3D;&quot;newCash&quot;&gt;&#96;,</span><br><span class="line">  data: function() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      newCash: this.cash</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#app&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">     cash: &#39;300&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let fufu: [string, number] &#x3D; [&#39;小富&#39;, 25];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var fufu &#x3D; [&#39;小富&#39;, 25];</span><br></pre></td></tr></table></figure>
 
-<h1 id="emit"><a href="#emit" class="headerlink" title="emit"></a>emit</h1><p><code>emit</code> 是透過事件來對外層元件推送一個資料 ↓</p>
-<p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/Vue%2Femit.jpg?alt=media&token=9b37b125-a0fb-49b0-8358-044317ec0501" alt=""></p>
+<p>我們預先設定了陣列的型別判定，所以照著輸入的話沒有問題。</p>
+<p>我們把值顛倒過來看看 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let fufu: [string, number] &#x3D; [25, &#39;小富&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 會報錯</span><br></pre></td></tr></table></figure>
+
+<p>這個報錯主要是說在設定 <code>string</code> 的位置不能輸入 <code>number</code>；在設定 <code>number</code> 的位置不能輸入 <code>string</code>。</p>
+<h2 id="能不能只對其中一項賦值？"><a href="#能不能只對其中一項賦值？" class="headerlink" title="能不能只對其中一項賦值？"></a>能不能只對其中一項賦值？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let fufu: [string, number];</span><br><span class="line">fufu[0] &#x3D; &#39;小富&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var fufu;</span><br><span class="line">fufu[0] &#x3D; &#39;小富&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>元組是可以只對其中一項賦值的，但是僅能夠利用這種方式賦值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let fufu: [string, number];</span><br><span class="line">fufu &#x3D; [&#39;小富&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 會跳錯：Type &#39;[string]&#39; is not assignable to type &#39;[string, number]&#39;.</span><br></pre></td></tr></table></figure>
+
+<h2 id="新增多的元素"><a href="#新增多的元素" class="headerlink" title="新增多的元素"></a>新增多的元素</h2><p>當你設定只有兩個的話，並不能新增第三個元素進去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let fufu: [string, number] &#x3D; [&#39;小富&#39;, 25, &#39;小黃&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 會報錯：Type &#39;[string, number, string]&#39; is not assignable to type &#39;[string, number]&#39;.</span><br></pre></td></tr></table></figure>
+
+<p>但是如果是利用 <code>push()</code> 的方式就可以，不過只能是 <code>[string, number]</code> 其中一個型別。 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let fufu: [string, number] &#x3D; [&#39;小富&#39;, 25];</span><br><span class="line">fufu.push(&#39;小黃&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var fufu &#x3D; [&#39;小富&#39;, 25];</span><br><span class="line">fufu.push(&#39;小黃&#39;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let fufu: [string, number] &#x3D; [&#39;小富&#39;, 25];</span><br><span class="line">fufu.push(&#39;小黃&#39;);</span><br><span class="line">fufu.push(true);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 會報錯： Argument of type &#39;boolean&#39; is not assignable to parameter of type &#39;string | number&#39;.</span><br></pre></td></tr></table></figure>
+
+<p>這個報錯主要是說：你只有能輸入 <code>string | number</code> 這兩種型別，你沒有定義說能使用 <code>boolean</code> 這個型別。</p>
 
     </div>
 
@@ -264,8 +278,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
           </div>
 
         
@@ -274,12 +287,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/11/2020-07-11-Vue%E7%AD%86%E8%A8%98%EF%BC%9A%E5%85%83%E4%BB%B6(component)/" rel="prev" title="Vue：元件 (component)">
-      <i class="fa fa-chevron-left"></i> Vue：元件 (component)
+    <a href="/2020/09/24/2020-09-24-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%AD%97%E4%B8%B2%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9E%8B%E5%88%A5/" rel="prev" title="TypeScript 從零開始：字串字面量型別">
+      <i class="fa fa-chevron-left"></i> TypeScript 從零開始：字串字面量型別
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/27/2020-08-27-JavaScript%EF%BC%9A%E9%99%A3%E5%88%97%E6%96%B9%E6%B3%95/" rel="next" title="JavaScript：陣列方法">
-      JavaScript：陣列方法 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/25/2020-09-25-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%88%97%E8%88%89%20(%20Enum%20)/" rel="next" title="TypeScript 從零開始：列舉 ( Enum )">
+      TypeScript 從零開始：列舉 ( Enum ) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -340,7 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#props"><span class="nav-number">1.</span> <span class="nav-text">props</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#props-是單向數據流"><span class="nav-number">1.1.</span> <span class="nav-text">props 是單向數據流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props-型別"><span class="nav-number">1.2.</span> <span class="nav-text">props 型別</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#emit"><span class="nav-number">2.</span> <span class="nav-text">emit</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-從零開始：元組-Tuple"><span class="nav-number">1.</span> <span class="nav-text">TypeScript 從零開始：元組 ( Tuple )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元組-Tuple"><span class="nav-number">2.</span> <span class="nav-text">元組 ( Tuple )</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#能不能只對其中一項賦值？"><span class="nav-number">2.1.</span> <span class="nav-text">能不能只對其中一項賦值？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增多的元素"><span class="nav-number">2.2.</span> <span class="nav-text">新增多的元素</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,20 +369,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

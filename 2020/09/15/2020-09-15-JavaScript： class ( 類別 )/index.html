@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hoongyuu.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="JavaScript： class ( 類別 ) 首先必須知道 class 只是 ES6 的語法糖 ( syntactical sugar )，並不是真的以類別為基礎的物件導向，在 JavaScript 當中仍舊是原型為基礎的物件導向。 簡單範例類別用 class 來定義，使用 constructor 來定義建構函式。 1234567891011121314class Animal &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript： class ( 類別 )">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="JavaScript： class ( 類別 ) 首先必須知道 class 只是 ES6 的語法糖 ( syntactical sugar )，並不是真的以類別為基礎的物件導向，在 JavaScript 當中仍舊是原型為基礎的物件導向。 簡單範例類別用 class 來定義，使用 constructor 來定義建構函式。 1234567891011121314class Animal &amp;#123;">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/xITKDpQ.png">
+<meta property="article:published_time" content="2020-09-15T13:15:00.000Z">
+<meta property="article:modified_time" content="2020-10-11T11:25:53.040Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/xITKDpQ.png">
+
+<link rel="canonical" href="https://hoongyuu.github.io/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript： class ( 類別 ) | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript： class ( 類別 )
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-15 21:15:00" itemprop="dateCreated datePublished" datetime="2020-09-15T21:15:00+08:00">2020-09-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-11 19:25:53" itemprop="dateModified" datetime="2020-10-11T19:25:53+08:00">2020-10-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JavaScript：-class-類別"><a href="#JavaScript：-class-類別" class="headerlink" title="JavaScript： class ( 類別 )"></a>JavaScript： class ( 類別 )</h1><p><img src="https://i.imgur.com/xITKDpQ.png" alt="LOGO"></p>
+<p>首先必須知道 <code>class</code> 只是 ES6 的語法糖 ( syntactical sugar )，並不是真的以類別為基礎的物件導向，在 JavaScript 當中仍舊是原型為基礎的物件導向。</p>
+<h2 id="簡單範例"><a href="#簡單範例" class="headerlink" title="簡單範例"></a>簡單範例</h2><p>類別用 <code>class</code> 來定義，使用 <code>constructor</code> 來定義建構函式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  constructor (family, name, color, size) &#123;</span><br><span class="line">    this.family &#x3D; family;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.color &#x3D; color;</span><br><span class="line">    this.size &#x3D; size;</span><br><span class="line">  &#125;</span><br><span class="line">  move () &#123;</span><br><span class="line">    console.log(&#96;$&#123;this.name&#125; 移動&#96;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Animal(&#39;小狗&#39;, &#39;富富&#39;, &#39;黑色&#39;, &#39;小型&#39;);</span><br><span class="line">fufu.move(); &#x2F;&#x2F; 富富 移動</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>類別命名時建議使用大駝峰命名法</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="類別繼承"><a href="#類別繼承" class="headerlink" title="類別繼承"></a>類別繼承</h2><p>類別可以通過 <code>extends</code> 語法來繼承，子類別可以透過 <code>super</code> 來呼叫父類別的建構函式和方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  constructor (family) &#123;</span><br><span class="line">    this.family &#x3D; family;</span><br><span class="line">  &#125;</span><br><span class="line">  move () &#123;</span><br><span class="line">    console.log(&#96;$&#123;this.name&#125; 移動&#96;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Dog extends Animal &#123;</span><br><span class="line">  constructor (family, name, color, size) &#123;</span><br><span class="line">    super(family); &#x2F;&#x2F; 呼叫父類別的 constructor(name)</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.color &#x3D; color;</span><br><span class="line">    this.size &#x3D; size;</span><br><span class="line">  &#125;</span><br><span class="line">  bark () &#123;</span><br><span class="line">    console.log(&#96;$&#123;this.name&#125; 吠叫汪汪&#96;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Dog(&#39;小狗&#39;, &#39;富富&#39;, &#39;黑色&#39;, &#39;小型&#39;);</span><br><span class="line">&#x2F;&#x2F; ↓ 回傳： 小狗 富富 黑色 小型</span><br><span class="line">console.log(fufu.family, fufu.name, fufu.color, fufu.size);</span><br><span class="line">fufu.move(); &#x2F;&#x2F; 富富 移動</span><br><span class="line">fufu.bark(); &#x2F;&#x2F; 富富 吠叫汪汪</span><br></pre></td></tr></table></figure>
+
+<p>透過繼承的方式 <code>Dog</code> 也繼承到了 <code>animal</code> 的方法。</p>
+<h2 id="getter-與-setter"><a href="#getter-與-setter" class="headerlink" title="getter 與 setter"></a>getter 與 setter</h2><p>在類別定義中可以使用 <code>get</code> &amp; <code>set</code> 作為類別方法的修飾符，使用 <code>get</code> &amp; <code>set</code> 可以改變屬性的賦值和讀取效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  constructor (name, hairColor) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.hair &#x3D; hairColor;</span><br><span class="line">  &#125;</span><br><span class="line">  set hair (val) &#123;</span><br><span class="line">    console.log(&#96;$&#123; this.name &#125; 的頭髮是$&#123; val &#125;的&#96;);</span><br><span class="line">  &#125;</span><br><span class="line">  get hair () &#123;</span><br><span class="line">    return &#39;黑色&#39;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Person(&#39;富富&#39;, &#39;金色&#39;); &#x2F;&#x2F; 富富 的頭髮是金色的</span><br><span class="line">console.log(fufu.hair); &#x2F;&#x2F; 黑色</span><br><span class="line">fufu.hair &#x3D; &#39;紅色&#39;; &#x2F;&#x2F; 富富 的頭髮是紅色的</span><br></pre></td></tr></table></figure>
+
+<p>如果我們把 <code>fufu</code> 呼叫出來，可以發現 <code>hair</code> 是顯示 (…) 的狀態，點開來之後會是黑色的，這主要是跟 getter 有關。</p>
+<h2 id="靜態方法-static"><a href="#靜態方法-static" class="headerlink" title="靜態方法 ( static )"></a>靜態方法 ( static )</h2><p>使用 <code>static</code> 修飾符就稱為靜態方法，靜態方法不需要實體化，它是透過類別直接呼叫的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  constructor (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">  &#125;</span><br><span class="line">  static sayHi () &#123;</span><br><span class="line">    console.log(&#39;Hello World!&#39;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Person(&#39;小富&#39;);</span><br><span class="line">Person.sayHi(); &#x2F;&#x2F; Hello World!</span><br><span class="line">fufu.sayHi(); &#x2F;&#x2F; 報錯：fufu.sayHi is not a function</span><br></pre></td></tr></table></figure>
+
+<p>在靜態方法中，不能透過實例呼叫方法，只允許透過類別直接呼叫方法。</p>
+<h3 id="靜態屬性"><a href="#靜態屬性" class="headerlink" title="靜態屬性"></a>靜態屬性</h3><p>在 ES7 之後可以使用 <code>static</code> 定義一個靜態屬性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  static name &#x3D; &#39;靜態屬性&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Person();</span><br><span class="line">console.log(fufu.name); &#x2F;&#x2F; undefined</span><br><span class="line">console.log(Person.name); &#x2F;&#x2F; 靜態屬性</span><br></pre></td></tr></table></figure>
+
+<h2 id="實例屬性"><a href="#實例屬性" class="headerlink" title="實例屬性"></a>實例屬性</h2><p>在 ES7 當中可以直接在類別裡面定義屬性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  name &#x3D; &#39;富富&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Person();</span><br><span class="line">console.log(fufu.name); &#x2F;&#x2F; 富富</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/14/2020-09-14-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E8%81%AF%E5%90%88%E5%9E%8B%E5%88%A5/" rel="prev" title="TypeScript 從零開始：聯合型別">
+      <i class="fa fa-chevron-left"></i> TypeScript 從零開始：聯合型別
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/16/2020-09-16-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E4%BB%8B%E9%9D%A2%20(%20interface%20)/" rel="next" title="TypeScript 從零開始：介面 ( interface )">
+      TypeScript 從零開始：介面 ( interface ) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript：-class-類別"><span class="nav-number">1.</span> <span class="nav-text">JavaScript： class ( 類別 )</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#簡單範例"><span class="nav-number">1.1.</span> <span class="nav-text">簡單範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#類別繼承"><span class="nav-number">1.2.</span> <span class="nav-text">類別繼承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getter-與-setter"><span class="nav-number">1.3.</span> <span class="nav-text">getter 與 setter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#靜態方法-static"><span class="nav-number">1.4.</span> <span class="nav-text">靜態方法 ( static )</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#靜態屬性"><span class="nav-number">1.4.1.</span> <span class="nav-text">靜態屬性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實例屬性"><span class="nav-number">1.5.</span> <span class="nav-text">實例屬性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

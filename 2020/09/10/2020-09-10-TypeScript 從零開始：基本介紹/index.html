@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hoongyuu.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="TypeScript 從零開始：原始型別 TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 從零開始：原始型別">
+<meta property="og:url" content="https://hoongyuu.github.io/2020/09/10/2020-09-10-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/index.html">
+<meta property="og:site_name" content="Cheeto">
+<meta property="og:description" content="TypeScript 從零開始：原始型別 TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 GitHub 上。  學習資源參考 TypeScript 新手指南">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FTypeScript%E8%B6%85%E9%9B%86%E5%90%88.png?alt=media&token=bcc041af-47e3-415d-9569-d17061bf5b72">
+<meta property="article:published_time" content="2020-09-10T06:05:00.000Z">
+<meta property="article:modified_time" content="2020-10-11T11:42:40.092Z">
+<meta property="article:author" content="Cheeto">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d">
+
+<link rel="canonical" href="https://hoongyuu.github.io/2020/09/10/2020-09-10-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>TypeScript 從零開始：原始型別 | Cheeto</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheeto</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">welcome to Cheeto's blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/10/2020-09-10-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TypeScript 從零開始：原始型別
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-10 14:05:00" itemprop="dateCreated datePublished" datetime="2020-09-10T14:05:00+08:00">2020-09-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-11 19:42:40" itemprop="dateModified" datetime="2020-10-11T19:42:40+08:00">2020-10-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TypeScript/" itemprop="url" rel="index">
+                    <span itemprop="name">TypeScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="TypeScript-從零開始：原始型別"><a href="#TypeScript-從零開始：原始型別" class="headerlink" title="TypeScript 從零開始：原始型別"></a>TypeScript 從零開始：原始型別</h1><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FXZBuk51.png?alt=media&token=190cc704-893e-4dea-ac8c-65043a94280d" alt=""></p>
+<p>TypeScript 是 JavaScript 的超集合，將強型別帶入 JavaSript，並提供對 ES6 的支援，而 TypeScript 由 Microsoft 開發，程式開源於 <strong>GitHub</strong> 上。</p>
+<blockquote>
+<p>學習資源參考 <a href="https://willh.gitbook.io/typescript-tutorial/" target="_blank" rel="noopener">TypeScript 新手指南</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="什麼是超集合-SuperSet-？"><a href="#什麼是超集合-SuperSet-？" class="headerlink" title="什麼是超集合 ( SuperSet ) ？"></a>什麼是超集合 ( SuperSet ) ？</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/TypeScript%2FTypeScript%E8%B6%85%E9%9B%86%E5%90%88.png?alt=media&token=bcc041af-47e3-415d-9569-d17061bf5b72" alt=""></p>
+<blockquote>
+<p>示意圖 ↑</p>
+</blockquote>
+<p>JavaScript 是一個語言的集合，但是 TypeScript 除了有完整 JavaScript 之外，自己又額外增加了各種功能，所以是 JavaScript 的超集合。</p>
+<p>在 TS 的檔案當中是支援 ES6 的語法的，所以就算使用 ES6 也是沒有問題的，不過必須透過 TS 的編譯器才能編譯為 JS 檔，瀏覽器才能進行解讀。</p>
+<h1 id="原始資料型別"><a href="#原始資料型別" class="headerlink" title="原始資料型別"></a>原始資料型別</h1><p>在 TypeScript 當中宣告變數時，可以透過 <code>:</code> 來檢查型別，那就讓我們繼續下去吧！</p>
+<h2 id="布林值-boolean"><a href="#布林值-boolean" class="headerlink" title="布林值 ( boolean )"></a>布林值 ( boolean )</h2><p>正常的編譯的情況下會是這樣 ↓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let booleanTS: boolean &#x3D; true;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var booleanTS &#x3D; true;</span><br></pre></td></tr></table></figure>
+
+<p>那如果變數不是布林值呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let booleanTS: boolean &#x3D; &#123; name: &#39;Cheeto&#39; &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯時會跳錯： Type &#123; name: &#39;Cheeto&#39; &#125; is not assignable to type &#39;boolean&#39;.</span><br><span class="line">&#x2F;&#x2F; 但是就算是報錯了，還是會編譯出 JS 的檔案唷！</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var booleanTS &#x3D; &#123; name: &#39;Cheeto&#39; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>這邊就能看出 TypeScript 的其中一個特性，它是會通知你哪裡出現狀況，但是並不會強制修改。</p>
+<h2 id="數值-Number"><a href="#數值-Number" class="headerlink" title="數值 ( Number )"></a>數值 ( Number )</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let basicNum: number &#x3D; 123;</span><br><span class="line">let nanNum: number &#x3D; NaN;</span><br><span class="line">let infinityNum: number &#x3D; Infinity;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var basicNum &#x3D; 123;</span><br><span class="line">var nanNum &#x3D; NaN;</span><br><span class="line">var infinityNum &#x3D; Infinity;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>Number</code> 當中只要是 JS 的基本型別當中是屬於 <code>Number</code> 的就不會出現錯誤的資訊，都是能夠正常編譯。</p>
+<h2 id="字串-String"><a href="#字串-String" class="headerlink" title="字串 ( String )"></a>字串 ( String )</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let myName: string &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">let myBro: string &#x3D; &#39;Nian&#39;</span><br><span class="line">let str: string &#x3D; &#96;My name is $&#123; myName &#125;, and my bro name is $&#123; myBro &#125;.&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var myName &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">var myBro &#x3D; &#39;Nian&#39;;</span><br><span class="line">var str &#x3D; &quot;My name is &quot; + myName + &quot;, and my bro name is &quot; + myBro + &quot;.&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到我在編譯前使用的是 ES6 的<strong>樣板字面值</strong>，但是在編譯過程中它會轉換成透過 <code>+</code> 的方式組成的字串。</p>
+<h2 id="空值-Void"><a href="#空值-Void" class="headerlink" title="空值 ( Void )"></a>空值 ( Void )</h2><p>在 TS 當中，可以使用 <code>Void</code> 來宣告沒有回傳值的函式來進行查驗。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">const newFunc &#x3D; (): void &#x3D;&gt; &#123;</span><br><span class="line">  const myName &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">  const myBro &#x3D; &#39;Nian&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function func1 (): void &#123;</span><br><span class="line">  const myName &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">  const myBro &#x3D; &#39;Nian&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var newFunc &#x3D; function () &#123;</span><br><span class="line">    var myName &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">    var myBro &#x3D; &#39;Nian&#39;;</span><br><span class="line">&#125;</span><br><span class="line">function func1() &#123;</span><br><span class="line">    var myName &#x3D; &#39;Cheeto&#39;;</span><br><span class="line">    var myBro &#x3D; &#39;Nian&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Null-amp-Undefined"><a href="#Null-amp-Undefined" class="headerlink" title="Null &amp; Undefined"></a><code>Null</code> &amp; <code>Undefined</code></h2><p>在 TS 當中，也能利用 <code>Null</code> &amp; <code>Undefined</code> 來進行型別辨認：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 編譯前</span><br><span class="line">let undefinedTS: undefined &#x3D; undefined;</span><br><span class="line">let nullTS: null &#x3D; null;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 編譯後</span><br><span class="line">var undefinedTS &#x3D; undefined;</span><br><span class="line">var nullTS &#x3D; null;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/03/2020-09-03-JavaScript%EF%BC%9AES6%20-%20%E8%A7%A3%E6%A7%8B%E8%B3%A6%E5%80%BC/" rel="prev" title="JavaScript：ES6 - 解構賦值">
+      <i class="fa fa-chevron-left"></i> JavaScript：ES6 - 解構賦值
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/12/2020-09-12-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E4%BB%BB%E6%84%8F%E5%80%BC%E3%80%81%E9%A0%90%E8%A8%AD%E5%9E%8B%E5%88%A5%E5%88%A4%E5%AE%9A/" rel="next" title="TypeScript 從零開始：任意值、預設型別判定">
+      TypeScript 從零開始：任意值、預設型別判定 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-從零開始：原始型別"><span class="nav-number">1.</span> <span class="nav-text">TypeScript 從零開始：原始型別</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是超集合-SuperSet-？"><span class="nav-number">1.1.</span> <span class="nav-text">什麼是超集合 ( SuperSet ) ？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原始資料型別"><span class="nav-number">2.</span> <span class="nav-text">原始資料型別</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布林值-boolean"><span class="nav-number">2.1.</span> <span class="nav-text">布林值 ( boolean )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#數值-Number"><span class="nav-number">2.2.</span> <span class="nav-text">數值 ( Number )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字串-String"><span class="nav-number">2.3.</span> <span class="nav-text">字串 ( String )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值-Void"><span class="nav-number">2.4.</span> <span class="nav-text">空值 ( Void )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Null-amp-Undefined"><span class="nav-number">2.5.</span> <span class="nav-text">Null &amp; Undefined</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cheeto"
+      src="/images/Cheeto.jpg">
+  <p class="site-author-name" itemprop="name">Cheeto</p>
+  <div class="site-description" itemprop="description">Cheeto 的學習部落格</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hoongyuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hoongyuu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kahod12450@gmail.com" title="E-Mail → mailto:kahod12450@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hoongyuu/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;hoongyuu&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheeto</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
