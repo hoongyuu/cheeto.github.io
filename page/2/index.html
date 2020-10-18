@@ -179,6 +179,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Cheeto.jpg">
+      <meta itemprop="name" content="Cheeto">
+      <meta itemprop="description" content="Cheeto 的學習部落格">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheeto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/" class="post-title-link" itemprop="url">JavaScript： class ( 類別 )</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-15 21:15:00" itemprop="dateCreated datePublished" datetime="2020-09-15T21:15:00+08:00">2020-09-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-11 19:25:53" itemprop="dateModified" datetime="2020-10-11T19:25:53+08:00">2020-10-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JavaScript：-class-類別"><a href="#JavaScript：-class-類別" class="headerlink" title="JavaScript： class ( 類別 )"></a>JavaScript： class ( 類別 )</h1><p><img src="https://i.imgur.com/xITKDpQ.png" alt="LOGO"></p>
+<p>首先必須知道 <code>class</code> 只是 ES6 的語法糖 ( syntactical sugar )，並不是真的以類別為基礎的物件導向，在 JavaScript 當中仍舊是原型為基礎的物件導向。</p>
+<h2 id="簡單範例"><a href="#簡單範例" class="headerlink" title="簡單範例"></a>簡單範例</h2><p>類別用 <code>class</code> 來定義，使用 <code>constructor</code> 來定義建構函式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">  constructor (family, name, color, size) &#123;</span><br><span class="line">    this.family &#x3D; family;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.color &#x3D; color;</span><br><span class="line">    this.size &#x3D; size;</span><br><span class="line">  &#125;</span><br><span class="line">  move () &#123;</span><br><span class="line">    console.log(&#96;$&#123;this.name&#125; 移動&#96;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fufu &#x3D; new Animal(&#39;小狗&#39;, &#39;富富&#39;, &#39;黑色&#39;, &#39;小型&#39;);</span><br><span class="line">fufu.move(); &#x2F;&#x2F; 富富 移動</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>類別命名時建議使用大駝峰命名法</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/15/2020-09-15-JavaScript%EF%BC%9A%20class%20(%20%E9%A1%9E%E5%88%A5%20)/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/09/14/2020-09-14-TypeScript%20%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%9A%E8%81%AF%E5%90%88%E5%9E%8B%E5%88%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -966,93 +1056,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hoongyuu.github.io/2020/07/05/2020-07-05-Cookie%E3%80%81Session%20Storage%E3%80%81Local%20Storage%E5%B7%AE%E5%88%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Cheeto.jpg">
-      <meta itemprop="name" content="Cheeto">
-      <meta itemprop="description" content="Cheeto 的學習部落格">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheeto">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/05/2020-07-05-Cookie%E3%80%81Session%20Storage%E3%80%81Local%20Storage%E5%B7%AE%E5%88%A5/" class="post-title-link" itemprop="url">Cookie、Session Storage、Local Storage差別</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-07-05 22:38:34" itemprop="dateCreated datePublished" datetime="2020-07-05T22:38:34+08:00">2020-07-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-10-11 19:33:47" itemprop="dateModified" datetime="2020-10-11T19:33:47+08:00">2020-10-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Cookie、Session-Storage、Local-Storage差別"><a href="#Cookie、Session-Storage、Local-Storage差別" class="headerlink" title="Cookie、Session Storage、Local Storage差別"></a>Cookie、Session Storage、Local Storage差別</h1><h2 id="Cookie-─-識別用戶"><a href="#Cookie-─-識別用戶" class="headerlink" title="Cookie ─ 識別用戶"></a>Cookie ─ 識別用戶</h2><p>An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user’s web browser. The browser may store it and send it back with the next request to the same server.</p>
-<p>Cookie 是伺服器傳送到使用者瀏覽器的一個”小”資料空間，瀏覽器可以透過 Cookie 儲存，在下次請求時回傳。</p>
-<blockquote>
-<p>[MDN](<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/05/2020-07-05-Cookie%E3%80%81Session%20Storage%E3%80%81Local%20Storage%E5%B7%AE%E5%88%A5/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1125,7 +1128,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
